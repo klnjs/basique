@@ -1,0 +1,5 @@
+{
+	"extends": "../../configs/typescript-config/src/esnext.json",
+	"exclude": ["dist", "node_modules", "src/**/*.spec.ts"],
+	"include": ["index.ts", "src/**/*.ts", "src/**/*.tsx"]
+}
