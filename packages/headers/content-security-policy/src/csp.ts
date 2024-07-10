@@ -38,6 +38,7 @@ export type ContentSecurityPolicy = {
 	'worker-src'?: FetchSourceList
 }
 
+// eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export default class CSP {
 	static parse(text: string): ContentSecurityPolicy {
 		return text.split(';').reduce((acc: ContentSecurityPolicy, value) => {
@@ -69,7 +70,7 @@ export default class CSP {
 
 	static stringify(policy: ContentSecurityPolicy): string {
 		return Object.entries(policy)
-			.filter(([, list]) => list !== undefined && list.length !== 0)
+			.filter(([, list]) => list.length !== 0)
 			.map(([directive, list]) => `${directive} ${list.join(' ')}`)
 			.join('; ')
 	}
