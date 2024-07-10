@@ -17,7 +17,7 @@ npm install @klnjs/content-security-policy
 Simply import the CSP module, and optionally the `ContentSecurityPolicy` type.
 
 ```ts
-import CSP, { type ContentSecurityPolicy } from 'csp-parser';
+import CSP, { type ContentSecurityPolicy } from 'csp-parser'
 ```
 
 ### Parsing
@@ -25,7 +25,7 @@ import CSP, { type ContentSecurityPolicy } from 'csp-parser';
 To parse a CSP string into a `ContentSecurityPolicy` object, use the `CSP.parse` method:
 
 ```ts
-const csp = CSP.parse("default-src 'self'; img-src https://example.com");
+const csp = CSP.parse("default-src 'self'; img-src https://example.com")
 ```
 
 ### Stringifying
@@ -34,9 +34,9 @@ To serialize a `ContentSecurityPolicy` object, use the `CSP.stringify` method:
 
 ```ts
 const value = CSP.stringify({
-  'default-src': ["'self'"],
-  'img-src': ['https://example.com']
-});
+	'default-src': ["'self'"],
+	'img-src': ['https://example.com']
+})
 ```
 
 ### Validation
@@ -45,8 +45,8 @@ The parser validates CSP directives and their source lists. If an invalid direct
 
 ```ts
 try {
-  const csp = CSP.parse("invalid-directive 'self'");
+	const csp = CSP.parse("invalid-directive 'self'")
 } catch (error) {
-  console.error(error); // SyntaxError: ContentSecurityPolicy.parse: invalid directive invalid-directive
+	console.error(error) // SyntaxError: ContentSecurityPolicy.parse: invalid directive invalid-directive
 }
 ```

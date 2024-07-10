@@ -41,7 +41,7 @@ export type ContentSecurityPolicy = {
 export default class CSP {
 	static parse(text: string): ContentSecurityPolicy {
 		return text.split(';').reduce((acc: ContentSecurityPolicy, value) => {
-			const [directive, ...list] = value.trim().split(/\s+/)
+			const [directive = '', ...list] = value.trim().split(/\s+/)
 
 			if (!isDirective(directive)) {
 				throw new SyntaxError(
@@ -54,7 +54,8 @@ export default class CSP {
 				(directive === 'sandbox' && !isSandboxTokenList(list)) ||
 				(directive === 'frame-ancestors' &&
 					!isFrameAncestorsSourceList(list)) ||
-				(directive === 'form-action' && !isFormActionSourceList(list)) ||
+				(directive === 'form-action' &&
+					!isFormActionSourceList(list)) ||
 				(directive.endsWith('-src') && !isFetchSourceList(list))
 			) {
 				throw new SyntaxError(

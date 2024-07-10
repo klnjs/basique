@@ -1,3 +1,10 @@
-import { core } from '../eslint-config/index.js'
+import { core, react, typescript } from '@klnjs/eslint-config'
 
-export default [core]
+export default [
+	core,
+	react,
+	typescript,
+	{
+		ignores: ['dist']
+	}
+]

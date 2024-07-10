@@ -41,14 +41,14 @@ test('stringify should succeed and produced serialized content security policy',
 		})
 	).toBe(
 		"base-uri 'none'; " +
-		"connect-src 'self' https://trusted.api.com; " +
-		"font-src 'self' https://trusted.cdn.com; " +
-		"frame-ancestors 'none'; " +
-		"img-src 'self' data: https://trusted.cdn.com; " +
-		"media-src 'self' mediastream: https://trusted.cdn.com; " +
-		"object-src 'none'; " +
-		'sandbox allow-forms allow-scripts; ' +
-		"script-src 'strict-dynamic' 'nonce-rAnd0m123'; " +
-		"style-src 'self'"
+			"connect-src 'self' https://trusted.api.com; " +
+			"font-src 'self' https://trusted.cdn.com; " +
+			"frame-ancestors 'none'; " +
+			"img-src 'self' data: https://trusted.cdn.com; " +
+			"media-src 'self' mediastream: https://trusted.cdn.com; " +
+			"object-src 'none'; " +
+			'sandbox allow-forms allow-scripts; ' +
+			"script-src 'strict-dynamic' 'nonce-rAnd0m123'; " +
+			"style-src 'self'"
 	)
 })

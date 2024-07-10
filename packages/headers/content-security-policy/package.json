@@ -2,14 +2,15 @@
 	"name": "@klnjs/content-security-policy",
 	"type": "module",
 	"author": "Rune Klein (@rnkln)",
-	"version": "3.0.0-rc.11",
+	"version": "1.0.0-beta.2",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "git+ssh://git@github.com/klnjs/outils.git",
+		"url": "git+ssh://git@github.com/klnjs/basique.git",
 		"directory": "packages/headers/content-security-policy"
 	},
 	"keywords": [
+		"csp",
 		"content-security-policy"
 	],
 	"files": [
@@ -17,20 +18,28 @@
 		"LICENSE",
 		"README.md"
 	],
-	"exports": {
-		".": {
-			"types": "./dist/index.d.ts",
-			"import": "./dist/index.js"
+	"exports": "./index.ts",
+	"publishConfig": {
+		"exports": {
+			".": {
+				"types": "./dist/index.d.ts",
+				"import": "./dist/index.js"
+			}
 		}
 	},
 	"scripts": {
 		"test": "bun test",
-		"build": "bun build ./index.ts --outdir ./dist && tsc --declaration --emitDeclarationOnly --noEmit false",
+		"build": "basique build",
 		"eslint": "eslint . --max-warnings 0",
 		"prettier": "prettier . --check"
 	},
 	"devDependencies": {
+		"@klnjs/basique": "workspace:*",
+		"@klnjs/eslint-config": "2.0.0",
+		"@klnjs/prettier-config": "2.0.0",
+		"@klnjs/typescript-config": "2.0.0",
 		"eslint": "9.5.0",
-		"prettier": "3.3.2"
+		"prettier": "3.3.2",
+		"typescript": "5.5.2"
 	}
 }

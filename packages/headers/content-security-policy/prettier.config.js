@@ -1,1 +1,1 @@
-export { core as default } from '../../configs/prettier-config/index.js'
+export { default } from '@klnjs/prettier-config'

@@ -1,5 +1,9 @@
 {
-	"extends": "../../configs/typescript-config/src/esnext.json",
-	"exclude": ["dist", "node_modules", "src/**/*.spec.ts"],
+	"extends": "@klnjs/typescript-config/esnext",
+	"compilerOptions": {
+		"outDir": "dist",
+		"noPropertyAccessFromIndexSignature": false
+	},
+	"exclude": ["dist", "node_modules"],
 	"include": ["index.ts", "src/**/*.ts", "src/**/*.tsx"]
 }

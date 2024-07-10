@@ -18,7 +18,7 @@ const directives = [
 	'style-src-attr',
 	'style-src-elem',
 	'style-src',
-	'worker-src',
+	'worker-src'
 ] as const
 
 type SourceQuote<T extends string> = `'${T}'`
