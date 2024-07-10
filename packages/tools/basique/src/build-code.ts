@@ -25,6 +25,6 @@ export const buildCode = async ({ root, dist }: BuildCodeOptions) => {
 	})
 
 	if (!result.success) {
-		throw new AggregateError(result.logs, "Build failed");
+		throw new AggregateError(result.logs, 'Build failed')
 	}
 }
