@@ -18,9 +18,13 @@ export const buildCode = async ({ root, dist }: BuildCodeOptions) => {
 		'peerDependencies'
 	].flatMap((section) => Object.keys(manifest[section] ?? {}))
 
-	await Bun.build({
+	const result = await Bun.build({
 		outdir: dist,
 		external,
 		entrypoints
 	})
+
+	if (!result.success) {
+		throw new AggregateError(result.logs, 'Build failed')
+	}
 }
