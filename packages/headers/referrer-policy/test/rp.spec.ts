@@ -11,7 +11,5 @@ test('parse should throw with invalid referrer-policy', () => {
 })
 
 test('stringify should succeed with referrer-policy', () => {
-	expect(
-		RP.stringify('no-referrer')
-	).toBe('no-referrer')
+	expect(RP.stringify('no-referrer')).toBe('no-referrer')
 })
