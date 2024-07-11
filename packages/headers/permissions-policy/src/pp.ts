@@ -51,7 +51,7 @@ export default class PP {
 
 			if (!isDirective(directive)) {
 				throw new SyntaxError(
-					`PermissionsPolicy.parse: invalid feature ${directive}`
+					`PermissionsPolicy.parse: invalid directive ${directive}`
 				)
 			}
 
