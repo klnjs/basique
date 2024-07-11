@@ -31,9 +31,10 @@ const directives = [
 	'sync-xhr',
 	'usb',
 	'web-share',
-	'xr-spatial-tracking',
+	'xr-spatial-tracking'
 ] as const
 
-export type Directive = typeof directives[number]
+export type Directive = (typeof directives)[number]
 
-export const isDirective = (text: string): text is Directive => directives.includes(text as Directive)
+export const isDirective = (text: string): text is Directive =>
+	directives.includes(text as Directive)

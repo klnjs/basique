@@ -1,4 +1,6 @@
-export type AllowList = '*' | ('src' | 'self' | `"http://${string}"` | `"https://${string}"`)[];
+export type AllowList =
+	| '*'
+	| ('src' | 'self' | `"http://${string}"` | `"https://${string}"`)[]
 
 export const isAllowList = (list: string | string[]): list is AllowList => {
 	if (!Array.isArray(list)) {
@@ -9,5 +11,7 @@ export const isAllowList = (list: string | string[]): list is AllowList => {
 		return false
 	}
 
-	return list.every((value) => /^(?:src|self|"http:\/\/.*"|"https:\/\/.*")$/.test(value))
+	return list.every((value) =>
+		/^(?:src|self|"http:\/\/.*"|"https:\/\/.*")$/.test(value)
+	)
 }
