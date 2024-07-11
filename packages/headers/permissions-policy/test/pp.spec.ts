@@ -25,7 +25,7 @@ test('stringify should succeed with permissions-policy', () => {
 		})
 	).toBe(
 		'autoplay=*, ' +
-		'camera=(), ' +
-		'geolocation=(self "https://trusted.site.com")'
+			'camera=(), ' +
+			'geolocation=(self "https://trusted.site.com")'
 	)
 })
