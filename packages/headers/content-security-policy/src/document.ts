@@ -4,7 +4,7 @@ import {
 	toSourceRegex,
 	type None,
 	type Source
-} from './directive'
+} from './directives'
 
 const baseUriSources = ["'self'", 'http://*', 'https://*'] as const
 

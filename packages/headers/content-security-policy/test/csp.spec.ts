@@ -1,31 +1,20 @@
 import { test, expect } from 'bun:test'
-import CSP from './csp'
+import CSP from '../src/csp'
 
-test('parse should succeed with source list', () => {
-	expect(() =>
-		CSP.parse("base-uri 'self' https://trusted.site.com")
-	).not.toThrow()
-})
-
-test("parse should succeed with source list only including 'none'", () => {
+test('parse should succeed with valid content-security-policy', () => {
 	expect(() => CSP.parse("base-uri 'none'")).not.toThrow()
+	expect(() => CSP.parse("base-uri 'self' https://trusted.com")).not.toThrow()
 })
 
-test('parse should throw with source list being empty', () => {
+test('parse should throw with invalid content-security-policy', () => {
+	expect(() => CSP.parse("invalid-directive 'self'")).toThrow()
 	expect(() => CSP.parse('base-uri')).toThrow()
-})
-
-test('parse should throw with source list being invalid', () => {
+	expect(() => CSP.parse('base-uri self')).toThrow()
 	expect(() => CSP.parse('base-uri invalid-source-list-#%&/')).toThrow()
+	expect(() => CSP.parse("base-uri 'none' 'self'")).toThrow()
 })
 
-test("parse should throw with source list including 'none' and other directives", () => {
-	expect(() =>
-		CSP.parse("base-uri 'none' 'self' https://trusted.site.com")
-	).toThrow()
-})
-
-test('stringify should succeed and produced serialized content security policy', () => {
+test('stringify should succeed with content-security-policy', () => {
 	expect(
 		CSP.stringify({
 			'base-uri': ["'none'"],

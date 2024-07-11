@@ -1,18 +1,17 @@
-import { isFetchSourceList, type FetchSourceList } from './directives/fetch'
+import { isFetchSourceList, type FetchSourceList } from './fetch'
 import {
 	isFormActionSourceList,
 	isFrameAncestorsSourceList,
 	type FrameAncestorSourceList,
 	type FormActionSourceList
-} from './directives/navigation'
+} from './navigation'
 import {
 	isBaseUriSourceList,
 	isSandboxTokenList,
 	type BaseUriSourceList,
 	type SandboxTokenList
-} from './directives/document'
-import { isDirective } from './directives/directive'
-import type { ReportTo } from './directives/reporting'
+} from './document'
+import { isDirective } from './directives'
 
 export type ContentSecurityPolicy = {
 	'base-uri'?: BaseUriSourceList
@@ -27,7 +26,7 @@ export type ContentSecurityPolicy = {
 	'manifest-src'?: FetchSourceList
 	'media-src'?: FetchSourceList
 	'object-src'?: FetchSourceList
-	'report-to'?: ReportTo
+	'report-to'?: string[]
 	sandbox?: SandboxTokenList
 	'script-src-attr'?: FetchSourceList
 	'script-src-elem'?: FetchSourceList
