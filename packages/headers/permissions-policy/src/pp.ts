@@ -67,7 +67,6 @@ export default class PP {
 
 	static stringify(policy: PermissionsPolicy): string {
 		return Object.entries(policy)
-			.filter(([, list]) => list.length !== 0)
 			.map(([directive, list]) =>
 				Array.isArray(list)
 					? `${directive}=(${list.join(' ')})`
