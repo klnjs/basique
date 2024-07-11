@@ -4,9 +4,7 @@ import PP from '../src/pp'
 test('parse should succeed with valid permissions-policy', () => {
 	expect(() => PP.parse('camera=*')).not.toThrow()
 	expect(() => PP.parse('camera=()')).not.toThrow()
-	expect(() =>
-		PP.parse('camera=(self "https://trusted.site.com")')
-	).not.toThrow()
+	expect(() => PP.parse('camera=(self "https://trusted.com")')).not.toThrow()
 })
 
 test('parse should throw with invalid permissions-policy', () => {
