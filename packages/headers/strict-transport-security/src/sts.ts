@@ -45,7 +45,7 @@ export default class STS {
 
 	static stringify(policy: StrictTransportSecurity): string {
 		return Object.entries(policy)
-			.filter(([, value]) => value === false)
+			.filter(([, value]) => value !== false)
 			.map(([directive, value]) =>
 				value === true ? directive : `${directive}=${value}`
 			)
