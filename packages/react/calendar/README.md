@@ -4,7 +4,7 @@ An calendar component for React.
 
 ## Installation
 
-You can install the `@klnjs/calendar` package using your preferred package manager.
+Install the `@klnjs/calendar` package using your preferred package manager.
 
 ```bash
 npm install @klnjs/calendar
