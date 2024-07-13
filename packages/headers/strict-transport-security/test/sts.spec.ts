@@ -16,7 +16,7 @@ test('parse should throw with invalid strict-transport-security', () => {
 	expect(() => STS.parse('preload')).toThrow()
 })
 
-test('stringify should succeed with referrer-policy', () => {
+test('stringify should succeed with strict-transport-security', () => {
 	expect(
 		STS.stringify({
 			'max-age': 0,
