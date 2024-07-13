@@ -40,8 +40,8 @@ export type PermissionsPolicy = {
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export default class PP {
 	static parse(text: string): PermissionsPolicy {
-		return text.split(',').reduce((acc: PermissionsPolicy, definition) => {
-			const [directive = '', value = ''] = definition.trim().split('=')
+		return text.split(',').reduce((acc: PermissionsPolicy, entry) => {
+			const [directive = '', value = ''] = entry.trim().split('=')
 			const list =
 				value === '*'
 					? value
@@ -51,13 +51,13 @@ export default class PP {
 
 			if (!isDirective(directive)) {
 				throw new SyntaxError(
-					`PermissionsPolicy.parse: invalid directive ${directive}`
+					`PermissionsPolicy.parse: invalid directive "${directive}"`
 				)
 			}
 
 			if (!isAllowList(list)) {
 				throw new SyntaxError(
-					`PermissionsPolicy.parse: invalid allowlist ${value}`
+					`PermissionsPolicy.parse: invalid allowlist "${value}" for directive "${directive}"`
 				)
 			}
 

@@ -18,6 +18,10 @@ test('parse should throw with invalid strict-transport-security', () => {
 
 test('stringify should succeed with referrer-policy', () => {
 	expect(
-		STS.stringify({ 'max-age': 0, preload: true, includeSubdomains: true })
+		STS.stringify({
+			'max-age': 0,
+			preload: true,
+			includeSubdomains: true
+		})
 	).toBe('max-age=0; preload; includeSubdomains')
 })

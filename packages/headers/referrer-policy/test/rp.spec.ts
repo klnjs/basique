@@ -7,6 +7,7 @@ test('parse should succeed with valid referrer-policy', () => {
 })
 
 test('parse should throw with invalid referrer-policy', () => {
+	expect(() => RP.parse('')).toThrow()
 	expect(() => RP.parse('invalid-policy')).toThrow()
 })
 
