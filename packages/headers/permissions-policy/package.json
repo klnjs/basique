@@ -10,6 +10,8 @@
 		"directory": "packages/headers/permissions-policy"
 	},
 	"keywords": [
+		"headers",
+		"security",
 		"permissions-policy"
 	],
 	"files": [

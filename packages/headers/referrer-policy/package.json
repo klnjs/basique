@@ -10,6 +10,8 @@
 		"directory": "packages/headers/referrer-policy"
 	},
 	"keywords": [
+		"headers",
+		"security",
 		"referrer-policy"
 	],
 	"files": [

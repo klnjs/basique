@@ -10,7 +10,8 @@
 		"directory": "packages/headers/content-security-policy"
 	},
 	"keywords": [
-		"csp",
+		"headers",
+		"security",
 		"content-security-policy"
 	],
 	"files": [
