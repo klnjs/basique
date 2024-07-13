@@ -4,7 +4,7 @@ A library that simplifies implemention of React components that support the `asC
 
 ## Installation
 
-You can install the `@klnjs/core` package using your preferred package manager.
+Install the `@klnjs/core` package using your preferred package manager.
 
 ```bash
 npm install @klnjs/core

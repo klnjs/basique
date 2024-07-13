@@ -4,7 +4,7 @@ An popover component for React.
 
 ## Installation
 
-You can install the `@klnjs/popover` package using your preferred package manager.
+Install the `@klnjs/popover` package using your preferred package manager.
 
 ```bash
 npm install @klnjs/popover

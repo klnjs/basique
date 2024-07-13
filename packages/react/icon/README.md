@@ -4,7 +4,7 @@ An icon component for React.
 
 ## Installation
 
-You can install the `@klnjs/icon` package using your preferred package manager.
+Install the `@klnjs/icon` package using your preferred package manager.
 
 ```bash
 npm install @klnjs/icon
