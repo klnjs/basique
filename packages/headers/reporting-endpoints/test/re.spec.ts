@@ -3,7 +3,9 @@ import RE from '../src/re'
 
 test('parse should succeed with valid reporting-endpoints', () => {
 	expect(() => RE.parse('endpoint=https://trusted.com')).not.toThrow()
-	expect(() => RE.parse('endpoint=https://trusted.com, endpoint-2=https://trusted.com')).not.toThrow()
+	expect(() =>
+		RE.parse('endpoint=https://trusted.com, endpoint-2=https://trusted.com')
+	).not.toThrow()
 })
 
 test('parse should throw with invalid reporting-endpoints', () => {
