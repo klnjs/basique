@@ -6,7 +6,7 @@ on:
       - master
 
 concurrency:
-  group: ci-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -21,12 +21,10 @@ jobs:
       TURBO_TELEMETRY_DISABLED: 1
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
-      - name: Bun
-        uses: oven-sh/setup-bun@v1
-        with:
-          bun-version: latest
+      - name: Tools
+        uses: asdf-vm/actions/install@05e0d2ed97b598bfce82fd30daf324ae0c4570e6 # v3.0.2
 
       - name: Install
         run: bun install
@@ -35,8 +33,7 @@ jobs:
         run: bun run build --filter='./apps/docs'
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4
         with:
           publish_dir: ./apps/docs/dist
           github_token: ${{ secrets.GITHUB_TOKEN }}
-

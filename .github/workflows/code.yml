@@ -1,4 +1,4 @@
-name: Code
+name: code
 
 on:
   pull_request:
@@ -6,37 +6,32 @@ on:
       - master
 
 concurrency:
-  group: ci-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    name: Check
+  check:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        script: [build, eslint, prettier, typescript]
+        script: [test, build, eslint, prettier, typescript]
     env:
       BUN_ENV: production
       FORCE_COLOR: 1
       TURBO_TELEMETRY_DISABLED: 1
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-      
-      - name: Bun
-        uses: oven-sh/setup-bun@v1
-        with:
-          bun-version: latest
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
-      - name: Cache      
-        uses: dtinth/setup-github-actions-caching-for-turbo@v1.2.0
+      - name: Tools
+        uses: asdf-vm/actions/install@05e0d2ed97b598bfce82fd30daf324ae0c4570e6 # v3.0.2
+
+      - name: Cache
+        uses: rharkor/caching-for-turbo@v1.5
 
       - name: Install
         run: bun install
 
       - name: Run ${{ matrix.script }}
         run: bun run ${{ matrix.script }}
-
-
