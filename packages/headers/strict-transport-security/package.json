@@ -10,6 +10,8 @@
 		"directory": "packages/headers/strict-transport-security"
 	},
 	"keywords": [
+		"header",
+		"security",
 		"strict-transport-security"
 	],
 	"files": [
