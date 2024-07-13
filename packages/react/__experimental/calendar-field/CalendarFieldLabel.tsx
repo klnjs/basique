@@ -1,4 +1,4 @@
-import { poly, forwardRef, useId, type CoreProps } from '../core'
+import { poly, forwardRef, useId, type CoreProps } from '@klnjs/core'
 import { useCalendarFieldContext } from './CalendarFieldContext'
 
 export type CalendarFieldLabelProps = CoreProps<'label'>

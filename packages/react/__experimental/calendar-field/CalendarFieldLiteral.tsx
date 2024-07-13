@@ -1,4 +1,4 @@
-import { poly, forwardRef, type CoreProps } from '../core'
+import { poly, forwardRef, type CoreProps } from '@klnjs/core'
 
 export type CalendarFieldLiteralProps = CoreProps<'span'>
 
