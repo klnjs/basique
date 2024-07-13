@@ -40,12 +40,12 @@ export type ContentSecurityPolicy = {
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export default class CSP {
 	static parse(text: string): ContentSecurityPolicy {
-		return text.split(';').reduce((acc: ContentSecurityPolicy, value) => {
-			const [directive = '', ...list] = value.trim().split(/\s+/)
+		return text.split(';').reduce((acc: ContentSecurityPolicy, entry) => {
+			const [directive = '', ...list] = entry.trim().split(/\s+/)
 
 			if (!isDirective(directive)) {
 				throw new SyntaxError(
-					`ContentSecurityPolicy.parse: invalid directive ${directive}`
+					`ContentSecurityPolicy.parse: invalid directive "${directive}"`
 				)
 			}
 
@@ -59,7 +59,7 @@ export default class CSP {
 				(directive.endsWith('-src') && !isFetchSourceList(list))
 			) {
 				throw new SyntaxError(
-					`ContentSecurityPolicy.parse: invalid source list ${list.join(' ')}`
+					`ContentSecurityPolicy.parse: invalid source list "${list.join(' ')}" for directive "${directive}"`
 				)
 			}
 

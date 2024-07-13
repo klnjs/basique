@@ -23,7 +23,7 @@ export default class PP {
 		return text as ReferrerPolicy
 	}
 
-	static stringify(text: ReferrerPolicy): string {
-		return text
+	static stringify(policy: ReferrerPolicy): string {
+		return policy
 	}
 }

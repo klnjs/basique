@@ -8,7 +8,9 @@ test('parse should succeed with valid permissions-policy', () => {
 })
 
 test('parse should throw with invalid permissions-policy', () => {
+	expect(() => PP.parse('')).toThrow()
 	expect(() => PP.parse('invalid-directive=(self)')).toThrow()
+	expect(() => PP.parse('camera')).toThrow()
 	expect(() => PP.parse('camera=')).toThrow()
 	expect(() => PP.parse('camera=(self')).toThrow()
 	expect(() => PP.parse('camera=self)')).toThrow()
@@ -25,7 +27,7 @@ test('stringify should succeed with permissions-policy', () => {
 		})
 	).toBe(
 		'autoplay=*, ' +
-			'camera=(), ' +
-			'geolocation=(self "https://trusted.site.com")'
+		'camera=(), ' +
+		'geolocation=(self "https://trusted.site.com")'
 	)
 })
