@@ -1,4 +1,4 @@
-name: Code
+name: code
 
 on:
   pull_request:
@@ -10,8 +10,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    name: Check
+  check:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
