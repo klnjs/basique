@@ -1,4 +1,4 @@
-import { PopoverTrigger, type PopoverTriggerProps } from '../popover'
+import { PopoverTrigger, type PopoverTriggerProps } from '../../popover'
 
 export type CalendarFieldTriggerProps = PopoverTriggerProps
 

@@ -1,5 +1,5 @@
-import { forwardRef } from '../core'
-import { PopoverContent, type PopoverContentProps } from '../popover'
+import { forwardRef } from '@klnjs/core'
+import { PopoverContent, type PopoverContentProps } from '../../popover'
 
 export type CalendarFieldPopoverProps = PopoverContentProps
 
