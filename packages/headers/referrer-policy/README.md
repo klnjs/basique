@@ -44,6 +44,6 @@ Parsing validates the referrer policy. If an invalid policy is encountered, a Sy
 try {
 	const policy = RR.parse('invalid-policy')
 } catch (error) {
-	console.error(error) // SyntaxError: ReferrerPolicy.parse: invalid directive "invalid-directive"
+	console.error(error) // SyntaxError: ReferrerPolicy.parse: invalid policy "invalid-policy"
 }
 ```
