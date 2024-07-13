@@ -8,7 +8,7 @@ All available icons can be viewed [here](https://pictogrammers.com/library/mdi/)
 
 ## Installation
 
-You can install the `@klnjs/icons` package using your preferred package manager.
+Install the `@klnjs/icons` package using your preferred package manager.
 
 ```bash
 npm install @klnjs/icons

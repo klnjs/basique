@@ -4,7 +4,7 @@ An spinner component for React.
 
 ## Installation
 
-You can install the `@klnjs/spinner` package using your preferred package manager.
+Install the `@klnjs/spinner` package using your preferred package manager.
 
 ```bash
 npm install @klnjs/spinner
