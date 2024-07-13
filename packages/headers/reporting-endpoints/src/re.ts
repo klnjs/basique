@@ -1,6 +1,5 @@
 export type ReportingEndpoints = Record<
-	string,
-	`http://${string}` | `https://${string}`
+	string, `https://${string}`
 >
 
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class
@@ -9,7 +8,7 @@ export default class RE {
 		return text.split(',').reduce((acc: ReportingEndpoints, entry) => {
 			const [endpoint = '', url = ''] = entry.trim().split('=')
 
-			if (!/^(?:http:\/\/.*|https:\/\/.*)$/.test(url)) {
+			if (!/^(?:https:\/\/.*)$/.test(url)) {
 				throw new SyntaxError(
 					`ReportingEndpoints.parse: invalid url "${url}" for endpoint "${endpoint}"`
 				)

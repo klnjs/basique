@@ -10,8 +10,9 @@ test('parse should succeed with valid reporting-endpoints', () => {
 
 test('parse should throw with invalid reporting-endpoints', () => {
 	expect(() => RE.parse('')).toThrow()
-	expect(() => RE.parse('endpoint=0;')).toThrow()
-	expect(() => RE.parse('endpoint=http:/trusted.com;')).toThrow()
+	expect(() => RE.parse('endpoint=0')).toThrow()
+	expect(() => RE.parse('endpoint=http://trusted.com')).toThrow()
+	expect(() => RE.parse('endpoint=https:/trusted.com')).toThrow()
 })
 
 test('stringify should succeed with reporting-endpoints', () => {
