@@ -10,7 +10,7 @@
 		"directory": "packages/headers/content-security-policy"
 	},
 	"keywords": [
-		"headers",
+		"header",
 		"security",
 		"content-security-policy"
 	],

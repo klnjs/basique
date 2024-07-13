@@ -10,7 +10,7 @@
 		"directory": "packages/headers/strict-transport-security"
 	},
 	"keywords": [
-		"headers",
+		"header",
 		"security",
 		"strict-transport-security"
 	],
