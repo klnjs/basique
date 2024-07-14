@@ -23,12 +23,16 @@ export const run = async () => {
 	const json = await Bun.file(pathToPackage).json()
 	const license = await Bun.file(pathToLicense).text()
 
-	if (json.publishConfig.exports) {
-		json.exports = json.publishConfig.exports
+	if (json.private !== true) {
+		if (json.publishConfig) {
+			if (json.publishConfig.exports) {
+				json.exports = json.publishConfig.exports
+			}
+
+			delete json.publishConfig
+		}
+
+		await Bun.write('./LICENSE', license)
+		await Bun.write('./package.json', JSON.stringify(json, null, 2))
 	}
-
-	delete json.publishConfig
-
-	await Bun.write('./LICENSE', license)
-	await Bun.write('./package.json', JSON.stringify(json, null, 2))
 }

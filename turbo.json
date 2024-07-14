@@ -13,7 +13,9 @@
 		},
 		"eslint": {},
 		"prettier": {},
-		"prepublish": {},
+		"prepublish": {
+			"cache": false
+		},
 		"typescript": {}
 	}
 }
