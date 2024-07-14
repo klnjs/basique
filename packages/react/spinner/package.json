@@ -37,6 +37,7 @@
 		"build": "basique build",
 		"eslint": "eslint . --max-warnings 0",
 		"prettier": "prettier . --check",
+		"prepublish": "basique prepublish",
 		"typescript": "tsc --noEmit"
 	},
 	"dependencies": {

@@ -7,21 +7,27 @@
 
 import { findUp } from 'find-up'
 
-export const prepare = async () => {
-	const pathToPackage = await findUp('package.json')
-	const pathToLicense = await findUp('LICENSE')
+export const run = async () => {
+	const cwd = process.cwd()
+	const pathToPackage = await findUp('package.json', { cwd })
+	const pathToLicense = await findUp('LICENSE', { cwd })
 
-	const json = await Bun.file(pathToPackage!).json()
-	const license = await Bun.file(pathToLicense!).text()
+	if (pathToPackage === undefined) {
+		throw new Error('Could not find package.json')
+	}
+
+	if (pathToLicense === undefined) {
+		throw new Error('Could not find LICENSE')
+	}
+
+	const json = await Bun.file(pathToPackage).json()
+	const license = await Bun.file(pathToLicense).text()
 
 	if (json.publishConfig.exports) {
 		json.exports = json.publishConfig.exports
-		delete json.publishConfig.exports
 	}
 
-	if (Object.keys(json.publishConfig).length === 0) {
-		delete json.publishConfig
-	}
+	delete json.publishConfig
 
 	await Bun.write('./LICENSE', license)
 	await Bun.write('./package.json', JSON.stringify(json, null, 2))
