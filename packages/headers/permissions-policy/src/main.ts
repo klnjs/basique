@@ -3,38 +3,38 @@ import { isDirective } from './directives'
 
 export type PermissionsPolicy = {
 	accelerometer?: AllowList
-	ambientLightSensor?: AllowList
+	'ambient-light-sensor'?: AllowList
 	autoplay?: AllowList
 	battery?: AllowList
 	camera?: AllowList
-	clipboardRead?: AllowList
-	clipboardWrite?: AllowList
-	crossOriginIsolated?: AllowList
-	displayCapture?: AllowList
-	documentDomain?: AllowList
-	encryptedMedia?: AllowList
-	executionWhileNotRendered?: AllowList
-	executionWhileOutOfViewport?: AllowList
+	'clipboard-read'?: AllowList
+	'clipboard-write'?: AllowList
+	'cross-origin-isolated'?: AllowList
+	'display-capture'?: AllowList
+	'document-domain'?: AllowList
+	'encrypted-media'?: AllowList
+	'execution-while-not-rendered'?: AllowList
+	'execution-while-out-of-viewport'?: AllowList
 	fullscreen?: AllowList
 	geolocation?: AllowList
 	gyroscope?: AllowList
 	hid?: AllowList
-	idleDetection?: AllowList
-	interestCohort?: AllowList
+	'idle-detection'?: AllowList
+	'interest-cohort'?: AllowList
 	magnetometer?: AllowList
 	microphone?: AllowList
 	midi?: AllowList
-	navigationOverride?: AllowList
+	'navigation-override'?: AllowList
 	payment?: AllowList
-	pictureInPicture?: AllowList
-	publickeyCredentialsGet?: AllowList
-	screenWakeLock?: AllowList
+	'picture-in-picture'?: AllowList
+	'publickey-credentials-get'?: AllowList
+	'screen-wake-lock'?: AllowList
 	serial?: AllowList
 	speaker?: AllowList
-	syncXhr?: AllowList
+	'sync-xhr'?: AllowList
 	usb?: AllowList
-	webShare?: AllowList
-	xrSpatialTracking?: AllowList
+	'web-share'?: AllowList
+	'xr-spatial-tracking'?: AllowList
 }
 
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class
