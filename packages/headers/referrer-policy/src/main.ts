@@ -12,7 +12,7 @@ const policies = [
 export type ReferrerPolicy = (typeof policies)[number]
 
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class
-export default class PP {
+export class RP {
 	static parse(text: string): ReferrerPolicy {
 		if (!policies.includes(text as ReferrerPolicy)) {
 			throw new SyntaxError(

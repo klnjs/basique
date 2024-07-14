@@ -2,7 +2,7 @@
 	"name": "@klnjs/reporting-endpoints",
 	"type": "module",
 	"author": "Rune Klein (@rnkln)",
-	"version": "1.0.0-beta.3",
+	"version": "1.0.0-beta.4",
 	"license": "MIT",
 	"repository": {
 		"type": "git",

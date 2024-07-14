@@ -1,5 +1,5 @@
 import { test, expect } from 'bun:test'
-import RE from '../src/re'
+import { RE } from '../src/main'
 
 test('parse should succeed with valid reporting-endpoints', () => {
 	expect(() => RE.parse('endpoint=https://trusted.com')).not.toThrow()

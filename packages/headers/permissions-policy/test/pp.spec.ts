@@ -1,5 +1,5 @@
 import { test, expect } from 'bun:test'
-import PP from '../src/pp'
+import { PP } from '../src/main'
 
 test('parse should succeed with valid permissions-policy', () => {
 	expect(() => PP.parse('camera=*')).not.toThrow()

@@ -7,7 +7,7 @@ export type StrictTransportSecurity = {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class
-export default class STS {
+export class STS {
 	static parse(text: string): StrictTransportSecurity {
 		if (!text.includes('max-age')) {
 			throw new SyntaxError(

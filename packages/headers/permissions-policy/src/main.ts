@@ -38,7 +38,7 @@ export type PermissionsPolicy = {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class
-export default class PP {
+export class PP {
 	static parse(text: string): PermissionsPolicy {
 		return text.split(',').reduce((acc: PermissionsPolicy, entry) => {
 			const [directive = '', value = ''] = entry.trim().split('=')

@@ -1,1 +1,1 @@
-export * from './src/sts'
+export { STS as default, type StrictTransportSecurity } from './src/main'

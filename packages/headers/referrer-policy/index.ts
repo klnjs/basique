@@ -1,1 +1,1 @@
-export * from './src/rp'
+export { RP as default, type ReferrerPolicy } from './src/main'

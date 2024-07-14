@@ -1,7 +1,7 @@
 export type ReportingEndpoints = Record<string, `https://${string}`>
 
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class
-export default class RE {
+export class RE {
 	static parse(text: string): ReportingEndpoints {
 		return text.split(',').reduce((acc: ReportingEndpoints, entry) => {
 			const [endpoint = '', url = ''] = entry.trim().split('=')
