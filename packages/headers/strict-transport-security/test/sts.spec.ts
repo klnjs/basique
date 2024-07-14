@@ -1,5 +1,5 @@
 import { test, expect } from 'bun:test'
-import STS from '../src/sts'
+import { STS } from '../src/main'
 
 test('parse should succeed with valid strict-transport-security', () => {
 	expect(() => STS.parse('max-age=0')).not.toThrow()

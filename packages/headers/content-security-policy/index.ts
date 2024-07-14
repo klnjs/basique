@@ -1,1 +1,1 @@
-export * from './src/csp'
+export { CSP as default, type ContentSecurityPolicy } from './src/main'

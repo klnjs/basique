@@ -1,5 +1,5 @@
 import { test, expect } from 'bun:test'
-import CSP from '../src/csp'
+import { CSP } from '../src/main'
 
 test('parse should succeed with valid content-security-policy', () => {
 	expect(() => CSP.parse("base-uri 'none'")).not.toThrow()

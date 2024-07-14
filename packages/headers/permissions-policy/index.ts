@@ -1,1 +1,1 @@
-export * from './src/pp'
+export { PP as default, type PermissionsPolicy } from './src/main'
