@@ -20,7 +20,7 @@ export const run = async () => {
 	await mkdir(dist, { recursive: true })
 
 	const built = await build(dist, { manifest, entrypoint })
-	const emitted = await emit(dist, { tsconfig, cwd });
+	const emitted = await emit(dist, { tsconfig, cwd })
 
 	if (!built.success) {
 		throw new AggregateError(built.logs, 'Build failed')
@@ -31,20 +31,19 @@ export const run = async () => {
 	}
 }
 
-type EmitConfig = { cwd: string, tsconfig: string }
+type EmitConfig = { cwd: string; tsconfig: string }
 
 type EmitOutput = {
-	success: boolean;
-	diagostics: readonly Diagnostic[];
+	success: boolean
+	diagostics: readonly Diagnostic[]
 }
 
-const emit = async (outdir: string, { cwd, tsconfig }: EmitConfig): Promise<EmitOutput> => {
+const emit = async (
+	outdir: string,
+	{ cwd, tsconfig }: EmitConfig
+): Promise<EmitOutput> => {
 	const raw = ts.readConfigFile(tsconfig, ts.sys.readFile)
-	const parsed = ts.parseJsonConfigFileContent(
-		raw.config,
-		ts.sys,
-		cwd
-	)
+	const parsed = ts.parseJsonConfigFileContent(raw.config, ts.sys, cwd)
 
 	const program = ts.createProgram({
 		rootNames: parsed.fileNames,
@@ -70,7 +69,10 @@ type BuildConfig = {
 	entrypoint: string
 }
 
-const build = async (outdir: string, { manifest, entrypoint }: BuildConfig): Promise<BuildOutput> => {
+const build = async (
+	outdir: string,
+	{ manifest, entrypoint }: BuildConfig
+): Promise<BuildOutput> => {
 	const config = await Bun.file(manifest).json()
 	const result = await Bun.build({
 		outdir,
