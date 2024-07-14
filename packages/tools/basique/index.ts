@@ -2,11 +2,16 @@
 
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
-import { build } from './src/build'
-import { prepare } from './src/prepare'
+import { run as build } from './src/build'
+import { run as prepublish } from './src/prepublish'
 
 await yargs(hideBin(process.argv))
 	.command('build', 'build a package', () => {}, build)
-	.command('prepare', 'prepare a package for publish', () => {}, prepare)
+	.command(
+		'prepublish',
+		'prepare a package for publish',
+		() => {},
+		prepublish
+	)
 	.demandCommand(1)
 	.parse()

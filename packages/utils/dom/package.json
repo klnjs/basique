@@ -2,7 +2,7 @@
 	"name": "@klnjs/dom",
 	"type": "module",
 	"author": "Rune Klein (@rnkln)",
-	"version": "1.0.0-beta.4",
+	"version": "1.0.0-beta.5",
 	"license": "MIT",
 	"homepage": "https://klnjs.github.io/basique",
 	"repository": {
@@ -31,6 +31,7 @@
 		"build": "basique build",
 		"eslint": "eslint . --max-warnings 0",
 		"prettier": "prettier . --check",
+		"prepublish": "basique prepublish",
 		"typescript": "tsc --noEmit"
 	},
 	"devDependencies": {
