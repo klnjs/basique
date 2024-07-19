@@ -42,7 +42,7 @@ export const usePin = ({
 			delay: isRecord(concealProp) ? concealProp.delay : 250,
 			symbol: isRecord(concealProp)
 				? concealProp.symbol
-				: concealProp ?? '·'
+				: (concealProp ?? '·')
 		}),
 		[concealProp]
 	)
