@@ -7,7 +7,7 @@ import { useMounted } from './useMounted'
 export const useEffectOnUpdate = (
 	effect: EffectCallback,
 	deps?: DependencyList
-) => {
+): void => {
 	const isMounted = useMounted()
 
 	useEffect(() => {

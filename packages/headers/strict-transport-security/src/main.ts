@@ -16,7 +16,10 @@ export class STS {
 		}
 
 		return text.split(';').reduce((acc, entry) => {
-			const [directive = '', value] = entry.trim().split('=')
+			const [directive = '', value] = entry.trim().split('=') as (
+				| string
+				| undefined
+			)[]
 
 			if (!isDirective(directive)) {
 				throw new SyntaxError(
