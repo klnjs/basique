@@ -1,7 +1,7 @@
 {
 	"name": "@klnjs/docs",
 	"author": "Rune Klein (@rnkln)",
-	"version": "1.0.0",
+	"version": "0.0.0",
 	"private": true,
 	"repository": {
 		"type": "git",
