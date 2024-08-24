@@ -14,7 +14,5 @@ export const useEffectOnUpdate = (
 		if (isMounted) {
 			return effect()
 		}
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, deps)
 }
