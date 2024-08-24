@@ -1,4 +1,4 @@
-import { poly, forwardRef, type CoreProps } from '@klnjs/core'
+import { poly, forwardRef, type CoreProps } from '@klnjs/react-core'
 import { PinProvider } from './PinContext'
 import { usePin, type UsePinOptions } from './usePin'
 

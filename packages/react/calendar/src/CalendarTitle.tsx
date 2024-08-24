@@ -1,5 +1,5 @@
 import { Intl } from 'temporal-polyfill'
-import { poly, forwardRef, type CoreProps } from '@klnjs/core'
+import { poly, forwardRef, type CoreProps } from '@klnjs/react-core'
 import { useCalendarContext } from './CalendarContext'
 
 export type CalendarTitleProps = CoreProps<'h2'>

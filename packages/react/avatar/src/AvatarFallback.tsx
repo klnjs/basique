@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { poly, forwardRef, type CoreProps } from '@klnjs/core'
+import { poly, forwardRef, type CoreProps } from '@klnjs/react-core'
 import { useAvatarContext } from './AvatarContext'
 
 export type AvatarFallbackProps = CoreProps<'div', { delay?: number }>

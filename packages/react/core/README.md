@@ -13,7 +13,7 @@ npm install @klnjs/core
 ## How to Use
 
 ```ts
-import { poly, forwardRef, type CoreProps } from '@klnjs/core';
+import { poly, forwardRef, type CoreProps } from '@klnjs/react-core';
 
 export type MyComponentProps = CoreProps<
   'div',

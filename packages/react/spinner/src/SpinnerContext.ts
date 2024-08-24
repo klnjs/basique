@@ -1,4 +1,4 @@
-import { createContext } from '@klnjs/core'
+import { createContext } from '@klnjs/react-core'
 import type { useSpinner } from './useSpinner'
 
 export type UseSpinnerContext = ReturnType<typeof useSpinner>

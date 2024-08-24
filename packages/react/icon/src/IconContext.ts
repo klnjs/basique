@@ -1,4 +1,4 @@
-import { createContext } from '@klnjs/core'
+import { createContext } from '@klnjs/react-core'
 import type { useIcon } from './useIcon'
 
 export type UseIconContext = ReturnType<typeof useIcon>

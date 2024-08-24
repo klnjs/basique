@@ -1,4 +1,4 @@
-import { createContext } from '@klnjs/core'
+import { createContext } from '@klnjs/react-core'
 import type { useCalendar } from './useCalendar'
 
 export type UseCalendarContext = ReturnType<typeof useCalendar>

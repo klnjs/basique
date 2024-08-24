@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useEffectOnUpdate } from '@klnjs/core'
+import { useEffectOnUpdate } from '@klnjs/react-core'
 import { isDefined } from '@klnjs/assertion'
 import { plainDate } from '@klnjs/temporal'
 import type { Duration, PlainDate, PlainDateRange } from './CalendarTypes'

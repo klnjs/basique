@@ -1,4 +1,4 @@
-import { poly, forwardRef, useId, type CoreProps } from '@klnjs/core'
+import { poly, forwardRef, useId, type CoreProps } from '@klnjs/react-core'
 import { usePopoverContext } from './PopoverContext'
 
 export type PopoverDescriptionProps = CoreProps<'p'>

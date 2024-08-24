@@ -1,4 +1,4 @@
-import { createContext } from '@klnjs/core'
+import { createContext } from '@klnjs/react-core'
 import type { usePin } from './usePin'
 
 export type UsePinContext = ReturnType<typeof usePin>
