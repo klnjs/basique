@@ -1,13 +1,13 @@
-# @klnjs/avatar
+# @klnjs/react-avatar
 
 An avatar component for React.
 
 ## Installation
 
-Install the `@klnjs/avatar` package using your preferred package manager.
+Install the `@klnjs/react-avatar` package using your preferred package manager.
 
 ```bash
-npm install @klnjs/avatar
+npm install @klnjs/react-avatar
 ```
 
 ## How to Use

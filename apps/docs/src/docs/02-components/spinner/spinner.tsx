@@ -1,4 +1,4 @@
-import { Spinner, SpinnerTrack, SpinnerThumb } from '@klnjs/spinner'
+import { Spinner, SpinnerTrack, SpinnerThumb } from '@klnjs/react-spinner'
 import classes from './spinner.module.css'
 
 export default () => (

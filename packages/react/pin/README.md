@@ -1,13 +1,13 @@
-# @klnjs/pin
+# @klnjs/react-pin
 
 An pin component for React.
 
 ## Installation
 
-Install the `@klnjs/pin` package using your preferred package manager.
+Install the `@klnjs/react-pin` package using your preferred package manager.
 
 ```bash
-npm install @klnjs/pin
+npm install @klnjs/react-pin
 ```
 
 ## How to Use

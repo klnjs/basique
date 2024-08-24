@@ -1,13 +1,13 @@
-# @klnjs/core
+# @klnjs/react-core
 
 A library that simplifies implemention of React components that support the `asChild` paradigm. Ensures full [TypeScript](https://www.typescriptlang.org/) support for component props, and refs.
 
 ## Installation
 
-Install the `@klnjs/core` package using your preferred package manager.
+Install the `@klnjs/react-core` package using your preferred package manager.
 
 ```bash
-npm install @klnjs/core
+npm install @klnjs/react-core
 ```
 
 ## How to Use

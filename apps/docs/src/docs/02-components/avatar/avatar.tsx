@@ -1,4 +1,4 @@
-import { Avatar, AvatarImage, AvatarFallback } from '@klnjs/avatar'
+import { Avatar, AvatarImage, AvatarFallback } from '@klnjs/react-avatar'
 import src from './avatar.png'
 import classes from './avatar.module.css'
 

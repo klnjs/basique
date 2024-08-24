@@ -43,7 +43,7 @@
 	},
 	"dependencies": {
 		"@klnjs/react-core": "workspace:*",
-		"@klnjs/icon": "workspace:*"
+		"@klnjs/react-icon": "workspace:*"
 	},
 	"devDependencies": {
 		"@mdi/js": "7.4.47",
