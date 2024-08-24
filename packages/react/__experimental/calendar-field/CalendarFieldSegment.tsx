@@ -13,7 +13,7 @@ import {
 	useMergeRefs,
 	asDataProp,
 	type CoreProps
-} from '@klnjs/core'
+} from '@klnjs/react-core'
 import {
 	isRTL
 } from '@klnjs/assertion'

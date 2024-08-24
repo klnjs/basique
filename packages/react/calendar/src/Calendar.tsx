@@ -1,5 +1,5 @@
 import type { ReactElement, Ref } from 'react'
-import { poly, forwardRef, type CoreProps } from '@klnjs/core'
+import { poly, forwardRef, type CoreProps } from '@klnjs/react-core'
 import type { CalendarSelect } from './useCalendarSelection'
 import { CalendarProvider } from './CalendarContext'
 import { useCalendar, type UseCalendarOptions } from './useCalendar'

@@ -1,5 +1,5 @@
 import { Temporal } from 'temporal-polyfill'
-import { poly, forwardRef, type CoreProps } from '@klnjs/core'
+import { poly, forwardRef, type CoreProps } from '@klnjs/react-core'
 import { isDefined } from '@klnjs/assertion'
 import { plainDate } from '@klnjs/temporal'
 import { useCalendarContext } from './CalendarContext'

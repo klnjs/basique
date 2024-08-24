@@ -1,4 +1,4 @@
-import { forwardRef } from '@klnjs/core'
+import { forwardRef } from '@klnjs/react-core'
 import { isDefined } from '@klnjs/assertion'
 import { CalendarCellBlank } from './CalendarCellBlank'
 import { CalendarCellDay } from './CalendarCellDay'

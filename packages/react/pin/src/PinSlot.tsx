@@ -4,7 +4,7 @@ import {
 	useChainHandler,
 	useDataProps,
 	type CoreProps
-} from '@klnjs/core'
+} from '@klnjs/react-core'
 import { usePinContext } from './PinContext'
 import { usePinConceal } from './usePinConceal'
 

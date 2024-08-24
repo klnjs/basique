@@ -1,4 +1,4 @@
-import { Icon, IconTitle, IconDescription, IconPath } from '@klnjs/icon'
+import { Icon, IconTitle, IconDescription, IconPath } from '@klnjs/react-icon'
 import classes from './icon.module.css'
 
 export default () => (

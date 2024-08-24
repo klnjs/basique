@@ -11,7 +11,7 @@ import {
 	asDataProp,
 	useRefComposed,
 	type CoreProps
-} from '@klnjs/core'
+} from '@klnjs/react-core'
 import { isDefined } from '@klnjs/assertion'
 import { plainDate } from '@klnjs/temporal'
 import { isElementRTL } from '@klnjs/dom'

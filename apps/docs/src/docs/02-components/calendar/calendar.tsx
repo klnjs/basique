@@ -5,7 +5,7 @@ import {
 	CalendarGrid,
 	CalendarHeader,
 	CalendarTitle
-} from '@klnjs/calendar'
+} from '@klnjs/react-calendar'
 import classes from './calendar.module.css'
 
 export default () => (

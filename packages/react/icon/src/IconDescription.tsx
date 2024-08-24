@@ -1,4 +1,4 @@
-import { forwardRef, useId, type CoreProps } from '@klnjs/core'
+import { forwardRef, useId, type CoreProps } from '@klnjs/react-core'
 import { useIconContext } from './IconContext'
 
 export type IconDescriptionProps = CoreProps<'desc'>

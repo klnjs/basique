@@ -1,5 +1,5 @@
 {
-	"name": "@klnjs/icon",
+	"name": "@klnjs/react-icon",
 	"type": "module",
 	"author": "Rune Klein (@rnkln)",
 	"version": "1.0.0-beta.6",
@@ -42,7 +42,7 @@
 		"typescript": "tsc --noEmit"
 	},
 	"dependencies": {
-		"@klnjs/core": "workspace:*"
+		"@klnjs/react-core": "workspace:*"
 	},
 	"devDependencies": {
 		"@klnjs/basique": "workspace:*",

@@ -11,7 +11,7 @@ import {
 	useRefComposed,
 	useChainHandler,
 	type CoreProps
-} from '@klnjs/core'
+} from '@klnjs/react-core'
 import { usePinContext } from './PinContext'
 import { usePinPattern } from './usePinPattern'
 

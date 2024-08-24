@@ -1,4 +1,4 @@
-import { createContext } from '@klnjs/core'
+import { createContext } from '@klnjs/react-core'
 import type { UseCalendarGridOptions } from './useCalendarGrid'
 
 export type UseCalendarGridContext = Omit<

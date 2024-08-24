@@ -1,5 +1,5 @@
 import { useState, type SetStateAction } from 'react'
-import { useStateControllable } from '@klnjs/core'
+import { useStateControllable } from '@klnjs/react-core'
 import {
 	offset as offsetMiddleware,
 	autoUpdate,
