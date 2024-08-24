@@ -1,5 +1,5 @@
 import { useMemo, useState, useCallback, type SetStateAction } from 'react'
-import { useEffectOnUpdate, useStateControllable } from '@klnjs/core'
+import { useEffectOnUpdate, useStateControllable } from '@klnjs/react-core'
 import { isDefined, isArray } from '@klnjs/assertion'
 import { plainDate } from '@klnjs/temporal'
 import type { PlainDate, PlainDateRange } from './CalendarTypes'

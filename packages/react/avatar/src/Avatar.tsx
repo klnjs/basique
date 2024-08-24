@@ -1,4 +1,4 @@
-import { poly, forwardRef, type CoreProps } from '@klnjs/core'
+import { poly, forwardRef, type CoreProps } from '@klnjs/react-core'
 import { AvatarProvider } from './AvatarContext'
 import { useAvatar, type UseAvatarOptions } from './useAvatar'
 

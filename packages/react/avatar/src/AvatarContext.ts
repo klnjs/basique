@@ -1,4 +1,4 @@
-import { createContext } from '@klnjs/core'
+import { createContext } from '@klnjs/react-core'
 import type { useAvatar } from './useAvatar'
 
 export type UseAvatarContext = ReturnType<typeof useAvatar>

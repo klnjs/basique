@@ -5,7 +5,7 @@ import {
 	asDataProp,
 	useRefComposed,
 	type CoreProps
-} from '@klnjs/core'
+} from '@klnjs/react-core'
 import { usePopoverContext } from './PopoverContext'
 
 export type PopoverContentProps = CoreProps<'div'>

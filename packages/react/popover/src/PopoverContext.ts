@@ -1,4 +1,4 @@
-import { createContext } from '@klnjs/core'
+import { createContext } from '@klnjs/react-core'
 import type { usePopover } from './usePopover'
 
 export type UsePopoverContext = ReturnType<typeof usePopover>

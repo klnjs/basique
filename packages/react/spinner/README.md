@@ -1,13 +1,13 @@
-# @klnjs/spinner
+# @klnjs/react-spinner
 
 An spinner component for React.
 
 ## Installation
 
-Install the `@klnjs/spinner` package using your preferred package manager.
+Install the `@klnjs/react-spinner` package using your preferred package manager.
 
 ```bash
-npm install @klnjs/spinner
+npm install @klnjs/react-spinner
 ```
 
 ## How to Use

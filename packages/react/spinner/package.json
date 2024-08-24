@@ -1,8 +1,8 @@
 {
-	"name": "@klnjs/spinner",
+	"name": "@klnjs/react-spinner",
 	"type": "module",
 	"author": "Rune Klein (@rnkln)",
-	"version": "1.0.0-beta.6",
+	"version": "1.0.0-beta.7",
 	"license": "MIT",
 	"homepage": "https://klnjs.github.io/basique",
 	"repository": {
@@ -41,7 +41,7 @@
 		"typescript": "tsc --noEmit"
 	},
 	"dependencies": {
-		"@klnjs/core": "workspace:*"
+		"@klnjs/react-core": "workspace:*"
 	},
 	"devDependencies": {
 		"@klnjs/basique": "workspace:*",

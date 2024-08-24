@@ -1,4 +1,4 @@
-# @klnjs/icons
+# @klnjs/react-icons
 
 A collection of ready to use icons for React.
 
@@ -8,10 +8,10 @@ All available icons can be viewed [here](https://pictogrammers.com/library/mdi/)
 
 ## Installation
 
-Install the `@klnjs/icons` package using your preferred package manager.
+Install the `@klnjs/react-icons` package using your preferred package manager.
 
 ```bash
-npm install @klnjs/icons
+npm install @klnjs/react-icons
 ```
 
 ## How to Use
@@ -19,7 +19,7 @@ npm install @klnjs/icons
 All icons are available as individual React components, and is rendered into the dom as SVG.
 
 ```js
-import { Abacus, Calendar } from '@klnjs/icons'
+import { Abacus, Calendar } from '@klnjs/react-icons'
 
 export const MyComponent = () => (
 	<div>

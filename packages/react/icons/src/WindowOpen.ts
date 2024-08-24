@@ -1,4 +1,4 @@
-import { createIcon } from '@klnjs/icon'
+import { createIcon } from '@klnjs/react-icon'
 
 export default createIcon({
 	title: 'WindowOpen',

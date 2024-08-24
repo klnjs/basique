@@ -1,8 +1,8 @@
 {
-	"name": "@klnjs/icons",
+	"name": "@klnjs/react-icons",
 	"type": "module",
 	"author": "Rune Klein (@rnkln)",
-	"version": "1.0.0-beta.6",
+	"version": "1.0.0-beta.7",
 	"license": "MIT",
 	"homepage": "https://klnjs.github.io/basique",
 	"repository": {
@@ -42,8 +42,8 @@
 		"postinstall": "bun ./scripts/create-icons.js"
 	},
 	"dependencies": {
-		"@klnjs/core": "workspace:*",
-		"@klnjs/icon": "workspace:*"
+		"@klnjs/react-core": "workspace:*",
+		"@klnjs/react-icon": "workspace:*"
 	},
 	"devDependencies": {
 		"@mdi/js": "7.4.47",

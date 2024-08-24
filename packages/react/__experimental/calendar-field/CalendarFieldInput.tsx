@@ -1,5 +1,5 @@
 import { useCallback, type PointerEvent } from 'react'
-import { poly, forwardRef, asDataProp, type CoreProps } from '@klnjs/core'
+import { poly, forwardRef, asDataProp, type CoreProps } from '@klnjs/react-core'
 import { useCalendarFieldContext } from './CalendarFieldContext'
 
 export type CalendarFieldInputProps = CoreProps<'div'>
