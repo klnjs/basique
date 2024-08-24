@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { poly, forwardRef, type CoreProps } from '@klnjs/core'
+import { poly, forwardRef, type CoreProps } from '@klnjs/react-core'
 import type { CalendarCellProps } from './CalendarCell'
 import { useCalendarContext } from './CalendarContext'
 import { CalendarGridProvider } from './CalendarGridContext'

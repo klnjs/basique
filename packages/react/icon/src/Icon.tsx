@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { forwardRef, type CoreProps } from '@klnjs/core'
+import { forwardRef, type CoreProps } from '@klnjs/react-core'
 import { IconTitle } from './IconTitle'
 import { IconDescription } from './IconDescription'
 import { IconPath } from './IconPath'

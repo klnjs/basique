@@ -5,7 +5,7 @@ import {
 	PinGroup,
 	PinSlots,
 	PinSlot
-} from '@klnjs/pin'
+} from '@klnjs/react-pin'
 import classes from './pin.module.css'
 
 export default () => (

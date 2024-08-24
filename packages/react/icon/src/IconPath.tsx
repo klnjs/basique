@@ -1,4 +1,4 @@
-import { forwardRef, type CoreProps } from '@klnjs/core'
+import { forwardRef, type CoreProps } from '@klnjs/react-core'
 
 export type IconPathProps = CoreProps<'path'>
 

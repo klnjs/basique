@@ -4,7 +4,7 @@ import crypto from 'crypto'
 import prettier from 'prettier'
 
 const template = ({ title, viewBox, path }) => `
-	import { createIcon } from '@klnjs/icon'
+	import { createIcon } from '@klnjs/react-icon'
 
 	export default createIcon({
 		title: '${title}',

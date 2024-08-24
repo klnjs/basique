@@ -1,5 +1,5 @@
 import { useRef, useMemo, useState, type SetStateAction } from 'react'
-import { useStateControllable, usePrevious } from '@klnjs/core'
+import { useStateControllable, usePrevious } from '@klnjs/react-core'
 import { isRecord } from '@klnjs/assertion'
 import type { PinType, PinConceal, PinDirection } from './PinTypes'
 

@@ -1,5 +1,5 @@
 import { useState, useLayoutEffect } from 'react'
-import { useCallbackRef } from '@klnjs/core'
+import { useCallbackRef } from '@klnjs/react-core'
 import type { AvatarStatus } from './AvatarTypes'
 
 export type UseAvatarOptions = {

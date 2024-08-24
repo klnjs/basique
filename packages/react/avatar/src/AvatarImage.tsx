@@ -1,4 +1,9 @@
-import { poly, forwardRef, useChainHandler, type CoreProps } from '@klnjs/core'
+import {
+	poly,
+	forwardRef,
+	useChainHandler,
+	type CoreProps
+} from '@klnjs/react-core'
 import { useAvatarContext } from './AvatarContext'
 
 export type AvatarImageProps = CoreProps<'img'>
