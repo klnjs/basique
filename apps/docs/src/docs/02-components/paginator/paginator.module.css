@@ -1,0 +1,63 @@
+.paginator {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	font-family: Arial;
+	position: relative;
+	background: var(--ifm-background-surface-color);
+	background-clip: padding-box;
+	border-radius: var(--ifm-global-radius);
+	border: 1px solid var(--ifm-color-emphasis-300);
+	padding: 8px;
+}
+
+.button {
+	display: inline-flex;
+	width: 32px;
+	height: 32px;
+	outline: 0;
+	cursor: pointer;
+	border: none;
+	border-radius: 4px;
+	background: none;
+	line-height: 24px;
+	align-items: center;
+	justify-content: center;
+}
+
+.button:hover,
+.button:focus-visible {
+	background: var(--ifm-menu-color-background-hover);
+}
+
+.button:disabled {
+	pointer-events: none;
+}
+
+.page {
+	display: inline-flex;
+	width: 32px;
+	height: 32px;
+	outline: 0;
+	cursor: pointer;
+	border: none;
+	border-radius: 4px;
+	background: none;
+	line-height: 24px;
+	align-items: center;
+	justify-content: center;
+}
+
+.page:hover,
+.page:focus-visible {
+	background: var(--ifm-menu-color-background-hover);
+}
+
+.page[data-selected] {
+	background: var(--ifm-color-primary);
+}
+
+.page[data-disabled] {
+	opacity: 0.4;
+	pointer-events: none;
+}
