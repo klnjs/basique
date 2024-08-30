@@ -9,6 +9,7 @@
 	border-radius: var(--ifm-global-radius);
 	border: 1px solid var(--ifm-color-emphasis-300);
 	padding: 8px;
+	user-select: none;
 }
 
 .button {
@@ -60,4 +61,13 @@
 .page[data-disabled] {
 	opacity: 0.4;
 	pointer-events: none;
+}
+
+.ellipsis {
+	display: inline-flex;
+	width: 32px;
+	height: 32px;
+	line-height: 24px;
+	align-items: center;
+	justify-content: center;
 }

@@ -5,11 +5,11 @@ export type PaginatorRangeProps = CoreProps<'span'>
 
 export const PaginatorRange = forwardRef<'span', PaginatorRangeProps>(
 	(props, forwardedRef) => {
-		const { range } = usePaginatorContext()
+		const { pageStart, pageEnd } = usePaginatorContext()
 
 		return (
 			<poly.span ref={forwardedRef} {...props}>
-				{range[0]} - {range[1]}
+				{pageStart} - {pageEnd}
 			</poly.span>
 		)
 	}
