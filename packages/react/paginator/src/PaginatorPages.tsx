@@ -30,14 +30,6 @@ export const PaginatorPages = forwardRef<'div', PaginatorPagesProps>(
 			const start = clamp(page - siblings, min, max - span)
 			const end = clamp(page + siblings, min + span, max)
 
-			console.log(
-				createPaginatorItems(
-					[pageStart, lower],
-					[start, end],
-					[upper, pageEnd]
-				)
-			)
-
 			return createPaginatorItems(
 				[pageStart, lower],
 				[start, end],
