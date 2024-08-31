@@ -25,6 +25,7 @@
 		"@klnjs/react-calendar": "workspace:*",
 		"@klnjs/react-icon": "workspace:*",
 		"@klnjs/react-pin": "workspace:*",
+		"@klnjs/react-paginator": "workspace:*",
 		"@klnjs/react-popover": "workspace:*",
 		"@klnjs/react-spinner": "workspace:*",
 		"@mdx-js/react": "3.0.1",
