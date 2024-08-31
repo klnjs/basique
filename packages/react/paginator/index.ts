@@ -1,6 +1,5 @@
 export * from './src/Paginator'
 export * from './src/PaginatorButton'
-export * from './src/PaginatorCount'
+export * from './src/PaginatorEllipsis'
 export * from './src/PaginatorPage'
 export * from './src/PaginatorPages'
-export * from './src/PaginatorRange'

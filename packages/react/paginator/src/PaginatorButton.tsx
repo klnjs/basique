@@ -13,7 +13,8 @@ export const PaginatorButton = forwardRef<'button', PaginatorButtonProps>(
 	) => {
 		const {
 			page,
-			pageMax,
+			pageStart,
+			pageEnd,
 			disabled: disabledContext,
 			setPage
 		} = usePaginatorContext()
@@ -23,8 +24,8 @@ export const PaginatorButton = forwardRef<'button', PaginatorButtonProps>(
 		const isDisabled =
 			disabledProp ||
 			disabledContext ||
-			(action === 'inc' && page === pageMax) ||
-			(action === 'dec' && page === 1)
+			(action === 'inc' && page === pageEnd) ||
+			(action === 'dec' && page === pageStart)
 
 		const handleClick = () => {
 			setPage((prev) => prev + (action === 'inc' ? 1 : -1))

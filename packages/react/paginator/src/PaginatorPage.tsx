@@ -10,7 +10,7 @@ export type PaginatorPageProps = CoreProps<
 
 export const PaginatorPage = forwardRef<'button', PaginatorPageProps>(
 	(
-		{ disabled: disabledProp = false, page: pageProp, ...otherProps },
+		{ type, disabled: disabledProp = false, page: pageProp, ...otherProps },
 		forwardedRef
 	) => {
 		const {
