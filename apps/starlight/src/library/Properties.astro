@@ -1,10 +1,9 @@
 ---
-import Table from '../table/Table.astro'
-import TableRow from '../table/TableRow.astro'
-import TableCell from '../table/TableCell.astro'
-import classes from './Reference.module.css'
+import Table from './Table.astro'
+import TableRow from './TableRow.astro'
+import TableCell from './TableCell.astro'
 
-interface Props {
+type Props = {
 	props: {
 		name: string
 		type: string
@@ -16,7 +15,18 @@ interface Props {
 const { props } = Astro.props
 ---
 
-<Table class={classes.table}>
+<style>
+	.table {
+		font-family: var(--__sl-font-mono);
+		font-size: var(--sl-text-code);
+	}
+
+	.cell {
+		width: 32%;
+	}
+</style>
+
+<Table class='table'>
 	<thead>
 		<TableRow>
 			<TableCell as="th">Prop</TableCell>
@@ -27,8 +37,8 @@ const { props } = Astro.props
 	<tbody>
 		{props.map(({ name, type, defaultValue = '-' }) => (
 			<TableRow>
-				<TableCell class={classes.prop}>{name}</TableCell>
-				<TableCell class={classes.type}>
+				<TableCell class='cell'>{name}</TableCell>
+				<TableCell class='cell'>
 					<code>{type}</code>
 				</TableCell>
 				<TableCell>

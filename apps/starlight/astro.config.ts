@@ -25,7 +25,10 @@ export default defineConfig({
 						.map((file) => file.replace(/\.[^/.]+$/, ''))
 						.toSorted()
 				}
-			]
+			],
+			components: {
+				PageTitle: './src/library/Title.astro'
+			}
 		})
 	]
 })

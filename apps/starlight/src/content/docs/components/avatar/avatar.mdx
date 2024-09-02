@@ -1,28 +1,32 @@
 ---
 title: Avatar
+description: An element for representing a user.
 ---
 
-import Showcase from '@library/showcase/Showcase.astro'
-import Feature from '@library/features/Feature.astro'
-import Features from '@library/features/Features.astro'
-import Installation from '@library/code/Installation.astro'
-import Attributes from '@library/reference/Attributes.astro'
-import Properties from '@library/reference/Properties.astro'
+import Showcase from '@library/Showcase.astro'
+import Feature from '@library/Feature.astro'
+import Features from '@library/Features.astro'
+import Installation from '@library/Installation.astro'
+import Attributes from '@library/Attributes.astro'
+import Properties from '@library/Properties.astro'
 import Avatar from './avatar.tsx'
 import react from './avatar.tsx?raw'
 import svelte from './avatar.svelte?raw'
 import styles from './avatar.module.css?raw'
-
-An element for representing a user.
 
 ## Showcase
 
 <Showcase
 	name="avatar"
 	sources={[
-		{ title: 'React', content: react, language: 'jsx' },
-		{ title: 'Svelte', content: svelte, language: 'svelte' },
-		{ title: 'Styles', content: styles, language: 'css' }
+		{ type: 'react', title: 'React', content: react, language: 'jsx' },
+		{
+			type: 'svelte',
+			title: 'Svelte',
+			content: svelte,
+			language: 'svelte'
+		},
+		{ type: 'css', title: 'Styles', content: styles, language: 'css' }
 	]}
 >
 	<Avatar client:load />
@@ -40,7 +44,11 @@ An element for representing a user.
 
 <Installation name="avatar" />
 
-## Reference
+## API Reference
+
+-   [Avatar](#avatar-root)
+-   [AvatarImage](#avatarimage)
+-   [AvatarFallback](#avatarfallback)
 
 ### Avatar (Root)
 

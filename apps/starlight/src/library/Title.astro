@@ -1,0 +1,20 @@
+---
+// https://github.com/withastro/starlight/blob/main/packages/starlight/constants.ts
+const PAGE_TITLE_ID = '_top';
+---
+
+<style>
+	.title {
+		font-size: var(--sl-text-h1);
+		line-height: var(--sl-line-height-headings);
+		font-weight: 600;
+		color: var(--sl-color-white);
+	}
+
+	.description {
+		margin: 0;
+	}
+</style>
+
+<h1 id={PAGE_TITLE_ID} class="title">{Astro.props.entry.data.title}</h1>
+<p class="description">{Astro.props.entry.data.description}</p>

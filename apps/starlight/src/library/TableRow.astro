@@ -1,7 +1,4 @@
 ---
-import clsx from 'clsx'
-import classes from './Table.module.css'
-
 type Props = {
 	class?: string
 	children: any
@@ -10,6 +7,6 @@ type Props = {
 const { class: classProp, children, ...otherProps } = Astro.props
 ---
 
-<tr class={clsx(classes.row, classProp, 'not-content')} {...otherProps}>
+<tr class:list={['not-content', classProp]} {...otherProps}>
 	<slot />
 </tr>

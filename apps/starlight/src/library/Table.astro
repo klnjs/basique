@@ -1,0 +1,25 @@
+---
+type Props = astroHTML.JSX.TableHTMLAttributes & {
+	children: any
+	class?: string
+}
+
+const { class: classProp, ...otherProps } = Astro.props
+---
+
+<style>
+	.table {
+		text-align: start;
+		display: table !important;
+		width: 100%;
+		border: 1px solid var(--sl-color-gray-5);
+		border-collapse: separate;
+		border-spacing: 0;
+		border-radius: 0.5rem;
+		overflow: hidden;
+	}
+</style>
+
+<table class:list={['not-content', 'table', classProp]} {...otherProps}>
+	<slot />
+</table>
