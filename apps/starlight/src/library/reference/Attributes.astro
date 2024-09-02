@@ -1,0 +1,35 @@
+---
+import Table from '../table/Table.astro'
+import TableRow from '../table/TableRow.astro'
+import TableCell from '../table/TableCell.astro'
+import classes from './Reference.module.css'
+
+type Props = {
+	attrs: {
+		name: string
+		text?: string
+		values?: string
+	}[]
+}
+
+const { attrs } = Astro.props
+---
+
+<Table class={classes.table}>
+	<thead>
+		<TableRow>
+			<TableCell as="th">Data attribute</TableCell>
+			<TableCell as="th">Present when</TableCell>
+		</TableRow>
+	</thead>
+	<tbody>
+		{attrs.map(({ name, text, values }) => (
+			<TableRow>
+				<TableCell class={classes.prop}>{name}</TableCell>
+				<TableCell>
+					{values !== undefined ? <code>{values}</code> : text}
+				</TableCell>
+			</TableRow>
+		))}
+	</tbody>
+</Table>

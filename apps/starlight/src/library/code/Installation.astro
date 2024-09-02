@@ -1,0 +1,15 @@
+---
+import Code from './Code.astro'
+
+type Props = {
+	name: string
+	manager: 'bun' | 'npm' | 'pnpm' | 'yarn'
+	dependencies?: string[]
+}
+
+const { name, manager = 'bun', dependencies: dependenciesProp } = Astro.props
+const script = `${manager} install @klnjs/${name}`
+const dependencies = dependenciesProp ?? []
+---
+
+<Code language="bash" code={[script, ...dependencies].join(' ')} />

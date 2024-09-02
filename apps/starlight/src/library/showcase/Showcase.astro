@@ -1,0 +1,31 @@
+---
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import Code from '../code/Code.astro'
+import classes from './Showcase.module.css';
+
+type Props = {
+  name: string;
+  sources: {
+		title: string;
+		content: string;
+		language: string;
+	}[];
+  children: any;
+}
+
+const { name, sources } = Astro.props;
+---
+
+<div class={`${classes.showcase} not-content`} aria-label={name}>
+  <div class={classes.viewport}>
+		<slot />
+  </div>
+
+	<Tabs>
+		{sources.map(({ title, content, language }) => (
+			<TabItem label={title}>
+				<Code language={language} code={content} class={classes.code}/>
+			</TabItem>
+		))}
+	</Tabs>
+</div>

@@ -4,16 +4,13 @@
 # Except these folders
 !src/
 !src/**/*
-!static/
-!static/**/*
+!public/
+!public/**/*
 
 # Except these files
 !.gitignore
-!assets.d.ts
-!babel.config.mjs
-!docusaurus.config.ts
+!astro.config.ts
 !eslint.config.mjs
 !package.json
 !prettier.config.mjs
-!sidebars.ts
 !tsconfig.json

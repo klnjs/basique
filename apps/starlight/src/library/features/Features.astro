@@ -1,0 +1,14 @@
+---
+import clsx from 'clsx'
+import classes from './Features.module.css'
+
+type Props = astroHTML.JSX.HTMLAttributes & {
+	children: any;
+}
+
+const { class: classProp, ...otherProps } = Astro.props
+---
+
+<div class={clsx(classes.feature, classProp, 'not-content')} {...otherProps}>
+	<ul class={classes.list}><slot/></ul>
+</div>

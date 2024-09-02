@@ -1,0 +1,138 @@
+---
+title: Pin
+---
+
+import { Features, Feature } from '@library/features'
+import { Installation } from '@library/installation'
+import { ReferenceProps, ReferenceAttrs } from '@library/reference'
+import { Showcase } from '@library/showcase'
+import Pin from './pin'
+import source from '!!raw-loader!./pin.tsx'
+import styles from '!!raw-loader!./pin.module.css'
+
+An input for typing pin codes / one time codes.
+
+## Showcase
+
+<Showcase
+	name="pin"
+	sources={[
+		{ file: 'index.tsx', content: source, language: 'jsx' },
+		{ file: 'index.module.css', content: styles, language: 'css' }
+	]}
+>
+	<Pin />
+</Showcase>
+
+## Features
+
+<Features>
+	<Feature>Controlled or uncontrolled.</Feature>
+	<Feature>Concealing the pin while typing.</Feature>
+	<Feature>Auto complete one time codes.</Feature>
+</Features>
+
+## Installation
+
+<Installation name="pin" />
+
+## Reference
+
+### Pin (Root)
+
+Contains all the parts of a pin.
+
+<ReferenceProps
+	props={[
+		{ name: 'asChild', type: 'boolean', defaultValue: 'false' },
+		{
+			name: 'conceal',
+			type: 'PinConceal',
+			typeAdvanced: 'string | { symbol: string; delay: number }',
+			defaultValue: 'false'
+		},
+		{ name: 'defaultValue', type: 'string' },
+		{ name: 'disabled', type: 'boolean', defaultValue: 'false' },
+		{ name: 'length', type: 'number', defaultValue: '4' },
+		{
+			name: 'type',
+			type: 'PinType',
+			typeAdvanced: "'alphabetic' | 'alphanumeric' | 'numeric'",
+			defaultValue: 'alphanumeric'
+		},
+		{ name: 'value', type: 'string' },
+		{
+			name: 'onChange',
+			type: 'function',
+			typeAdvanced: '(value: string) => void'
+		}
+	]}
+/>
+
+### PinInput
+
+Used to render a hidden input which is accessible by keyboard. The input can be shown by setting `hidden` to false. It will auto complete one time codes by default, and handle sanitising of input based on root property `type`.
+
+<ReferenceProps
+	props={[
+		{ name: 'asChild', type: 'boolean', defaultValue: 'false' },
+		{ name: 'autoComplete', type: 'string', defaultValue: 'one-time-code' },
+		{ name: 'hidden', type: 'boolean', defaultValue: 'true' }
+	]}
+/>
+
+### PinLabel
+
+Used to optionally render an input label, and attach it to the input so it is accessible. If omitted, you should add a label to the input with property `aria-label`, so the component stays accessible.
+
+<ReferenceProps
+	props={[{ name: 'asChild', type: 'boolean', defaultValue: 'false' }]}
+/>
+
+### PinGroup
+
+Used to group slot items.
+
+<ReferenceProps
+	props={[{ name: 'asChild', type: 'boolean', defaultValue: 'false' }]}
+/>
+
+### PinSlots
+
+Given the dynamic length of the pin, this utility component provides means to render slots of the pin using a render function as child.
+
+<ReferenceProps
+	props={[
+		{
+			name: 'children',
+			type: 'function',
+			typeAdvanced:
+				'(type: { slot: number, value: string }, index: number ) => ReactNode'
+		}
+	]}
+/>
+
+### PinSlot
+
+Used to render individual slots, it should be used in conjunction with the slots component. A slot will conceal its content based on the root property `conceal`, this concealing only occurs when slot has an internal value.
+
+Clicking a slot will focus the input, therefore focus events should be attached to the input. The slot is primarily visual, and it provides `data-*` attributes enabling styling of the different states.
+
+<ReferenceProps
+	props={[
+		{ name: 'asChild', type: 'boolean', defaultValue: 'false' },
+		{ name: 'placeholder', type: 'string' }
+	]}
+/>
+
+<ReferenceAttrs
+	attrs={[
+		{ name: 'data-caret', text: 'caret is shown' },
+		{ name: 'data-concealed', text: 'slot is concealed' },
+		{ name: 'data-disabled', text: 'slot is disabled' },
+		{ name: 'data-end', text: 'slot is last slot' },
+		{ name: 'data-focused', text: 'slot is focused' },
+		{ name: 'data-placeholder', text: 'placeholder is shown' },
+		{ name: 'data-start', text: 'slot is first slot' }
+	]}
+/>
