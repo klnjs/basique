@@ -13,7 +13,8 @@ import {
 } from 'react'
 import { composeRefs } from './useRefComposed'
 import { composeProps } from './usePropsComposed'
-import type { AsChildProps, AsChildForwardRefComponent } from './types'
+import type { AsChildProps } from './types'
+import type { AsChildForwardRefComponent } from './forwardRef'
 
 const withAsChild = (Component: ElementType) => {
 	const Comp = forwardRef<unknown, AsChildProps>((props, ref) => {

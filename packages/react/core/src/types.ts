@@ -1,10 +1,4 @@
-import type {
-	ReactNode,
-	ElementType,
-	ComponentProps,
-	ComponentPropsWithoutRef,
-	ForwardRefExoticComponent
-} from 'react'
+import type { ReactNode, ElementType, ComponentProps } from 'react'
 
 export type Assign<T, P> = Omit<T, keyof P> & P
 
@@ -17,12 +11,6 @@ export type AsChildProps = {
 
 export type AsChildComponentProps<E extends ElementType> = AsChildProps &
 	ComponentProps<E>
-
-export type AsChildComponentPropsWithoutRef<E extends ElementType> =
-	AsChildProps & ComponentPropsWithoutRef<E>
-
-export type AsChildForwardRefComponent<E extends ElementType> =
-	ForwardRefExoticComponent<AsChildComponentProps<E>>
 
 export type CoreProps<
 	E extends ElementType,
