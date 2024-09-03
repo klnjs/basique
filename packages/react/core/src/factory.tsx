@@ -35,7 +35,7 @@ const withAsChild = (Component: ElementType) => {
 					ref: ref
 						? composeRefs(ref, (child as any).ref)
 						: (child as any).ref,
-					...composeProps(otherProps, child.props as any)
+					...composeProps(otherProps, child.props)
 				})
 			: null
 	})
