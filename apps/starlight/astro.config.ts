@@ -7,6 +7,8 @@ const components = await Array.fromAsync(mdxs)
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://klnjs.github.io',
+	base: 'basique',
 	integrations: [
 		react(),
 		starlight({
