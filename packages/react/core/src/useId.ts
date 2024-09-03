@@ -7,7 +7,6 @@ export function useId(id?: string, setId?: (id?: string) => void): string {
 	const rid = useIdFromReact()
 	const uid = id ?? rid
 
-	// @ts-expect-error ts(7030): Not all code paths return a value.
 	useLayoutEffect(() => {
 		if (setId) {
 			setId(uid)
