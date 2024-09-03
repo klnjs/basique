@@ -33,6 +33,7 @@ jobs:
         uses: withastro/action@v3
         with:
           path: ./apps/starlight
+          package-manager: bun
 
   deploy:
     needs: build
