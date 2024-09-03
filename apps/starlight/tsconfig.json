@@ -1,9 +1,9 @@
 {
-	"extends": "astro/tsconfigs/strict",
+	"extends": "@klnjs/typescript-config/esnext",
 	"compilerOptions": {
 		"baseUrl": ".",
+		"jsx": "preserve",
 		"noPropertyAccessFromIndexSignature": false,
-		"noUncheckedIndexedAccess": false,
 		"paths": {
 			"@library/*": ["./src/library/*"]
 		}
