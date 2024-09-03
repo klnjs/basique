@@ -1,16 +1,11 @@
 ---
 type Props = astroHTML.JSX.TdHTMLAttributes & {
-	as?: 'td' | 'th'
-	class?: string
-	children: any
+	"as"?: 'td' | 'th';
+	class?: string;
+	children: any;
 }
 
-const { 
-	as: Component = 'td', 
-	class: classProp, 
-	children, 
-	...otherProps 
-} = Astro.props
+const { as: Component = 'td', class: classProp, ...otherProps } = Astro.props
 ---
 
 <style>
@@ -33,6 +28,6 @@ const {
 	}
 </style>
 
-<Component class:list={['not-content', 'cell', Component, classProp]} {...otherProps}>
+<div class:list={['not-content', 'cell', Component, classProp]} {...otherProps}>
 	<slot />
-</Component>
+</div>
