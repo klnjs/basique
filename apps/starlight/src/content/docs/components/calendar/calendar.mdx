@@ -1,27 +1,28 @@
 ---
 title: Calendar
+description: An element for creating interactive calendar.
 ---
 
-import { Features, Feature } from '@library/features'
-import { Installation } from '@library/installation'
-import { ReferenceProps, ReferenceAttrs } from '@library/reference'
-import { Showcase } from '@library/showcase'
-import Calendar from './calendar'
-import source from '!!raw-loader!./calendar.tsx'
-import styles from '!!raw-loader!./calendar.module.css'
-
-An element for creating calendar components.
+import Showcase from '@library/Showcase.astro'
+import Feature from '@library/Feature.astro'
+import Features from '@library/Features.astro'
+import Installation from '@library/Installation.astro'
+import Attributes from '@library/Attributes.astro'
+import Properties from '@library/Properties.astro'
+import Calendar from './calendar.tsx'
+import react from './calendar.tsx?raw'
+import styles from './calendar.module.css?raw'
 
 ## Showcase
 
 <Showcase
 	name="calendar"
 	sources={[
-		{ file: 'index.tsx', content: source, language: 'jsx' },
-		{ file: 'index.module.css', content: styles, language: 'css' }
+		{ type: 'react', title: 'React', content: react, language: 'jsx' },
+		{ type: 'css', title: 'Styles', content: styles, language: 'css' }
 	]}
 >
-	<Calendar />
+	<Calendar client:load />
 </Showcase>
 
 ## Features
@@ -42,9 +43,17 @@ The calendar component relies on a [temporal polyfill](https://www.npmjs.com/pac
 
 :::
 
-<Installation name="calendar" dependencies={['temporal-polyfill']} />
+<Installation name="react-calendar" dependencies={['temporal-polyfill']} />
 
-## Reference
+## API Reference
+
+-   [Calendar](#calendar-root)
+-   [CalendarHeader](#calendarheader)
+-   [CalendarTitle](#calendartitle)
+-   [CalendarButton](#calendarbutton)
+-   [CalendarGroup](#calendargroup)
+-   [CalendarGrid](#calendargrid)
+-   [CalendarCell](#calendarcell)
 
 ### Calendar (Root)
 

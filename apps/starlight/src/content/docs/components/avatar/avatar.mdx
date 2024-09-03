@@ -11,7 +11,6 @@ import Attributes from '@library/Attributes.astro'
 import Properties from '@library/Properties.astro'
 import Avatar from './avatar.tsx'
 import react from './avatar.tsx?raw'
-import svelte from './avatar.svelte?raw'
 import styles from './avatar.module.css?raw'
 
 ## Showcase
@@ -20,12 +19,6 @@ import styles from './avatar.module.css?raw'
 	name="avatar"
 	sources={[
 		{ type: 'react', title: 'React', content: react, language: 'jsx' },
-		{
-			type: 'svelte',
-			title: 'Svelte',
-			content: svelte,
-			language: 'svelte'
-		},
 		{ type: 'css', title: 'Styles', content: styles, language: 'css' }
 	]}
 >

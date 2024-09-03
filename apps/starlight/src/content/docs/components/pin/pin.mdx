@@ -1,27 +1,28 @@
 ---
 title: Pin
+description: An input for typing pin codes / one time codes.
 ---
 
-import { Features, Feature } from '@library/features'
-import { Installation } from '@library/installation'
-import { ReferenceProps, ReferenceAttrs } from '@library/reference'
-import { Showcase } from '@library/showcase'
-import Pin from './pin'
-import source from '!!raw-loader!./pin.tsx'
-import styles from '!!raw-loader!./pin.module.css'
-
-An input for typing pin codes / one time codes.
+import Showcase from '@library/Showcase.astro'
+import Feature from '@library/Feature.astro'
+import Features from '@library/Features.astro'
+import Installation from '@library/Installation.astro'
+import Attributes from '@library/Attributes.astro'
+import Properties from '@library/Properties.astro'
+import Pin from './pin.tsx'
+import react from './pin.tsx?raw'
+import styles from './pin.module.css?raw'
 
 ## Showcase
 
 <Showcase
 	name="pin"
 	sources={[
-		{ file: 'index.tsx', content: source, language: 'jsx' },
-		{ file: 'index.module.css', content: styles, language: 'css' }
+		{ type: 'react', title: 'React', content: react, language: 'jsx' },
+		{ type: 'css', title: 'Styles', content: styles, language: 'css' }
 	]}
 >
-	<Pin />
+	<Pin client:load />
 </Showcase>
 
 ## Features
@@ -34,9 +35,16 @@ An input for typing pin codes / one time codes.
 
 ## Installation
 
-<Installation name="pin" />
+<Installation name="react-pin" />
 
-## Reference
+## API Reference
+
+-   [Pin](#pin-root)
+-   [PinInput](#pininput)
+-   [PinLabel](#pinlabel)
+-   [PinGroup](#pingroup)
+-   [PinSlots](#pinslots)
+-   [PinSlot](#pinslot)
 
 ### Pin (Root)
 
