@@ -19,10 +19,9 @@ const { name, class: classProp, sources } = Astro.props;
 
 <style>
 	.showcase {
-		border: 1px solid var(--sl-color-gray-5);
+		border: 1px solid var(--sl-color-hairline-light);
 		border-radius: 0.5rem;
 		overflow: hidden;
-		color: var(--sl-color-gray-2);
 		box-shadow: var(--sl-shadow-md);
 	}
 
@@ -45,6 +44,7 @@ const { name, class: classProp, sources } = Astro.props;
 		padding-block: 100px;
 		align-items: center;
 		justify-content: center;
+		background: var(--sl-color-text-invert);
 	}
 
 	.code {

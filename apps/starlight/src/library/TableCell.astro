@@ -22,12 +22,12 @@ const { as: Component = 'td', class: classProp, ...otherProps } = Astro.props
 	.cell.td {
 		border: 0;
 		padding-inline: 1rem;
-		border-block-start: 1px solid var(--sl-color-gray-5);
+		border-block-start: 1px solid var(--sl-color-hairline-light);
 		background: var(--sl-color-gray-6);
 		padding-block: 0.5rem;
 	}
 </style>
 
-<div class:list={['not-content', 'cell', Component, classProp]} {...otherProps}>
+<Component class:list={['not-content', 'cell', Component, classProp]} {...otherProps}>
 	<slot />
-</div>
+</Component>

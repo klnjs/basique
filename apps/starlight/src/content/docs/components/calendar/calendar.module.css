@@ -2,12 +2,12 @@
 	display: inline-flex;
 	flex-direction: column;
 	gap: 8px;
-	font-family: Arial;
+	font-size: 14px;
 	position: relative;
-	background: var(--ifm-background-surface-color);
+	background: var(--sl-color-black);
 	background-clip: padding-box;
-	border-radius: var(--ifm-global-radius);
-	border: 1px solid var(--ifm-color-emphasis-300);
+	border-radius: 0.5rem;
+	border: 1px solid var(--sl-color-hairline-light);
 	padding: 8px;
 }
 
@@ -38,16 +38,17 @@
 	outline: 0;
 	cursor: pointer;
 	border: none;
-	border-radius: 4px;
+	border-radius: 0.5rem;
 	background: none;
 	line-height: 24px;
 	align-items: center;
 	justify-content: center;
+	color: var(--sl-color-text);
 }
 
 .button:hover,
 .button:focus-visible {
-	background: var(--ifm-menu-color-background-hover);
+	color: var(--sl-color-white);
 }
 
 .button:disabled {
@@ -58,22 +59,21 @@
 	width: 32px;
 	height: 28px;
 	display: flex;
-	font-family: inherit;
-	font-size: 12px;
+	font: inherit;
 	align-items: center;
 	justify-content: center;
 	user-select: none;
 	padding: 0;
 	outline: 0;
 	border: 1px solid transparent;
-	border-radius: 4px;
+	border-radius: 0.5rem;
 	background: none;
 }
 
 .cell[data-cell='week'] {
 	font-size: 10px;
 	font-weight: bold;
-	color: var(--ifm-color-primary);
+	color: var(--sl-color-accent-high);
 }
 
 .cell[data-cell='day'] {
@@ -81,7 +81,7 @@
 }
 
 .cell[data-cell='day']:not([data-selected]):not([data-range-between]):hover {
-	background: var(--ifm-menu-color-background-hover);
+	color: var(--sl-color-white);
 }
 
 .cell[data-cell='day'][data-today] {
@@ -89,19 +89,21 @@
 }
 
 .cell[data-cell='day'][data-weekend] {
-	color: orange;
+	color: var(--sl-color-orange);
 }
 
 .cell[data-cell='day'][data-overflow] {
 	visibility: hidden;
 }
 
-.cell[data-cell='day'][data-selected] {
-	background: var(--ifm-color-primary);
+.cell[data-cell='day'][data-focused]:focus-visible {
+	border: 1px solid var(--sl-color-white);
+	color: var(--sl-color-white);
 }
 
-.cell[data-cell='day'][data-focused]:focus-visible {
-	border-color: var(--ifm-color-primary);
+.cell[data-cell='day'][data-selected] {
+	color: var(--sl-color-text-invert);
+	background: var(--sl-color-accent-high);
 }
 
 .cell[data-cell='day'][data-disabled] {
@@ -120,16 +122,16 @@
 }
 
 .cell[data-cell='day'][data-range-between] {
-	background-color: rgba(var(--ifm-color-primary-rgb), 0.2);
+	background-color: rgba(var(--sl-color-accent-high), 0.2);
 	border-radius: 0;
 }
 
 .cell[data-cell='day'][data-week-start] {
-	border-start-start-radius: 4px;
-	border-end-start-radius: 4px;
+	border-start-start-radius: 0.5rem;
+	border-end-start-radius: 0.5rem;
 }
 
 .cell[data-cell='day'][data-week-end] {
-	border-start-end-radius: 4px;
-	border-end-end-radius: 4px;
+	border-start-end-radius: 0.5rem;
+	border-end-end-radius: 0.5rem;
 }

@@ -3,9 +3,9 @@
 }
 
 .thumb {
-	color: var(--ifm-color-primary);
+	color: var(--sl-color-accent-high);
 }
 
 .track {
-	color: var(--ifm-background-surface-color);
+	color: var(--sl-color-black);
 }

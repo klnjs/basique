@@ -1,63 +1,51 @@
 .paginator {
 	display: inline-flex;
 	align-items: center;
-	gap: 8px;
-	font-family: Arial;
+	font-size: 14px;
 	position: relative;
-	background: var(--ifm-background-surface-color);
+	background: var(--sl-color-black);
 	background-clip: padding-box;
-	border-radius: var(--ifm-global-radius);
-	border: 1px solid var(--ifm-color-emphasis-300);
+	border-radius: 0.5rem;
+	border: 1px solid var(--sl-color-hairline-light);
 	padding: 8px;
 	user-select: none;
 }
 
-.button {
-	display: inline-flex;
-	width: 32px;
-	height: 32px;
-	outline: 0;
-	cursor: pointer;
-	border: none;
-	border-radius: 4px;
-	background: none;
-	line-height: 24px;
-	align-items: center;
-	justify-content: center;
-}
-
-.button:hover,
-.button:focus-visible {
-	background: var(--ifm-menu-color-background-hover);
-}
-
-.button:disabled {
-	pointer-events: none;
-}
-
+.button,
 .page {
 	display: inline-flex;
 	width: 32px;
 	height: 32px;
 	outline: 0;
+	padding: 0;
+	font: inherit;
 	cursor: pointer;
 	border: none;
-	border-radius: 4px;
+	border-radius: 0.5rem;
 	background: none;
 	line-height: 24px;
 	align-items: center;
 	justify-content: center;
+	color: var(--sl-color-text);
 }
 
-.page:hover,
+.button:hover,
+.page:hover {
+	color: var(--sl-color-white);
+}
+
+.button:focus-visible,
 .page:focus-visible {
-	background: var(--ifm-menu-color-background-hover);
+	color: var(--sl-color-white);
+	border: 1px solid var(--sl-color-white);
 }
 
 .page[data-selected] {
-	background: var(--ifm-color-primary);
+	color: var(--sl-color-text-invert);
+	background: var(--sl-color-accent-high);
 }
 
+.button:disabled,
 .page[data-disabled] {
 	opacity: 0.4;
 	pointer-events: none;

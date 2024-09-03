@@ -7,7 +7,7 @@
 	border-radius: 9999px;
 	overflow: hidden;
 	color: var(--sl-color-text-invert);
-	background: var(--sl-color-text-accent);
+	background: var(--sl-color-accent-high);
 }
 
 .image {
