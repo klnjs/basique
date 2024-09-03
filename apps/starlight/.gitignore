@@ -1,0 +1,16 @@
+# Ignore everything
+*
+
+# Except these folders
+!src/
+!src/**/*
+!public/
+!public/**/*
+
+# Except these files
+!.gitignore
+!astro.config.ts
+!eslint.config.mjs
+!package.json
+!prettier.config.mjs
+!tsconfig.json

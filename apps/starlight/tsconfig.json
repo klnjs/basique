@@ -1,0 +1,13 @@
+{
+	"extends": "@klnjs/typescript-config/esnext",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"jsx": "preserve",
+		"noPropertyAccessFromIndexSignature": false,
+		"paths": {
+			"@library/*": ["./src/library/*"]
+		}
+	},
+	"exclude": ["dist", "node_modules"],
+	"include": ["astro.config.ts", "./src/**/*.ts", "./src/**/*.tsx"]
+}

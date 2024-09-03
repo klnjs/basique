@@ -1,0 +1,45 @@
+---
+import Table from './Table.astro'
+import TableRow from './TableRow.astro'
+import TableCell from './TableCell.astro'
+
+type Props = {
+	attrs: {
+		name: string
+		text?: string
+		values?: string
+	}[]
+}
+
+const { attrs } = Astro.props
+---
+
+<style>
+	.table {
+		font-family: var(--__sl-font-mono);
+		font-size: var(--sl-text-code);
+	}
+
+	.cell {
+		width: 32%;
+	}
+</style>
+
+<Table class='table'>
+	<thead>
+		<TableRow>
+			<TableCell as="th">Data attribute</TableCell>
+			<TableCell as="th">Present when</TableCell>
+		</TableRow>
+	</thead>
+	<tbody>
+		{attrs.map(({ name, text, values }) => (
+			<TableRow>
+				<TableCell class='cell'>{name}</TableCell>
+				<TableCell>
+					{values !== undefined ? <code>{values}</code> : text}
+				</TableCell>
+			</TableRow>
+		))}
+	</tbody>
+</Table>

@@ -1,0 +1,50 @@
+---
+import Table from './Table.astro'
+import TableRow from './TableRow.astro'
+import TableCell from './TableCell.astro'
+
+type Props = {
+	props: {
+		name: string
+		type: string
+		typeAdvanced?: string
+		defaultValue: string
+	}[]
+}
+
+const { props } = Astro.props
+---
+
+<style>
+	.table {
+		font-family: var(--__sl-font-mono);
+		font-size: var(--sl-text-code);
+	}
+
+	.cell {
+		width: 32%;
+	}
+</style>
+
+<Table class='table'>
+	<thead>
+		<TableRow>
+			<TableCell as="th">Prop</TableCell>
+			<TableCell as="th">Type</TableCell>
+			<TableCell as="th">Default</TableCell>
+		</TableRow>
+	</thead>
+	<tbody>
+		{props.map(({ name, type, defaultValue = '-' }) => (
+			<TableRow>
+				<TableCell class='cell'>{name}</TableCell>
+				<TableCell class='cell'>
+					<code>{type}</code>
+				</TableCell>
+				<TableCell>
+					<code>{defaultValue}</code>
+				</TableCell>
+			</TableRow>
+		))}
+	</tbody>
+</Table>

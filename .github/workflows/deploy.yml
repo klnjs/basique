@@ -5,20 +5,23 @@ on:
     branches:
       - master
 
+env:
+  BUN_ENV: production
+  FORCE_COLOR: 1
+  TURBO_TELEMETRY_DISABLED: 1
+      
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    name: Docs
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    env:
-      BUN_ENV: production
-      FORCE_COLOR: 1
-      TURBO_TELEMETRY_DISABLED: 1
     steps:
       - name: Checkout
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
@@ -26,14 +29,18 @@ jobs:
       - name: Tools
         uses: asdf-vm/actions/install@05e0d2ed97b598bfce82fd30daf324ae0c4570e6 # v3.0.2
 
-      - name: Install
-        run: bun install
-
       - name: Build
-        run: bun run build --filter='./apps/docs'
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4
+        uses: withastro/action@v3
         with:
-          publish_dir: ./apps/docs/dist
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          path: ./apps/starlight
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      url: ${{ steps.deployment.outputs.page_url }}
+      name: github-pages
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

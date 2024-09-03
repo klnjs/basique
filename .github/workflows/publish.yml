@@ -5,6 +5,15 @@ on:
     branches:
       - master
 
+env:
+  BUN_ENV: production
+  FORCE_COLOR: 1
+  TURBO_TELEMETRY_DISABLED: 1
+
+permissions:
+  contents: read
+  id-token: write
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -12,13 +21,6 @@ concurrency:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
-    env:
-      BUN_ENV: production
-      FORCE_COLOR: 1
-      TURBO_TELEMETRY_DISABLED: 1
     steps:
       - name: Checkout
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
