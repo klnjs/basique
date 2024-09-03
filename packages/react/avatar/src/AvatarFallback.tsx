@@ -10,6 +10,7 @@ export const AvatarFallback = forwardRef<'div', AvatarFallbackProps>(
 
 		const [ready, setReady] = useState(delay === undefined)
 
+		// @ts-expect-error ts(7030): Not all code paths return a value.
 		useEffect(() => {
 			if (delay !== undefined) {
 				const timeout = setTimeout(() => setReady(true), delay)
