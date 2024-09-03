@@ -29,11 +29,19 @@ jobs:
       - name: Tools
         uses: asdf-vm/actions/install@05e0d2ed97b598bfce82fd30daf324ae0c4570e6 # v3.0.2
 
+      - name: Cache
+        uses: rharkor/caching-for-turbo@439abec0d28d21b192fa8817b744ffdf1ee5ac0d # v1.5
+
+      - name: Install
+        run: bun install
+
       - name: Build
-        uses: withastro/action@v3
+        run: bun run build --filter='./apps/starlight'
+
+      - name: Artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: ./apps/starlight
-          package-manager: bun
+          path: "./apps/starlight/dist/"
 
   deploy:
     needs: build
