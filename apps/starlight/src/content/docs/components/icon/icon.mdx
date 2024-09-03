@@ -47,7 +47,7 @@ import styles from './icon.module.css?raw'
 
 Contains all the parts of an icon.
 
-<ReferenceProps
+<Properties
 	props={[{ name: 'asChild', type: 'boolean', defaultValue: 'false' }]}
 />
 
@@ -55,7 +55,7 @@ Contains all the parts of an icon.
 
 Used to optionally render a title. This functions as an accessible label for screen readers to announce when the icon is interactive. To make the icon interactive, set the `tabIndex` of the root to 0.
 
-<ReferenceProps
+<Properties
 	props={[{ name: 'asChild', type: 'boolean', defaultValue: 'false' }]}
 />
 
@@ -63,7 +63,7 @@ Used to optionally render a title. This functions as an accessible label for scr
 
 Used to optionally render a description. Has the same properties as the title component.
 
-<ReferenceProps
+<Properties
 	props={[{ name: 'asChild', type: 'boolean', defaultValue: 'false' }]}
 />
 
@@ -71,7 +71,7 @@ Used to optionally render a description. Has the same properties as the title co
 
 Used to render a path. It is possible to use multiple paths to compose an icon, this is usefull for making icons with multiple colors or having different animations for each path.
 
-<ReferenceProps
+<Properties
 	props={[
 		{ name: 'asChild', type: 'boolean', defaultValue: 'false' },
 		{ name: 'd', type: 'string' }

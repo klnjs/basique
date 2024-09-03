@@ -50,7 +50,7 @@ import styles from './pin.module.css?raw'
 
 Contains all the parts of a pin.
 
-<ReferenceProps
+<Properties
 	props={[
 		{ name: 'asChild', type: 'boolean', defaultValue: 'false' },
 		{
@@ -81,7 +81,7 @@ Contains all the parts of a pin.
 
 Used to render a hidden input which is accessible by keyboard. The input can be shown by setting `hidden` to false. It will auto complete one time codes by default, and handle sanitising of input based on root property `type`.
 
-<ReferenceProps
+<Properties
 	props={[
 		{ name: 'asChild', type: 'boolean', defaultValue: 'false' },
 		{ name: 'autoComplete', type: 'string', defaultValue: 'one-time-code' },
@@ -93,7 +93,7 @@ Used to render a hidden input which is accessible by keyboard. The input can be 
 
 Used to optionally render an input label, and attach it to the input so it is accessible. If omitted, you should add a label to the input with property `aria-label`, so the component stays accessible.
 
-<ReferenceProps
+<Properties
 	props={[{ name: 'asChild', type: 'boolean', defaultValue: 'false' }]}
 />
 
@@ -101,7 +101,7 @@ Used to optionally render an input label, and attach it to the input so it is ac
 
 Used to group slot items.
 
-<ReferenceProps
+<Properties
 	props={[{ name: 'asChild', type: 'boolean', defaultValue: 'false' }]}
 />
 
@@ -109,7 +109,7 @@ Used to group slot items.
 
 Given the dynamic length of the pin, this utility component provides means to render slots of the pin using a render function as child.
 
-<ReferenceProps
+<Properties
 	props={[
 		{
 			name: 'children',
@@ -126,14 +126,14 @@ Used to render individual slots, it should be used in conjunction with the slots
 
 Clicking a slot will focus the input, therefore focus events should be attached to the input. The slot is primarily visual, and it provides `data-*` attributes enabling styling of the different states.
 
-<ReferenceProps
+<Properties
 	props={[
 		{ name: 'asChild', type: 'boolean', defaultValue: 'false' },
 		{ name: 'placeholder', type: 'string' }
 	]}
 />
 
-<ReferenceAttrs
+<Attributes
 	attrs={[
 		{ name: 'data-caret', text: 'caret is shown' },
 		{ name: 'data-concealed', text: 'slot is concealed' },

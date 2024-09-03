@@ -59,7 +59,7 @@ The calendar component relies on a [temporal polyfill](https://www.npmjs.com/pac
 
 Contains all the parts of a calendar. As the calendar does not have html semantics for providing a label, it is recommended to provide an `aria-label` to ensure good accessibility.
 
-<ReferenceProps
+<Properties
 	props={[
 		{ name: 'asChild', type: 'boolean', defaultValue: 'false' },
 		{ name: 'autoFocus', type: 'boolean', defaultValue: 'false' },
@@ -115,7 +115,7 @@ Contains all the parts of a calendar. As the calendar does not have html semanti
 
 Used to group calendar header components.
 
-<ReferenceProps
+<Properties
 	props={[{ name: 'asChild', type: 'boolean', defaultValue: 'false' }]}
 />
 
@@ -123,7 +123,7 @@ Used to group calendar header components.
 
 Display a localised title representing the current visible range of the calendar.
 
-<ReferenceProps
+<Properties
 	props={[{ name: 'asChild', type: 'boolean', defaultValue: 'false' }]}
 />
 
@@ -135,7 +135,7 @@ Use the `action` to either increment or decrement the visible range. When `unit`
 
 The button will be disabled when the action would cause the visible range to land outside of the root properties `min` and `max`.
 
-<ReferenceProps
+<Properties
 	props={[
 		{ name: 'asChild', type: 'boolean', defaultValue: 'false' },
 		{ name: 'action', type: "'inc' | 'dec'" },
@@ -147,7 +147,7 @@ The button will be disabled when the action would cause the visible range to lan
 
 Used to group grid components when working with multiple months.
 
-<ReferenceProps
+<Properties
 	props={[{ name: 'asChild', type: 'boolean', defaultValue: 'false' }]}
 />
 
@@ -159,7 +159,7 @@ The properties `week` and `weekdays` can be used to enable week day and week num
 
 Set `overflow: 'align'` to expand overflow at the end of a month, to match the longest possible month. This can prevent misalignment when working with multiple months.
 
-<ReferenceProps
+<Properties
 	props={[
 		{ name: 'asChild', type: 'boolean', defaultValue: 'false' },
 		{ name: 'week', type: 'boolean', defaultValue: 'false' },
@@ -180,7 +180,7 @@ Used to render individual cells in the grid, it should be used in conjunction wi
 
 Cell provides accessibility like localised labeling and keyboard navigation. For sighted users, it provides `data-*` attributes enabling styling of the different cell types and states.
 
-<ReferenceProps
+<Properties
 	props={[
 		{ name: 'asChild', type: 'boolean', defaultValue: 'false' },
 		{
@@ -192,7 +192,7 @@ Cell provides accessibility like localised labeling and keyboard navigation. For
 	]}
 />
 
-<ReferenceAttrs
+<Attributes
 	attrs={[
 		{
 			name: 'data-cell',
