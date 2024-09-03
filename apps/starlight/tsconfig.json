@@ -2,8 +2,12 @@
 	"extends": "astro/tsconfigs/strict",
 	"compilerOptions": {
 		"baseUrl": ".",
+		"noPropertyAccessFromIndexSignature": false,
+		"noUncheckedIndexedAccess": false,
 		"paths": {
 			"@library/*": ["./src/library/*"]
 		}
-	}
+	},
+	"exclude": ["dist", "node_modules"],
+	"include": ["astro.config.ts", "./src/**/*.ts", "./src/**/*.tsx"]
 }
