@@ -20,6 +20,7 @@ export const usePinConceal = ({
 }: UsePinConcealOptions) => {
 	const [display, setDisplay] = useState<string>()
 
+	// @ts-expect-error ts(7030): Not all code paths return a value.
 	useEffect(() => {
 		if (!enabled) {
 			setDisplay(value ?? placeholder)
