@@ -1,0 +1,22 @@
+.avatar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 48px;
+	height: 48px;
+	border-radius: 9999px;
+	overflow: hidden;
+	color: var(--sl-color-text-invert);
+	background: var(--sl-color-accent-high);
+}
+
+.image {
+	object-fit: contain;
+	width: 100%;
+	height: 100%;
+}
+
+.fallback {
+	font-weight: bold;
+	font-size: 24px;
+}

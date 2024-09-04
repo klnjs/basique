@@ -1,0 +1,12 @@
+---
+type Props = {
+	class?: string
+	children: any
+}
+
+const { class: classProp, children, ...otherProps } = Astro.props
+---
+
+<tr class:list={['not-content', classProp]} {...otherProps}>
+	<slot />
+</tr>

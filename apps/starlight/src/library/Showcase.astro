@@ -1,0 +1,75 @@
+---
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import Code from './Code.astro'
+
+type Props = {
+  name: string;
+	class?: string;
+  sources: {
+		type: 'react' | 'svelte' | 'styles'
+		source: string;
+	}[];
+  children: any;
+}
+
+const { name, class: classProp, sources } = Astro.props;
+---
+
+<style>
+	.showcase {
+		border: 1px solid var(--sl-color-hairline-light);
+		border-radius: 0.5rem;
+		overflow: hidden;
+		box-shadow: var(--sl-shadow-md);
+	}
+
+	.showcase :global(starlight-tabs *) {
+		margin: 0 !important;
+		border-radius: 0 !important;
+	}
+
+	.showcase :global([role='tablist']) {
+		border: 0 !important;
+	}
+
+	.showcase :global([role='tab']) {
+		box-sizing: border-box;
+		height: 32px;
+	}
+
+	.viewport {
+		display: flex;
+		padding-block: 100px;
+		align-items: center;
+		justify-content: center;
+		background: var(--sl-color-text-invert);
+	}
+
+	.code {
+		border: 0;
+		border-radius: 0;
+	}
+</style>
+
+<div class:list={['not-content', 'showcase', classProp]} aria-label={name}>
+	<Tabs>
+		{sources.map(({ type, source }) => (
+			<TabItem
+				label={type.charAt(0).toUpperCase() + type.slice(1)}
+				icon={`seti:${type === 'styles' ? 'css' : type}`}
+			>
+				<div class:list={['not-content', 'viewport']}>
+					{type === 'react' && <slot name='react' />}
+					{type === 'svelte' && <slot name='svelte' />}
+					{type === 'styles' && <slot name='styles' />}
+				</div>
+
+				<Code 
+					language={type === 'react' ? 'jsx' : type === 'styles' ? 'css' : type} 
+					code={source} 
+					class='code'
+				/>
+			</TabItem>
+		))}
+	</Tabs>
+</div>

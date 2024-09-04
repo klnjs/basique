@@ -1,0 +1,47 @@
+---
+title: Paginator
+description: TODO.
+---
+
+import Showcase from '@library/Showcase.astro'
+import Feature from '@library/Feature.astro'
+import Features from '@library/Features.astro'
+import Installation from '@library/Installation.astro'
+import Attributes from '@library/Attributes.astro'
+import Properties from '@library/Properties.astro'
+import Paginator from './paginator.tsx'
+import react from './paginator.tsx?raw'
+import styles from './paginator.module.css?raw'
+
+## Showcase
+
+<Showcase
+	name="paginator"
+	sources={[
+		{ type: 'react', title: 'React', content: react, language: 'jsx' },
+		{ type: 'css', title: 'Styles', content: styles, language: 'css' }
+	]}
+>
+	<Paginator client:load />
+</Showcase>
+
+## Features
+
+<Features>
+	<Feature>Controlled or uncontrolled.</Feature>
+	<Feature>TODO.</Feature>
+</Features>
+
+## Installation
+
+<Installation name="react-paginator" />
+
+## API Reference
+
+-   [Paginator](#paginator-root)
+
+### Paginator (Root)
+
+Contains all the parts of a Paginator.
+
+TODO.

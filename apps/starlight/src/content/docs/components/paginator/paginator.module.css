@@ -1,0 +1,61 @@
+.paginator {
+	display: inline-flex;
+	align-items: center;
+	font-size: 14px;
+	position: relative;
+	background: var(--sl-color-black);
+	background-clip: padding-box;
+	border-radius: 0.5rem;
+	border: 1px solid var(--sl-color-hairline-light);
+	padding: 8px;
+	user-select: none;
+}
+
+.button,
+.page {
+	display: inline-flex;
+	width: 32px;
+	height: 32px;
+	outline: 0;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	border: none;
+	border-radius: 0.5rem;
+	background: none;
+	line-height: 24px;
+	align-items: center;
+	justify-content: center;
+	color: var(--sl-color-text);
+}
+
+.button:hover,
+.page:hover {
+	color: var(--sl-color-white);
+}
+
+.button:focus-visible,
+.page:focus-visible {
+	color: var(--sl-color-white);
+	border: 1px solid var(--sl-color-white);
+}
+
+.page[data-selected] {
+	color: var(--sl-color-text-invert);
+	background: var(--sl-color-accent-high);
+}
+
+.button:disabled,
+.page[data-disabled] {
+	opacity: 0.4;
+	pointer-events: none;
+}
+
+.ellipsis {
+	display: inline-flex;
+	width: 32px;
+	height: 32px;
+	line-height: 24px;
+	align-items: center;
+	justify-content: center;
+}

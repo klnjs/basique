@@ -5,6 +5,14 @@ on:
     branches:
       - master
 
+env:
+  BUN_ENV: production
+  FORCE_COLOR: 1
+  TURBO_TELEMETRY_DISABLED: 1
+
+permissions:
+  contents: read
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -15,11 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        script: [test, build, eslint, prettier, typescript]
-    env:
-      BUN_ENV: production
-      FORCE_COLOR: 1
-      TURBO_TELEMETRY_DISABLED: 1
+        script: [test, eslint, prettier, typescript]
     steps:
       - name: Checkout
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7

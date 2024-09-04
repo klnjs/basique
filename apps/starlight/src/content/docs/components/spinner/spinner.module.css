@@ -1,0 +1,11 @@
+.spinner {
+	display: block;
+}
+
+.thumb {
+	color: var(--sl-color-accent-high);
+}
+
+.track {
+	color: var(--sl-color-black);
+}
