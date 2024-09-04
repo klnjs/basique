@@ -1,2 +1,2 @@
 # Basique
-React component library
+Component library
