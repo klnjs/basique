@@ -38,9 +38,9 @@
 	},
 	"devDependencies": {
 		"@klnjs/basique": "workspace:*",
-		"@klnjs/eslint-config": "3.1.2",
-		"@klnjs/prettier-config": "3.1.2",
-		"@klnjs/typescript-config": "3.1.2",
+		"@klnjs/eslint-config": "3.2.0",
+		"@klnjs/prettier-config": "3.2.0",
+		"@klnjs/typescript-config": "3.2.0",
 		"eslint": "9.9.0",
 		"prettier": "3.3.3",
 		"typescript": "5.5.4"
