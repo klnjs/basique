@@ -14,16 +14,17 @@
 		"eslint": "eslint . --max-warnings 0",
 		"prettier": "prettier . --check",
 		"prepublish": "basique prepublish",
-		"typescript": "tsc --noEmit"
+		"typescript": "astro check"
 	},
 	"dependencies": {
-		"@astrojs/check": "^0.9.3",
-		"@astrojs/react": "^3.6.2",
-		"@astrojs/starlight": "^0.26.1",
 		"astro": "^4.10.2",
 		"sharp": "^0.32.5"
 	},
 	"devDependencies": {
+		"@astrojs/check": "^0.9.3",
+		"@astrojs/react": "^3.6.2",
+		"@astrojs/starlight": "^0.26.1",
+		"@astrojs/svelte": "^5.7.0",
 		"@klnjs/eslint-config": "2.0.0",
 		"@klnjs/prettier-config": "2.0.0",
 		"@klnjs/typescript-config": "2.0.0",

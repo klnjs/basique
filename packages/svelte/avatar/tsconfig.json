@@ -1,0 +1,22 @@
+{
+	"extends": "@klnjs/typescript-config/esnext",
+	"compilerOptions": {
+		"outDir": "dist",
+		"noPropertyAccessFromIndexSignature": false,
+		"sourceMap": true,
+		"allowJs": true,
+		"checkJs": true,
+		"declaration": false,
+		"isolatedModules": true,
+		"moduleDetection": "force",
+		"types": ["svelte"]
+	},
+	"exclude": ["dist", "node_modules"],
+	"include": [
+		"src/**/*.ts",
+		"src/**/*.js",
+		"src/**/*.svelte",
+		"vite.config.ts",
+		"svelte.config.js"
+	]
+}

@@ -1,6 +1,6 @@
 import { Avatar, AvatarImage, AvatarFallback } from '@klnjs/react-avatar'
-import image from './avatar.png'
 import classes from './avatar.module.css'
+import image from './react.svg'
 
 export default () => (
 	<Avatar className={classes.avatar}>

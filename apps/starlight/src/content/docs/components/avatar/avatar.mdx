@@ -9,8 +9,10 @@ import Features from '@library/Features.astro'
 import Installation from '@library/Installation.astro'
 import Attributes from '@library/Attributes.astro'
 import Properties from '@library/Properties.astro'
-import Avatar from './avatar.tsx'
+import AvatarReact from './avatar.tsx'
+import AvatarSvelte from './avatar.svelte'
 import react from './avatar.tsx?raw'
+import svelte from './avatar.svelte?raw'
 import styles from './avatar.module.css?raw'
 
 ## Showcase
@@ -18,11 +20,13 @@ import styles from './avatar.module.css?raw'
 <Showcase
 	name="avatar"
 	sources={[
-		{ type: 'react', title: 'React', content: react, language: 'jsx' },
-		{ type: 'css', title: 'Styles', content: styles, language: 'css' }
+		{ type: 'react', source: react },
+		{ type: 'svelte', source: svelte },
+		{ type: 'styles', source: styles }
 	]}
 >
-	<Avatar client:load />
+	<AvatarReact slot="react" client:load />
+	<AvatarSvelte slot="svelte" client:load />
 </Showcase>
 
 ## Features

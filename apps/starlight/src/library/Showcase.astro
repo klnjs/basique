@@ -6,10 +6,8 @@ type Props = {
   name: string;
 	class?: string;
   sources: {
-		type: 'react' | 'svelte' | 'css'
-		title: string;
-		content: string;
-		language: string;
+		type: 'react' | 'svelte' | 'styles'
+		source: string;
 	}[];
   children: any;
 }
@@ -54,14 +52,23 @@ const { name, class: classProp, sources } = Astro.props;
 </style>
 
 <div class:list={['not-content', 'showcase', classProp]} aria-label={name}>
-  <div class:list={['not-content', 'viewport']}>
-		<slot />
-  </div>
-
 	<Tabs>
-		{sources.map(({ type, title, content, language }) => (
-			<TabItem label={title} icon={`seti:${type}`}>
-				<Code language={language} code={content} class='code'/>
+		{sources.map(({ type, source }) => (
+			<TabItem
+				label={type.charAt(0).toUpperCase() + type.slice(1)}
+				icon={`seti:${type === 'styles' ? 'css' : type}`}
+			>
+				<div class:list={['not-content', 'viewport']}>
+					{type === 'react' && <slot name='react' />}
+					{type === 'svelte' && <slot name='svelte' />}
+					{type === 'styles' && <slot name='styles' />}
+				</div>
+
+				<Code 
+					language={type === 'react' ? 'jsx' : type === 'styles' ? 'css' : type} 
+					code={source} 
+					class='code'
+				/>
 			</TabItem>
 		))}
 	</Tabs>

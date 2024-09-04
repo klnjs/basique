@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { Avatar, AvatarImage, AvatarFallback } from '@klnjs/svelte-avatar'
-	import image from './avatar.png'
 	import classes from './avatar.module.css'
+	import image from './svelte.svg'
 </script>
  
-<Avatar className={classes.avatar}>
-	<AvatarImage src={image.src} className={classes.image} />
-	<AvatarFallback className={classes.fallback}>RK</AvatarFallback>
+<Avatar class={classes.avatar}>
+	<AvatarImage src={image.src} alt="alt" class={classes.image}  />
+	<AvatarFallback class={classes.fallback}>RK</AvatarFallback>
 </Avatar>
