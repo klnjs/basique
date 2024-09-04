@@ -7,7 +7,7 @@
 
 	setAvatarContext({ status })
 </script>
- 
+
 <div {...$$restProps}>
 	<slot />
 </div>
