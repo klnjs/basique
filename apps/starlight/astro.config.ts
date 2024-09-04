@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config'
 import react from '@astrojs/react'
+import svelte from '@astrojs/svelte'
 import starlight from '@astrojs/starlight'
 
 const mdxs = new Bun.Glob('components/**/*.mdx').scan('src/content/docs')
@@ -11,6 +12,7 @@ export default defineConfig({
 	base: 'basique',
 	integrations: [
 		react(),
+		svelte(),
 		starlight({
 			title: 'Basique',
 			logo: {
