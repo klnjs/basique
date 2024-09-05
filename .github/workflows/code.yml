@@ -18,7 +18,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  check:
+  job:
     name: ${{ matrix.script }}
     runs-on: ubuntu-latest
     strategy:
