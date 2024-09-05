@@ -25,7 +25,6 @@ const { name, class: classProp, sources } = Astro.props;
 
 	.showcase :global(starlight-tabs *) {
 		margin: 0 !important;
-		border-radius: 0 !important;
 	}
 
 	.showcase :global([role='tablist']) {
@@ -58,11 +57,13 @@ const { name, class: classProp, sources } = Astro.props;
 				label={type.charAt(0).toUpperCase() + type.slice(1)}
 				icon={`seti:${type === 'styles' ? 'css' : type}`}
 			>
-				<div class:list={['not-content', 'viewport']}>
-					{type === 'react' && <slot name='react' />}
-					{type === 'svelte' && <slot name='svelte' />}
-					{type === 'styles' && <slot name='styles' />}
-				</div>
+				{type !== 'styles' && 
+					<div class:list={['not-content', 'viewport']}>
+						{type === 'react' && <slot name='react' />}
+						{type === 'svelte' && <slot name='svelte' />}
+					</div>
+				}
+
 
 				<Code 
 					language={type === 'react' ? 'jsx' : type === 'styles' ? 'css' : type} 

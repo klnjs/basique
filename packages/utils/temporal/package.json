@@ -31,11 +31,11 @@
 		}
 	},
 	"scripts": {
+		"lint": "eslint . --max-warnings 0",
+		"check": "tsc --noEmit",
+		"format": "prettier . --check",
 		"build": "basique build",
-		"eslint": "eslint . --max-warnings 0",
-		"prettier": "prettier . --check",
-		"prepublish": "basique prepublish",
-		"typescript": "tsc --noEmit"
+		"prepublish": "basique prepublish"
 	},
 	"dependencies": {
 		"@klnjs/locale": "workspace:*"

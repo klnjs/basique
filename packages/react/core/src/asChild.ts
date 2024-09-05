@@ -1,8 +1,5 @@
 import type { ReactNode, ElementType, ComponentProps } from 'react'
-
-export type Assign<T, P> = Omit<T, keyof P> & P
-
-export type Pretty<T> = T extends infer U ? { [K in keyof U]: U[K] } : never
+import type { Prettify, Assign } from '@klnjs/types'
 
 export type AsChildProps = {
 	asChild?: boolean
@@ -15,4 +12,4 @@ export type AsChildComponentProps<E extends ElementType> = AsChildProps &
 export type CoreProps<
 	E extends ElementType,
 	P extends object = object
-> = Pretty<Assign<AsChildComponentProps<E>, P>>
+> = Prettify<Assign<AsChildComponentProps<E>, P>>
