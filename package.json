@@ -16,11 +16,11 @@
 	"scripts": {
 		"dev": "turbo dev",
 		"test": "turbo test",
+		"lint": "turbo lint",
+		"check": "turbo check",
+		"format": "turbo format",
 		"build": "turbo build",
-		"eslint": "turbo eslint",
-		"prettier": "turbo prettier",
-		"prepublish": "turbo prepublish",
-		"typescript": "turbo typescript"
+		"prepublish": "turbo prepublish"
 	},
 	"devDependencies": {
 		"@types/bun": "1.1.8",

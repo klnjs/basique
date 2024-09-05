@@ -6,16 +6,16 @@
 			"persistent": true
 		},
 		"test": {},
+		"lint": {},
+		"check": {},
+		"format": {},
 		"build": {
 			"env": ["BUN_ENV"],
 			"outputs": ["dist/**/*"],
 			"dependsOn": ["^build"]
 		},
-		"eslint": {},
-		"prettier": {},
 		"prepublish": {
 			"cache": false
-		},
-		"typescript": {}
+		}
 	}
 }

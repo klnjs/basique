@@ -44,7 +44,6 @@ const emit = async (
 ): Promise<EmitOutput> => {
 	const raw = ts.readConfigFile(tsconfig, ts.sys.readFile)
 	const parsed = ts.parseJsonConfigFileContent(raw.config, ts.sys, cwd)
-
 	const program = ts.createProgram({
 		rootNames: parsed.fileNames,
 		options: {

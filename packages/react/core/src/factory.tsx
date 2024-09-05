@@ -5,15 +5,15 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 
 import {
-	forwardRef,
-	cloneElement,
-	isValidElement,
 	Children,
+	cloneElement,
+	forwardRef,
+	isValidElement,
 	type ElementType
 } from 'react'
 import { composeRefs } from './useRefComposed'
 import { composeProps } from './usePropsComposed'
-import type { AsChildProps } from './types'
+import type { AsChildProps } from './asChild'
 import type { AsChildForwardRefComponent } from './forwardRef'
 
 const withAsChild = (Component: ElementType) => {

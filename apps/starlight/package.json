@@ -10,24 +10,26 @@
 	},
 	"scripts": {
 		"dev": "bunx --bun astro dev",
-		"build": "bunx --bun astro check && bunx --bun astro build",
-		"eslint": "eslint . --max-warnings 0",
-		"prettier": "prettier . --check",
-		"prepublish": "basique prepublish",
-		"typescript": "bunx --bun astro check"
+		"lint": "eslint . --max-warnings 0",
+		"check": "bunx --bun astro check",
+		"format": "prettier . --check",
+		"build": "bunx --bun astro build",
+		"prepublish": "basique prepublish"
 	},
 	"dependencies": {
 		"astro": "^4.10.2",
 		"sharp": "^0.32.5"
 	},
 	"devDependencies": {
-		"@astrojs/check": "^0.9.3",
-		"@astrojs/react": "^3.6.2",
-		"@astrojs/starlight": "^0.26.1",
-		"@astrojs/svelte": "^5.7.0",
+		"@astrojs/check": "0.9.3",
+		"@astrojs/react": "3.6.2",
+		"@astrojs/starlight": "0.26.1",
+		"@astrojs/svelte": "5.7.0",
 		"@klnjs/eslint-config": "2.0.0",
 		"@klnjs/prettier-config": "2.0.0",
 		"@klnjs/typescript-config": "2.0.0",
+		"eslint": "8.57.0",
+		"prettier": "3.3.3",
 		"typescript": "5.5.4"
 	}
 }

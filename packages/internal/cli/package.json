@@ -1,0 +1,34 @@
+{
+	"name": "@klnjs/basique",
+	"type": "module",
+	"author": "Rune Klein (@rnkln)",
+	"version": "0.0.0",
+	"private": "true",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com/klnjs/basique.git",
+		"directory": "packages/tools/basique"
+	},
+	"bin": {
+		"basique": "./index.ts"
+	},
+	"scripts": {
+		"lint": "eslint . --max-warnings 0",
+		"check": "tsc --noEmit",
+		"format": "prettier . --check"
+	},
+	"dependencies": {
+		"find-up": "^7.0.0",
+		"yargs": "^17.7.2"
+	},
+	"devDependencies": {
+		"@klnjs/eslint-config": "2.0.0",
+		"@klnjs/prettier-config": "2.0.0",
+		"@klnjs/typescript-config": "2.0.0",
+		"@types/yargs": "17.0.33",
+		"eslint": "8.57.0",
+		"prettier": "3.3.3",
+		"typescript": "5.5.4"
+	}
+}

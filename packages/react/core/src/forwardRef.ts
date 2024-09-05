@@ -6,7 +6,8 @@ import {
 	type ForwardRefRenderFunction,
 	type PropsWithoutRef
 } from 'react'
-import type { Assign, AsChildComponentProps } from './types'
+import type { Assign } from '@klnjs/types'
+import type { AsChildComponentProps } from './asChild'
 
 export type AsChildForwardRefComponent<E extends ElementType> =
 	ForwardRefExoticComponent<AsChildComponentProps<E>>
