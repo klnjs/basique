@@ -17,10 +17,11 @@
 		"dev": "turbo dev",
 		"test": "turbo test",
 		"lint": "turbo lint",
+		"clean": "turbo clean",
 		"check": "turbo check",
 		"format": "turbo format",
 		"build": "turbo build",
-		"prepublish": "turbo prepublish"
+		"arrange": "turbo arrange"
 	},
 	"devDependencies": {
 		"@types/bun": "1.1.8",

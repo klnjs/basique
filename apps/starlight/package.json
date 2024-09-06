@@ -11,10 +11,10 @@
 	"scripts": {
 		"dev": "bunx --bun astro dev",
 		"lint": "eslint . --max-warnings 0",
+		"clean": "basique clean",
 		"check": "bunx --bun astro check",
 		"format": "prettier . --check",
-		"build": "bunx --bun astro build",
-		"prepublish": "basique prepublish"
+		"build": "bunx --bun astro build"
 	},
 	"dependencies": {
 		"astro": "^4.10.2",

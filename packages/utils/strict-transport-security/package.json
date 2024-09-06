@@ -1,5 +1,5 @@
 {
-	"name": "@klnjs/permissions-policy",
+	"name": "@klnjs/strict-transport-security",
 	"type": "module",
 	"author": "Rune Klein (@rnkln)",
 	"version": "1.0.0-beta.7",
@@ -7,12 +7,12 @@
 	"repository": {
 		"type": "git",
 		"url": "git+ssh://git@github.com/klnjs/basique.git",
-		"directory": "packages/headers/permissions-policy"
+		"directory": "packages/headers/strict-transport-security"
 	},
 	"keywords": [
 		"header",
 		"security",
-		"permissions-policy"
+		"strict-transport-security"
 	],
 	"files": [
 		"dist",
@@ -31,10 +31,11 @@
 	"scripts": {
 		"test": "bun test",
 		"lint": "eslint . --max-warnings 0",
+		"clean": "basique clean",
 		"check": "tsc --noEmit",
 		"format": "prettier . --check",
-		"build": "basique build",
-		"prepublish": "basique prepublish"
+		"build": "basique clean && basique build",
+		"arrange": "basique arrange"
 	},
 	"devDependencies": {
 		"@klnjs/basique": "workspace:*",

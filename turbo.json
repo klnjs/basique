@@ -7,6 +7,9 @@
 		},
 		"test": {},
 		"lint": {},
+		"clean": {
+			"cache": false
+		},
 		"check": {},
 		"format": {},
 		"build": {
@@ -14,7 +17,7 @@
 			"outputs": ["dist/**/*"],
 			"dependsOn": ["^build"]
 		},
-		"prepublish": {
+		"arrange": {
 			"cache": false
 		}
 	}

@@ -36,10 +36,11 @@
 	},
 	"scripts": {
 		"lint": "eslint . --max-warnings 0",
+		"clean": "basique clean",
 		"check": "tsc --noEmit",
 		"format": "prettier . --check",
-		"build": "basique build",
-		"prepublish": "basique prepublish"
+		"build": "basique clean && basique build --react",
+		"arrange": "basique arrange"
 	},
 	"dependencies": {
 		"@klnjs/react-core": "workspace:*",

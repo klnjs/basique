@@ -22,21 +22,27 @@
 		"LICENSE",
 		"README.md"
 	],
-	"exports": "./index.ts",
+	"exports": {
+		".": {
+			"types": "./index.ts",
+			"svelte": "./index.ts"
+		}
+	},
 	"publishConfig": {
 		"exports": {
 			".": {
 				"types": "./dist/index.d.ts",
-				"import": "./dist/index.js"
+				"svelte": "./dist/index.js"
 			}
 		}
 	},
 	"scripts": {
 		"lint": "eslint . --max-warnings 0",
-		"check": "svelte-check --tsconfig ./tsconfig.json",
-		"format": "prettier . --check",
-		"build": "bunx --bun vite build",
-		"prepublish": "basique prepublish"
+		"clean": "basique clean",
+		"check": "svelte-check",
+		"format": "prettier . --check --no-cache",
+		"build": "basique clean && basique build --svelte",
+		"arrange": "basique arrange"
 	},
 	"dependencies": {
 		"@klnjs/svelte-core": "workspace:*"
@@ -48,12 +54,13 @@
 		"@klnjs/prettier-config": "2.0.0",
 		"@klnjs/types": "workspace:*",
 		"@klnjs/typescript-config": "2.0.0",
-		"@sveltejs/vite-plugin-svelte": "3.1.2",
 		"eslint": "8.57.0",
 		"prettier": "3.3.3",
 		"svelte-check": "4.0.1",
 		"svelte": "4.2.19",
-		"typescript": "5.5.4",
-		"vite": "5.4.3"
+		"typescript": "5.5.4"
+	},
+	"peerDependencies": {
+		"svelte": "^4.2.19"
 	}
 }
