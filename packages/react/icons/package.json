@@ -35,10 +35,11 @@
 	},
 	"scripts": {
 		"lint": "eslint . --max-warnings 0",
+		"clean": "basique clean",
 		"check": "tsc --noEmit",
 		"format": "prettier . --check",
-		"build": "basique build",
-		"prepublish": "basique prepublish",
+		"build": "basique clean && basique build --react",
+		"prepublish": "basique license",
 		"postinstall": "bun ./scripts/create-icons.js"
 	},
 	"dependencies": {

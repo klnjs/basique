@@ -2,8 +2,7 @@
 	"name": "@klnjs/avatar",
 	"type": "module",
 	"author": "Rune Klein (@rnkln)",
-	"version": "0.0.0",
-	"private": "true",
+	"version": "1.0.0-beta.7",
 	"license": "MIT",
 	"homepage": "https://klnjs.github.io/basique",
 	"repository": {
@@ -12,10 +11,21 @@
 		"directory": "packages/shared/avatar"
 	},
 	"exports": "./index.ts",
+	"publishConfig": {
+		"exports": {
+			".": {
+				"types": "./dist/index.d.ts",
+				"import": "./dist/index.js"
+			}
+		}
+	},
 	"scripts": {
 		"lint": "eslint . --max-warnings 0",
+		"clean": "basique clean",
 		"check": "tsc --noEmit",
-		"format": "prettier . --check"
+		"format": "prettier . --check",
+		"build": "basique clean && basique build",
+		"prepublish": "basique license"
 	},
 	"devDependencies": {
 		"@klnjs/basique": "workspace:*",

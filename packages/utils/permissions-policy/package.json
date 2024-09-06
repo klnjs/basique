@@ -1,5 +1,5 @@
 {
-	"name": "@klnjs/referrer-policy",
+	"name": "@klnjs/permissions-policy",
 	"type": "module",
 	"author": "Rune Klein (@rnkln)",
 	"version": "1.0.0-beta.7",
@@ -7,12 +7,12 @@
 	"repository": {
 		"type": "git",
 		"url": "git+ssh://git@github.com/klnjs/basique.git",
-		"directory": "packages/headers/referrer-policy"
+		"directory": "packages/headers/permissions-policy"
 	},
 	"keywords": [
 		"header",
 		"security",
-		"referrer-policy"
+		"permissions-policy"
 	],
 	"files": [
 		"dist",
@@ -31,10 +31,11 @@
 	"scripts": {
 		"test": "bun test",
 		"lint": "eslint . --max-warnings 0",
+		"clean": "basique clean",
 		"check": "tsc --noEmit",
 		"format": "prettier . --check",
-		"build": "basique build",
-		"prepublish": "basique prepublish"
+		"build": "basique clean && basique build",
+		"prepublish": "basique license"
 	},
 	"devDependencies": {
 		"@klnjs/basique": "workspace:*",

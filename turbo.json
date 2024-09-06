@@ -7,6 +7,9 @@
 		},
 		"test": {},
 		"lint": {},
+		"clean": {
+			"cache": false
+		},
 		"check": {},
 		"format": {},
 		"build": {
