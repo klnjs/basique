@@ -31,7 +31,7 @@
 	"scripts": {
 		"lint": "eslint . --max-warnings 0",
 		"clean": "basique clean",
-		"check": "svelte-check",
+		"check": "tsc --noEmit",
 		"format": "prettier . --check",
 		"build": "basique clean && basique build",
 		"prepublish": "basique license"
