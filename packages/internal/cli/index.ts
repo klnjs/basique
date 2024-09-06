@@ -4,12 +4,12 @@ import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 import { run as build } from './src/build'
 import { run as clean } from './src/clean'
-import { run as license } from './src/license'
+import { run as prepare } from './src/arrange'
 
 await yargs(hideBin(process.argv))
 	.command(
 		'build',
-		'build a package',
+		'build package distribution',
 		(yarg) =>
 			yarg
 				.option('react', { type: 'boolean' })
@@ -17,7 +17,7 @@ await yargs(hideBin(process.argv))
 				.conflicts('react', 'svelte'),
 		async (argv) => build(argv)
 	)
-	.command('clean', 'clean package build', () => {}, clean)
-	.command('license', 'copy license to package', () => {}, license)
+	.command('clean', 'clean package build and caches', () => {}, clean)
+	.command('arrange', 'arrange package for publishing', () => {}, prepare)
 	.demandCommand(1)
 	.parse()

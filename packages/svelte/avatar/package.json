@@ -42,7 +42,7 @@
 		"check": "svelte-check",
 		"format": "prettier . --check --no-cache",
 		"build": "basique clean && basique build --svelte",
-		"prepublish": "basique license"
+		"arrange": "basique arrange"
 	},
 	"dependencies": {
 		"@klnjs/svelte-core": "workspace:*"

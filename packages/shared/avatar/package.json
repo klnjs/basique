@@ -25,7 +25,7 @@
 		"check": "tsc --noEmit",
 		"format": "prettier . --check",
 		"build": "basique clean && basique build",
-		"prepublish": "basique license"
+		"arrange": "basique arrange"
 	},
 	"devDependencies": {
 		"@klnjs/basique": "workspace:*",

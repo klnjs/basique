@@ -17,7 +17,7 @@
 			"outputs": ["dist/**/*"],
 			"dependsOn": ["^build"]
 		},
-		"prepublish": {
+		"arrange": {
 			"cache": false
 		}
 	}
