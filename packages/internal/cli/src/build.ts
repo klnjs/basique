@@ -28,6 +28,6 @@ export const run = async (options: BuildOptions) => {
 		await rm(temp, { recursive: true, force: true })
 		await rm('.svelte-kit', { recursive: true, force: true })
 	} else {
-		await $`tsc --noEmit false --declaration --composite false --allowImportingTsExtensions false`
+		await $`tsc --noEmit false --declaration --composite false --removeComments --allowImportingTsExtensions false`
 	}
 }

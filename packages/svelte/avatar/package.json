@@ -40,7 +40,7 @@
 		"lint": "eslint . --max-warnings 0",
 		"clean": "basique clean",
 		"check": "svelte-check",
-		"format": "prettier . --check",
+		"format": "prettier . --check --no-cache",
 		"build": "basique clean && basique build --svelte",
 		"prepublish": "basique license"
 	},

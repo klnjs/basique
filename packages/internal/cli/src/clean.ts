@@ -5,9 +5,14 @@ import { rm } from 'node:fs/promises'
 
 export const run = async () => {
 	const cwd = process.cwd()
-	const dist = join(cwd, 'dist')
-	const license = join(cwd, 'LICENSE')
 
-	await rm(dist, { recursive: true, force: true })
-	await rm(license, { force: true })
+	await rm(join(cwd, '.svelte-kit'), { recursive: true, force: true })
+	await rm(join(cwd, '.turbo'), { recursive: true, force: true })
+	await rm(join(cwd, 'node_modules'), { recursive: true, force: true })
+	await rm(join(cwd, 'dist'), { recursive: true, force: true })
+	await rm(join(cwd, 'LICENSE'), { recursive: true, force: true })
+	await rm(join(cwd, 'tsconfig.tsbuildinfo'), {
+		recursive: true,
+		force: true
+	})
 }
