@@ -1,5 +1,5 @@
 {
-	"name": "@klnjs/svelte-avatar",
+	"name": "@klnjs/spinner",
 	"type": "module",
 	"author": "Rune Klein (@rnkln)",
 	"version": "1.0.0-beta.7",
@@ -8,59 +8,32 @@
 	"repository": {
 		"type": "git",
 		"url": "git+ssh://git@github.com/klnjs/basique.git",
-		"directory": "packages/svelte/avatar"
+		"directory": "packages/shared/spinner"
 	},
-	"keywords": [
-		"a11y",
-		"avatar",
-		"component",
-		"primitive",
-		"svelte"
-	],
-	"files": [
-		"dist",
-		"LICENSE",
-		"README.md"
-	],
-	"exports": {
-		".": {
-			"types": "./index.ts",
-			"svelte": "./index.ts"
-		}
-	},
+	"exports": "./index.ts",
 	"publishConfig": {
 		"exports": {
 			".": {
 				"types": "./dist/index.d.ts",
-				"svelte": "./dist/index.js"
+				"import": "./dist/index.js"
 			}
 		}
 	},
 	"scripts": {
 		"lint": "eslint . --max-warnings 0",
 		"clean": "basique clean",
-		"check": "svelte-check",
-		"format": "prettier . --check --no-cache",
-		"build": "basique clean && basique build --svelte",
+		"check": "tsc --noEmit",
+		"format": "prettier . --check",
+		"build": "basique clean && basique build",
 		"arrange": "basique arrange"
-	},
-	"dependencies": {
-		"@klnjs/avatar": "workspace:*",
-		"@klnjs/svelte-core": "workspace:*"
 	},
 	"devDependencies": {
 		"@klnjs/basique": "workspace:*",
 		"@klnjs/eslint-config": "2.0.0",
 		"@klnjs/prettier-config": "2.0.0",
-		"@klnjs/types": "workspace:*",
 		"@klnjs/typescript-config": "2.0.0",
 		"eslint": "8.57.0",
 		"prettier": "3.3.3",
-		"svelte-check": "4.0.1",
-		"svelte": "4.2.19",
 		"typescript": "5.5.4"
-	},
-	"peerDependencies": {
-		"svelte": "^4.2.19"
 	}
 }

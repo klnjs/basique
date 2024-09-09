@@ -9,8 +9,10 @@ import Features from '@library/Features.astro'
 import Installation from '@library/Installation.astro'
 import Attributes from '@library/Attributes.astro'
 import Properties from '@library/Properties.astro'
-import Spinner from './spinner.tsx'
+import SpinnerReact from './spinner.tsx'
+import SpinnerSvelte from './spinner.svelte'
 import react from './spinner.tsx?raw'
+import svelte from './spinner.svelte?raw'
 import styles from './spinner.module.css?raw'
 
 ## Showcase
@@ -18,11 +20,13 @@ import styles from './spinner.module.css?raw'
 <Showcase
 	name="spinner"
 	sources={[
-		{ type: 'react', title: 'React', content: react, language: 'jsx' },
-		{ type: 'css', title: 'Styles', content: styles, language: 'css' }
+		{ type: 'react', source: react },
+		{ type: 'svelte', source: svelte },
+		{ type: 'styles', source: styles }
 	]}
 >
-	<Spinner client:load />
+	<SpinnerReact slot="react" client:only="react" />
+	<SpinnerSvelte slot="svelte" client:only="svelte" />
 </Showcase>
 
 ## Features

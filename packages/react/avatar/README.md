@@ -12,4 +12,4 @@ npm install @klnjs/react-avatar
 
 ## How to Use
 
-Docs available [here](https://klnjs.github.io/basique/docs/components/avatar)
+Docs available [here](https://klnjs.github.io/basique/components/avatar/avatar)
