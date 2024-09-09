@@ -12,4 +12,4 @@ npm install @klnjs/react-spinner
 
 ## How to Use
 
-Docs available [here](https://klnjs.github.io/basique/docs/components/spinner)
+Docs available [here](https://klnjs.github.io/basique/components/spinner/spinner)

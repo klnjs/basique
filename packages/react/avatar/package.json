@@ -40,10 +40,10 @@
 		"arrange": "basique arrange"
 	},
 	"dependencies": {
+		"@klnjs/avatar": "workspace:*",
 		"@klnjs/react-core": "workspace:*"
 	},
 	"devDependencies": {
-		"@klnjs/avatar": "workspace:*",
 		"@klnjs/basique": "workspace:*",
 		"@klnjs/eslint-config": "2.0.0",
 		"@klnjs/prettier-config": "2.0.0",

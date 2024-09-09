@@ -1,1 +1,1 @@
-export * from './src/AvatarTypes'
+export * from './src/types'

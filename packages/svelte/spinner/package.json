@@ -1,5 +1,5 @@
 {
-	"name": "@klnjs/svelte-avatar",
+	"name": "@klnjs/svelte-spinner",
 	"type": "module",
 	"author": "Rune Klein (@rnkln)",
 	"version": "1.0.0-beta.7",
@@ -8,11 +8,11 @@
 	"repository": {
 		"type": "git",
 		"url": "git+ssh://git@github.com/klnjs/basique.git",
-		"directory": "packages/svelte/avatar"
+		"directory": "packages/svelte/spinner"
 	},
 	"keywords": [
 		"a11y",
-		"avatar",
+		"spinner",
 		"component",
 		"primitive",
 		"svelte"
@@ -45,7 +45,7 @@
 		"arrange": "basique arrange"
 	},
 	"dependencies": {
-		"@klnjs/avatar": "workspace:*",
+		"@klnjs/spinner": "workspace:*",
 		"@klnjs/svelte-core": "workspace:*"
 	},
 	"devDependencies": {

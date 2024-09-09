@@ -42,6 +42,7 @@
 		"arrange": "basique arrange"
 	},
 	"dependencies": {
+		"@klnjs/spinner": "workspace:*",
 		"@klnjs/react-core": "workspace:*"
 	},
 	"devDependencies": {
