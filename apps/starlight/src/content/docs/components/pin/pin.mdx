@@ -18,11 +18,11 @@ import styles from './pin.module.css?raw'
 <Showcase
 	name="pin"
 	sources={[
-		{ type: 'react', title: 'React', content: react, language: 'jsx' },
-		{ type: 'css', title: 'Styles', content: styles, language: 'css' }
+		{ type: 'react', source: react },
+		{ type: 'styles', source: styles }
 	]}
 >
-	<Pin client:load />
+	<Pin slot="react" client:only="react" />
 </Showcase>
 
 ## Features

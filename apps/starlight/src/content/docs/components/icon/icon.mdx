@@ -18,11 +18,11 @@ import styles from './icon.module.css?raw'
 <Showcase
 	name="icon"
 	sources={[
-		{ type: 'react', title: 'React', content: react, language: 'jsx' },
-		{ type: 'css', title: 'Styles', content: styles, language: 'css' }
+		{ type: 'react', source: react },
+		{ type: 'styles', source: styles }
 	]}
 >
-	<Icon client:load />
+	<Icon slot="react" client:only="react" />
 </Showcase>
 
 ## Features

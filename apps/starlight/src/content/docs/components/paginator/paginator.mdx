@@ -18,11 +18,11 @@ import styles from './paginator.module.css?raw'
 <Showcase
 	name="paginator"
 	sources={[
-		{ type: 'react', title: 'React', content: react, language: 'jsx' },
-		{ type: 'css', title: 'Styles', content: styles, language: 'css' }
+		{ type: 'react', source: react },
+		{ type: 'styles', source: styles }
 	]}
 >
-	<Paginator client:load />
+	<Paginator slot="react" client:only="react" />
 </Showcase>
 
 ## Features
