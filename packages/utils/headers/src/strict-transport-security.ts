@@ -13,36 +13,6 @@ export class StrictTransportSecurity {
 		this.preload = options.preload
 	}
 
-	private static parseDirective(text: string | undefined) {
-		if (!directives.includes(text as Directive)) {
-			throw new SyntaxError(
-				`PermissionsPolicy.parse: invalid directive "${text}"`
-			)
-		}
-
-		return text as Directive
-	}
-
-	private static parseValue(directive: Directive, text: string | undefined) {
-		if (directive === 'max-age') {
-			const number = Number(text)
-
-			if (Number.isNaN(number) || number < 0) {
-				return number
-			}
-		}
-
-		if (directive === 'includeSubdomains' || directive === 'preload') {
-			if (text === undefined) {
-				return true
-			}
-		}
-
-		throw new SyntaxError(
-			`StrictTransportSecurity.parse: invalid value "${text}" for directive "${directive}"`
-		)
-	}
-
 	static parse(text: string): StrictTransportSecurity {
 		if (!text.includes('max-age')) {
 			throw new SyntaxError(
@@ -52,13 +22,31 @@ export class StrictTransportSecurity {
 
 		return new StrictTransportSecurity(
 			text.split(';').reduce((acc, entry) => {
-				const [key, value] = entry.trim().split('=')
-				const directive = this.parseDirective(key)
-				const option = this.parseValue(directive, value)
+				const [key = '', value] = entry.trim().split('=')
+
+				if (!directives.includes(key as Directive)) {
+					throw new SyntaxError(
+						`PermissionsPolicy.parse: invalid directive "${key}"`
+					)
+				}
+
+				if (key === 'max-age') {
+					const maxAge = Number(value)
+
+					if (!Number.isInteger(maxAge) || maxAge < 0) {
+						throw new SyntaxError(
+							`StrictTransportSecurity.parse: ${key} has invalid value "${value}", must be a positive integer`
+						)
+					}
+				} else if (value !== undefined) {
+					throw new SyntaxError(
+						`StrictTransportSecurity.parse: ${key} has invalid value "${value}", must not have a value`
+					)
+				}
 
 				return {
 					...acc,
-					[directive]: option
+					[key]: value
 				}
 			}, {}) as StrictTransportSecurity
 		)

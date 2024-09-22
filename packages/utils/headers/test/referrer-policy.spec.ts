@@ -1,5 +1,5 @@
 import { test, expect } from 'bun:test'
-import { ReferrerPolicy } from '../src/referrer-policy/main'
+import { ReferrerPolicy } from '../src/referrer-policy'
 
 test('parse should succeed with valid referrer-policy', () => {
 	expect(() => ReferrerPolicy.parse('no-referrer')).not.toThrow()

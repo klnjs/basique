@@ -83,56 +83,39 @@ export class PermissionsPolicy implements Root {
 		Object.assign(this, options)
 	}
 
-	private static parseDirective(text: string | undefined) {
-		if (!directives.includes(text as Directive)) {
-			throw new SyntaxError(
-				`PermissionsPolicy.parse: invalid directive "${text}"`
-			)
-		}
+	static allowListEntryRegex = /(src|self|"https?:\/\/[^\s]+")/
 
-		return text as Directive
-	}
-
-	private static parseAllowList(
-		directive: Directive,
-		text: string | undefined
-	) {
-		if (text !== undefined) {
-			if (text === '*') {
-				return text
-			}
-
-			if (text === '()') {
-				return []
-			}
-
-			const list = text.trim().slice(1, -1).split(/\s+/)
-
-			if (
-				new Set(list).size === list.length &&
-				list.every((value) =>
-					/^(?:src|self|"http:\/\/.*"|"https:\/\/.*")$/.test(value)
-				)
-			) {
-				return list as AllowList
-			}
-		}
-
-		throw new SyntaxError(
-			`PermissionsPolicy.parse: invalid allowlist "${text}" for directive "${directive}"`
-		)
-	}
+	static allowListRegex = new RegExp(
+		`^(?:\\*|\\(${this.allowListEntryRegex.source}*(?:\\s+${this.allowListEntryRegex.source})*\\))$`
+	)
 
 	static parse(text: string): PermissionsPolicy {
 		return new PermissionsPolicy(
 			text.split(',').reduce((acc, entry) => {
-				const [key, value] = entry.trim().split('=')
-				const directive = this.parseDirective(key)
-				const allowlist = this.parseAllowList(directive, value)
+				const [key = '', value = ''] = entry.trim().split('=')
+
+				if (!directives.includes(key as Directive)) {
+					throw new SyntaxError(
+						`PermissionsPolicy.parse: invalid directive "${key}"`
+					)
+				}
+
+				if (value === '' || !this.allowListRegex.test(value)) {
+					throw new SyntaxError(
+						`PermissionsPolicy.parse: ${key} has invalid allowlist "${value}"`
+					)
+				}
 
 				return {
 					...acc,
-					[directive]: allowlist
+					[key]:
+						value === '*'
+							? value
+							: value
+									.trim()
+									.slice(1, -1)
+									.split(/\s+/)
+									.filter((v) => v !== '')
 				}
 			}, {}) as PermissionsPolicy
 		)

@@ -1,5 +1,5 @@
 import { test, expect } from 'bun:test'
-import { ReportingEndpoints } from '../src/reporting-endpoints/main'
+import { ReportingEndpoints } from '../src/reporting-endpoints'
 
 test('parse should succeed with valid reporting-endpoints', () => {
 	expect(() =>

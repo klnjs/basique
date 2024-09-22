@@ -18,18 +18,14 @@ export class ReferrerPolicy {
 		this.value = value
 	}
 
-	private static parsePolicy(text: string) {
+	static parse(text: string): ReferrerPolicy {
 		if (!policies.includes(text as Policy)) {
 			throw new SyntaxError(
 				`ReferrerPolicy.parse: invalid policy ${text}`
 			)
 		}
 
-		return text as Policy
-	}
-
-	static parse(text: string): ReferrerPolicy {
-		return new ReferrerPolicy(this.parsePolicy(text))
+		return new ReferrerPolicy(text as Policy)
 	}
 
 	static stringify(policy: ReferrerPolicy | Policy): string {

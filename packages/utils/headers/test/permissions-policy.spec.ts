@@ -1,5 +1,5 @@
 import { test, expect } from 'bun:test'
-import { PermissionsPolicy } from '../src/permissions-policy/main'
+import { PermissionsPolicy } from '../src/permissions-policy'
 
 test('parse should succeed with valid permissions-policy', () => {
 	expect(() => PermissionsPolicy.parse('camera=*')).not.toThrow()
