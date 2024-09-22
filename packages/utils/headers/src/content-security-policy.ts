@@ -30,7 +30,7 @@ type SourceWildcard<T extends string> = T extends `${infer Prefix}*`
 	: T
 
 type SourceList<T extends string> =
-	| 'none'
+	| "'none'"
 	| (T extends `'${infer Inner}'`
 			? SourceQuote<SourceWildcard<Inner>>
 			: SourceWildcard<T>)[]
