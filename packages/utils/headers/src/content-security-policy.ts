@@ -60,7 +60,7 @@ type SandboxTokenList = (typeof sandboxTokens)[number][]
 
 const formActionSources = ["'self'", 'http://*', 'https://*'] as const
 
-type FormActionSourceList = SourceList<(typeof formActionSources)[number]>[]
+type FormActionSourceList = SourceList<(typeof formActionSources)[number]>
 
 const frameAncestorsSources = [
 	"'self'",
@@ -72,7 +72,7 @@ const frameAncestorsSources = [
 
 type FrameAncestorSourceList = SourceList<
 	(typeof frameAncestorsSources)[number]
->[]
+>
 
 const fetchSources = [
 	"'self'",
