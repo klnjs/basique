@@ -21,7 +21,7 @@ export class ReferrerPolicy {
 	static parse(text: string): ReferrerPolicy {
 		if (!policies.includes(text as Policy)) {
 			throw new SyntaxError(
-				`ReferrerPolicy.parse: invalid policy ${text}`
+				`ReferrerPolicy.parse: received invalid policy "${text}"`
 			)
 		}
 

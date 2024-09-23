@@ -26,7 +26,7 @@ export class StrictTransportSecurity {
 
 				if (!directives.includes(key as Directive)) {
 					throw new SyntaxError(
-						`PermissionsPolicy.parse: invalid directive "${key}"`
+						`PermissionsPolicy.parse: received invalid directive "${key}"`
 					)
 				}
 
@@ -35,12 +35,12 @@ export class StrictTransportSecurity {
 
 					if (!Number.isInteger(maxAge) || maxAge < 0) {
 						throw new SyntaxError(
-							`StrictTransportSecurity.parse: ${key} has invalid value "${value}", must be a positive integer`
+							`StrictTransportSecurity.parse: received invalid value "${value}" for directive "${key}"`
 						)
 					}
 				} else if (value !== undefined) {
 					throw new SyntaxError(
-						`StrictTransportSecurity.parse: ${key} has invalid value "${value}", must not have a value`
+						`StrictTransportSecurity.parse: received invalid value "${value}" for directive "${key}"`
 					)
 				}
 

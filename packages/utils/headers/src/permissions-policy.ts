@@ -1,50 +1,12 @@
-const directives = [
-	'accelerometer',
-	'ambient-light-sensor',
-	'autoplay',
-	'battery',
-	'camera',
-	'clipboard-read',
-	'clipboard-write',
-	'cross-origin-isolated',
-	'display-capture',
-	'document-domain',
-	'encrypted-media',
-	'execution-while-not-rendered',
-	'execution-while-out-of-viewport',
-	'fullscreen',
-	'geolocation',
-	'gyroscope',
-	'hid',
-	'idle-detection',
-	'interest-cohort',
-	'magnetometer',
-	'microphone',
-	'midi',
-	'navigation-override',
-	'payment',
-	'picture-in-picture',
-	'publickey-credentials-get',
-	'screen-wake-lock',
-	'serial',
-	'speaker',
-	'sync-xhr',
-	'usb',
-	'web-share',
-	'xr-spatial-tracking'
-] as const
+import type { Prettify } from '@klnjs/types'
 
-type Directive = (typeof directives)[number]
+export type Directive = Prettify<keyof PermissionsPolicy>
 
-type AllowList =
+export type AllowList =
 	| '*'
 	| ('src' | 'self' | `"http://${string}"` | `"https://${string}"`)[]
 
-type Root = {
-	[K in Directive]?: AllowList
-}
-
-export class PermissionsPolicy implements Root {
+export class PermissionsPolicy {
 	accelerometer?: AllowList
 	'ambient-light-sensor'?: AllowList
 	autoplay?: AllowList
@@ -89,20 +51,22 @@ export class PermissionsPolicy implements Root {
 		`^(?:\\*|\\(${this.allowListEntryRegex.source}*(?:\\s+${this.allowListEntryRegex.source})*\\))$`
 	)
 
+	static directives = Object.keys(new PermissionsPolicy({})) as Directive[]
+
 	static parse(text: string): PermissionsPolicy {
 		return new PermissionsPolicy(
 			text.split(',').reduce((acc, entry) => {
 				const [key = '', value = ''] = entry.trim().split('=')
 
-				if (!directives.includes(key as Directive)) {
+				if (!this.directives.includes(key as Directive)) {
 					throw new SyntaxError(
-						`PermissionsPolicy.parse: invalid directive "${key}"`
+						`PermissionsPolicy.parse: received invalid directive "${key}"`
 					)
 				}
 
 				if (value === '' || !this.allowListRegex.test(value)) {
 					throw new SyntaxError(
-						`PermissionsPolicy.parse: ${key} has invalid allowlist "${value}"`
+						`PermissionsPolicy.parse: received invalid allowlist "${value}" for directive "${key}"`
 					)
 				}
 

@@ -14,13 +14,13 @@ export class ReportingEndpoints {
 
 				if (key === '') {
 					throw new SyntaxError(
-						`ReportingEndpoints.parse: invalid endpoint "${key}"`
+						`ReportingEndpoints.parse: received invalid endpoint "${key}"`
 					)
 				}
 
 				if (!this.urlRegex.test(value)) {
 					throw new SyntaxError(
-						`ReportingEndpoints.parse: ${key} has invalid value "${value}", value must be a https url`
+						`ReportingEndpoints.parse: received invalid url "${value}" for endpoint "${key}"`
 					)
 				}
 

@@ -1,27 +1,4 @@
-const directives = [
-	'base-uri',
-	'child-src',
-	'connect-src',
-	'default-src',
-	'font-src',
-	'form-action',
-	'frame-ancestors',
-	'frame-src',
-	'img-src',
-	'manifest-src',
-	'object-src',
-	'report-to',
-	'sandbox',
-	'script-src-attr',
-	'script-src-elem',
-	'script-src',
-	'style-src-attr',
-	'style-src-elem',
-	'style-src',
-	'worker-src'
-] as const
-
-type Directive = (typeof directives)[number]
+import type { Prettify } from '@klnjs/types'
 
 type SourceQuote<T extends string> = `'${T}'`
 
@@ -30,6 +7,7 @@ type SourceWildcard<T extends string> = T extends `${infer Prefix}*`
 	: T
 
 type SourceList<T extends string> =
+	| '*'
 	| "'none'"
 	| (T extends `'${infer Inner}'`
 			? SourceQuote<SourceWildcard<Inner>>
@@ -113,23 +91,28 @@ const getSourcesByDirective = (directive: Directive) => {
 			return frameAncestorsSources
 		case 'sandbox':
 			return sandboxTokens
+		case 'report-to':
+			return ['*']
 		default:
 			return fetchSources
 	}
 }
 
-const toSourcesRegex = (sources: readonly string[], none: boolean) => {
-	const baseRegex = `(${sources
+const getSourcesRegexByDirective = (directive: Directive) => {
+	const sources = getSourcesByDirective(directive)
+	const base = `(${sources
 		.join('|')
 		.replaceAll('/', '\\/')
 		.replaceAll('*', '[^\\s]+')})`
 
-	if (none) {
-		return new RegExp(`^(?:'none'|${baseRegex}*(?:\\s+${baseRegex})*)$`)
+	if (directive === 'sandbox') {
+		return new RegExp(`^${base}*(?:\\s+${base})*$`)
 	}
 
-	return new RegExp(`^${baseRegex}*(?:\\s+${baseRegex})*$`)
+	return new RegExp(`^(?:\\*|'none'|${base}*(?:\\s+${base})*)$`)
 }
+
+export type Directive = Prettify<keyof ContentSecurityPolicy>
 
 export class ContentSecurityPolicy {
 	'base-uri'?: BaseUriSourceList
@@ -158,29 +141,36 @@ export class ContentSecurityPolicy {
 		Object.assign(this, options)
 	}
 
+	static directives = Object.keys(
+		new ContentSecurityPolicy({})
+	) as Directive[]
+
 	static parse(text: string): ContentSecurityPolicy {
 		return new ContentSecurityPolicy(
 			text.split(';').reduce((acc, entry) => {
-				const [key = '', value = ''] = entry.trim().split(/\s(.*)/, 2)
+				const [key = '', value = ''] = entry.trim().split(/\s+(.*)/, 2)
 
-				if (!directives.includes(key as Directive)) {
+				if (!this.directives.includes(key as Directive)) {
 					throw new SyntaxError(
-						`ContentSecurityPolicy.parse: invalid directive "${key}"`
+						`ContentSecurityPolicy.parse: received invalid directive "${key}"`
 					)
 				}
 
-				const sources = getSourcesByDirective(key as Directive)
-				const regex = toSourcesRegex(sources, key !== 'sandbox')
-
-				if (value === '' || !regex.test(value)) {
+				if (
+					value === '' ||
+					!getSourcesRegexByDirective(key as Directive).test(value)
+				) {
 					throw new SyntaxError(
-						`ContentSecurityPolicy.parse: ${key} has invalid sourcelist "${value}"`
+						`ContentSecurityPolicy.parse: received invalid sourcelist "${value}" for directive "${key}"`
 					)
 				}
 
 				return {
 					...acc,
-					[key]: value === 'none' ? value : value.split(' ')
+					[key]:
+						value === '*' || value === "'none'"
+							? value
+							: value.split(/\s+/)
 				}
 			}, {}) as ContentSecurityPolicy
 		)
