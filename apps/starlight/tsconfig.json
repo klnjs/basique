@@ -3,7 +3,6 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"jsx": "preserve",
-		"noPropertyAccessFromIndexSignature": false,
 		"paths": {
 			"@library/*": ["./src/library/*"]
 		}

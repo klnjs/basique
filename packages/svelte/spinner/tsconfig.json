@@ -1,8 +1,6 @@
 {
 	"extends": "@klnjs/typescript-config/esnext",
 	"compilerOptions": {
-		"outDir": "dist",
-		"noPropertyAccessFromIndexSignature": false,
 		"sourceMap": true,
 		"allowJs": true,
 		"checkJs": true

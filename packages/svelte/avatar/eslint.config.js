@@ -1,6 +1,6 @@
 import core from '@klnjs/eslint-config/core'
-import react from '@klnjs/eslint-config/react'
+import svelte from '@klnjs/eslint-config/svelte'
 import ignores from '@klnjs/eslint-config/ignores'
 import typescript from '@klnjs/eslint-config/typescript'
 
-export default [core, react, typescript, ignores]
+export default [core, svelte, typescript, ignores]
