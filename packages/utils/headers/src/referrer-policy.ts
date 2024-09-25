@@ -1,15 +1,4 @@
-const policies = [
-	'no-referrer',
-	'no-referrer-when-downgrade',
-	'origin',
-	'origin-when-cross-origin',
-	'same-origin',
-	'strict-origin',
-	'strict-origin-when-cross-origin',
-	'unsafe-url'
-] as const
-
-type Policy = (typeof policies)[number]
+type Policy = (typeof ReferrerPolicy.policies)[number]
 
 export class ReferrerPolicy {
 	value: Policy
@@ -18,8 +7,19 @@ export class ReferrerPolicy {
 		this.value = value
 	}
 
+	static policies = [
+		'no-referrer',
+		'no-referrer-when-downgrade',
+		'origin',
+		'origin-when-cross-origin',
+		'same-origin',
+		'strict-origin',
+		'strict-origin-when-cross-origin',
+		'unsafe-url'
+	] as const
+
 	static parse(text: string): ReferrerPolicy {
-		if (!policies.includes(text as Policy)) {
+		if (!this.policies.includes(text as Policy)) {
 			throw new SyntaxError(
 				`ReferrerPolicy.parse: received invalid policy "${text}"`
 			)

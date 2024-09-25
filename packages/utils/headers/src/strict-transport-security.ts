@@ -1,6 +1,4 @@
-const directives = ['max-age', 'includeSubdomains', 'preload'] as const
-
-type Directive = (typeof directives)[number]
+type Directive = keyof StrictTransportSecurity
 
 export class StrictTransportSecurity {
 	'max-age': number
@@ -13,6 +11,10 @@ export class StrictTransportSecurity {
 		this.preload = options.preload
 	}
 
+	static directives = Object.keys(
+		new StrictTransportSecurity({ 'max-age': 0 })
+	) as Directive[]
+
 	static parse(text: string): StrictTransportSecurity {
 		if (!text.includes('max-age')) {
 			throw new SyntaxError(
@@ -24,7 +26,7 @@ export class StrictTransportSecurity {
 			text.split(';').reduce((acc, entry) => {
 				const [key = '', value] = entry.trim().split('=')
 
-				if (!directives.includes(key as Directive)) {
+				if (!this.directives.includes(key as Directive)) {
 					throw new SyntaxError(
 						`PermissionsPolicy.parse: received invalid directive "${key}"`
 					)

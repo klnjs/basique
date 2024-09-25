@@ -1,8 +1,6 @@
-import type { Prettify } from '@klnjs/types'
+type Directive = keyof PermissionsPolicy
 
-export type Directive = Prettify<keyof PermissionsPolicy>
-
-export type AllowList =
+type AllowList =
 	| '*'
 	| ('src' | 'self' | `"http://${string}"` | `"https://${string}"`)[]
 

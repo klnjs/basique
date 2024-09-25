@@ -1,5 +1,3 @@
-import type { Prettify } from '@klnjs/types'
-
 type SourceQuote<T extends string> = `'${T}'`
 
 type SourceWildcard<T extends string> = T extends `${infer Prefix}*`
@@ -112,7 +110,7 @@ const getSourcesRegexByDirective = (directive: Directive) => {
 	return new RegExp(`^(?:\\*|'none'|${base}*(?:\\s+${base})*)$`)
 }
 
-export type Directive = Prettify<keyof ContentSecurityPolicy>
+type Directive = keyof ContentSecurityPolicy
 
 export class ContentSecurityPolicy {
 	'base-uri'?: BaseUriSourceList
