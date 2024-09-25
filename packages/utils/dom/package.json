@@ -2,7 +2,7 @@
 	"name": "@klnjs/dom",
 	"type": "module",
 	"author": "Rune Klein (@rnkln)",
-	"version": "1.0.0-beta.7",
+	"version": "1.0.0-beta.10",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
@@ -27,11 +27,12 @@
 		}
 	},
 	"scripts": {
-		"build": "basique build",
-		"eslint": "eslint . --max-warnings 0",
-		"prettier": "prettier . --check",
-		"prepublish": "basique prepublish",
-		"typescript": "tsc --noEmit"
+		"lint": "eslint . --max-warnings 0",
+		"clean": "basique clean",
+		"check": "tsc --noEmit",
+		"format": "prettier . --check",
+		"build": "basique clean && basique build",
+		"arrange": "basique arrange"
 	},
 	"devDependencies": {
 		"@klnjs/basique": "workspace:*",
@@ -40,6 +41,6 @@
 		"@klnjs/typescript-config": "3.2.0",
 		"eslint": "9.9.0",
 		"prettier": "3.3.3",
-		"typescript": "5.5.4"
+		"typescript": "5.6.2"
 	}
 }

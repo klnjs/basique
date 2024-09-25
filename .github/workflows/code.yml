@@ -1,4 +1,4 @@
-name: code
+name: Code
 
 on:
   pull_request:
@@ -18,12 +18,13 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  check:
+  job:
+    name: ${{ matrix.script }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        script: [test, eslint, prettier, typescript]
+        script: [test, lint, check, format]
     steps:
       - name: Checkout
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7

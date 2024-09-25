@@ -2,7 +2,7 @@
 	"name": "@klnjs/react-core",
 	"type": "module",
 	"author": "Rune Klein (@rnkln)",
-	"version": "1.0.0-beta.7",
+	"version": "1.0.0-beta.10",
 	"license": "MIT",
 	"homepage": "https://klnjs.github.io/basique",
 	"repository": {
@@ -29,25 +29,27 @@
 		}
 	},
 	"scripts": {
-		"build": "basique build",
-		"eslint": "eslint . --max-warnings 0",
-		"prettier": "prettier . --check",
-		"prepublish": "basique prepublish",
-		"typescript": "tsc --noEmit"
+		"lint": "eslint . --max-warnings 0",
+		"clean": "basique clean",
+		"check": "tsc --noEmit",
+		"format": "prettier . --check",
+		"build": "basique clean && basique build --react",
+		"arrange": "basique arrange"
 	},
 	"dependencies": {
 		"@klnjs/assertion": "workspace:*"
 	},
 	"devDependencies": {
 		"@klnjs/basique": "workspace:*",
-		"@klnjs/eslint-config": "3.2.0",
-		"@klnjs/prettier-config": "3.2.0",
-		"@klnjs/typescript-config": "3.2.0",
-		"@types/react": "18.3.5",
+		"@klnjs/eslint-config": "4.0.0",
+		"@klnjs/prettier-config": "4.0.0",
+		"@klnjs/types": "workspace:*",
+		"@klnjs/typescript-config": "4.0.0",
 		"@types/react-dom": "18.3.0",
-		"eslint": "9.9.0",
+		"@types/react": "18.3.5",
+		"eslint": "9.11.1",
 		"prettier": "3.3.3",
-		"typescript": "5.5.4"
+		"typescript": "5.6.2"
 	},
 	"peerDependencies": {
 		"react": "^18.0",

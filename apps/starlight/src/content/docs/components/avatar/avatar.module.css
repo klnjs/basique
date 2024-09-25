@@ -8,6 +8,7 @@
 	overflow: hidden;
 	color: var(--sl-color-text-invert);
 	background: var(--sl-color-accent-high);
+	padding: 8px;
 }
 
 .image {
