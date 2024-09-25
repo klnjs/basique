@@ -50,9 +50,9 @@
 	},
 	"devDependencies": {
 		"@klnjs/basique": "workspace:*",
-		"@klnjs/eslint-config": "4.0.0",
-		"@klnjs/prettier-config": "4.0.0",
-		"@klnjs/typescript-config": "4.0.0",
+		"@klnjs/eslint-config": "4.0.2",
+		"@klnjs/prettier-config": "4.0.2",
+		"@klnjs/typescript-config": "4.0.2",
 		"@types/react": "18.3.5",
 		"@types/react-dom": "18.3.0",
 		"eslint": "9.11.1",
