@@ -25,5 +25,6 @@ export const createChainHandler =
 export const useChainHandler = <E extends SyntheticEvent>(
 	...chainables: ChainableEventHandler<E>[]
 ) =>
+	// eslint-disable-next-line react-compiler/react-compiler
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useCallback(createChainHandler(...chainables), chainables as DependencyList)

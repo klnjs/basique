@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { CoreProps } from '@klnjs/svelte-core'
-	import { createSpinner, type SpinnerOptions } from '@klnjs/spinner'
+	import { CoreProps } from '@klnjs/svelte-core'
+	import { createSpinner, SpinnerOptions } from '@klnjs/spinner'
 	import { createSpinnerContext } from './SpinnerContext'
 
 	type $$Props = CoreProps<SVGElement, Partial<SpinnerOptions>>

@@ -24,9 +24,9 @@
 		"yargs": "^17.7.2"
 	},
 	"devDependencies": {
-		"@klnjs/eslint-config": "4.0.2",
-		"@klnjs/prettier-config": "4.0.2",
-		"@klnjs/typescript-config": "4.0.2",
+		"@klnjs/eslint-config": "4.0.4",
+		"@klnjs/prettier-config": "4.0.4",
+		"@klnjs/typescript-config": "4.0.4",
 		"@sveltejs/package": "2.3.4",
 		"@types/yargs": "17.0.33",
 		"eslint": "9.11.1",
