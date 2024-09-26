@@ -1,4 +1,4 @@
-import { useRef, useMemo, useState, type SetStateAction } from 'react'
+import { useRef, useState, type SetStateAction } from 'react'
 import { useStateControllable, usePrevious } from '@klnjs/react-core'
 import { isRecord } from '@klnjs/assertion'
 import type { PinType, PinConceal, PinDirection } from './PinTypes'
@@ -36,16 +36,13 @@ export const usePin = ({
 
 	const pinBefore = usePrevious(pin)
 
-	const conceal = useMemo(
-		() => ({
-			enabled: concealProp !== undefined,
-			delay: isRecord(concealProp) ? concealProp.delay : 250,
-			symbol: isRecord(concealProp)
-				? concealProp.symbol
-				: (concealProp ?? '·')
-		}),
-		[concealProp]
-	)
+	const conceal = {
+		enabled: concealProp !== undefined,
+		delay: isRecord(concealProp) ? concealProp.delay : 250,
+		symbol: isRecord(concealProp)
+			? concealProp.symbol
+			: (concealProp ?? '·')
+	}
 
 	const direction: PinDirection =
 		pinBefore === null || pinBefore.length < pin.length

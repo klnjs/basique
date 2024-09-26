@@ -1,6 +1,5 @@
 import {
 	useRef,
-	useMemo,
 	useLayoutEffect,
 	type KeyboardEvent,
 	type FocusEvent
@@ -92,25 +91,23 @@ export const CalendarCellDay = forwardRef<'div', CalendarCellDayProps>(
 		const shouldFocus = isFocused
 		const shouldFocusOnPointerOver = isSelectable && selectionIsTransient
 
-		const label = useMemo(() => {
-			const name = isToday
-				? 'today'
-				: isYesterday
-					? 'yesterday'
-					: isTommorow
-						? 'tommorow'
-						: undefined
+		const name = isToday
+			? 'today'
+			: isYesterday
+				? 'yesterday'
+				: isTommorow
+					? 'tommorow'
+					: undefined
 
-			const formatted = date.toLocaleString(locale, {
-				calendar,
-				year: 'numeric',
-				month: 'long',
-				weekday: 'long',
-				day: 'numeric'
-			})
+		const formatted = date.toLocaleString(locale, {
+			calendar,
+			year: 'numeric',
+			month: 'long',
+			weekday: 'long',
+			day: 'numeric'
+		})
 
-			return name ? `${dayNames.of(name)}, ${formatted}` : formatted
-		}, [date, calendar, locale, dayNames, isToday, isYesterday, isTommorow])
+		const label = name ? `${dayNames.of(name)}, ${formatted}` : formatted
 
 		const content = children ?? date.day
 

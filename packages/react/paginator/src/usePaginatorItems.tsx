@@ -1,5 +1,3 @@
-import { useMemo } from 'react'
-
 export type PaginatorRange = [start: number, end: number]
 
 export type PaginatorItem = {
@@ -33,7 +31,3 @@ export const createPaginatorItems = (...ranges: PaginatorRange[]) =>
 
 		return acc
 	}, [])
-
-export const usePaginatorItems = (...ranges: PaginatorRange[]) =>
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	useMemo(() => createPaginatorItems(...ranges), ranges.flat())

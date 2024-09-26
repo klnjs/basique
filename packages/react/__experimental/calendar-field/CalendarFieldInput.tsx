@@ -1,4 +1,4 @@
-import { useCallback, type PointerEvent } from 'react'
+import type { PointerEvent } from 'react'
 import { poly, forwardRef, asDataProp, type CoreProps } from '@klnjs/react-core'
 import { useCalendarFieldContext } from './CalendarFieldContext'
 
@@ -8,15 +8,13 @@ export const CalendarFieldInput = forwardRef<'div', CalendarFieldInputProps>(
 	(props, forwardedRef) => {
 		const { disabled, highlightedSegmentRef } = useCalendarFieldContext()
 
-		const handlePointerDown = useCallback(
+		const handlePointerDown = 
 			(event: PointerEvent<HTMLDivElement>) => {
 				if (!disabled && event.target === event.currentTarget) {
 					event.preventDefault()
 					highlightedSegmentRef.current?.focus()
 				}
-			},
-			[disabled, highlightedSegmentRef]
-		)
+			}
 
 		return (
 			<poly.div

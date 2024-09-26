@@ -26,5 +26,6 @@ export const composeRefs =
  * A hook that composes multiple refs into a single ref.
  */
 export const useRefComposed = <T>(...refs: ComposableRef<T>[]) =>
+	// eslint-disable-next-line react-compiler/react-compiler
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useCallback(composeRefs(...refs), refs as DependencyList)

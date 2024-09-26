@@ -1,1 +1,1 @@
-export * from './src/asChild'
+export type * from './src/asChild'

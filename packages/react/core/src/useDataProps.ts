@@ -1,4 +1,3 @@
-import { useMemo } from 'react'
 import { isNumber, isString } from '@klnjs/assertion'
 
 export type DataProp = `data-${string}`
@@ -17,14 +16,7 @@ export const asDataProp = (value: DataValue) => {
 	return undefined
 }
 
-export const useDataProps = (props: Record<DataProp, DataValue>) =>
-	useMemo(
-		() =>
-			Object.fromEntries(
-				Object.entries(props).map(([key, value]) => [
-					key,
-					asDataProp(value)
-				])
-			),
-		[props]
+export const useDataProps = (props: Record<DataProp, DataValue>) => () =>
+	Object.fromEntries(
+		Object.entries(props).map(([key, value]) => [key, asDataProp(value)])
 	)

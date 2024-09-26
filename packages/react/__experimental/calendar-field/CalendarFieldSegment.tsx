@@ -1,8 +1,6 @@
 import {
 	useRef,
-	useMemo,
 	useEffect,
-	useCallback,
 	type KeyboardEvent
 } from 'react'
 import type { Temporal } from 'temporal-polyfill'
@@ -85,52 +83,28 @@ export const CalendarFieldSegment = forwardRef<
 
 		const now = selection?.[type]
 
-		const low = useMemo(() => {
-			if (type === 'hour' || type === 'minute') {
-				return 0
-			}
+		const low = type === 'hour' || type === 'minute' ? 0 : 1
 
-			return 1
-		}, [type])
+		const high =  type === 'year' ? 9999 :
+		type === 'month' ? 12 :
+		type === 'day' ? (selection?.daysInMonth ?? 31) :
+		type === 'hour' ? 23 :
+		type === 'minute' ? 5 : undefined
 
-		const high = useMemo(() => {
-			switch (type) {
-				case 'year':
-					return 9999
-				case 'month':
-					return 12
-				case 'day':
-					return selection?.daysInMonth ?? 31
-				case 'hour':
-					return 23
-				case 'minute':
-					return 59
-				default:
-					throw new Error('Invalid segment type')
-			}
-		}, [type, selection])
-
-		const text = useMemo(
-			() =>
-				selection?.toLocaleString(locale, {
+		const text = selection?.toLocaleString(locale, {
 					year: 'numeric',
 					month: 'long',
 					weekday: 'long',
 					day: 'numeric'
-				}),
-			[locale, selection]
-		)
+				})
 
-		const length = useMemo(() => Math.floor(Math.log10(high)) + 1, [high])
 
-		const content = useMemo(() => {
-			const padding = now === undefined ? placeholder : '0'
-			const current = now === undefined ? '' : now.toString()
+		const length = Math.floor(Math.log10(high)) + 1
+		const padding = now === undefined ? placeholder : '0'
+		const current = now === undefined ? '' : now.toString()
+		const content = current.padStart(length, padding)
 
-			return current.padStart(length, padding)
-		}, [now, length, placeholder])
-
-		const changeSegment = useCallback(
+		const changeSegment = 
 			(
 				action: (
 					prev: Temporal.PlainDateTime
@@ -139,11 +113,10 @@ export const CalendarFieldSegment = forwardRef<
 				if (!isDisabled) {
 					setSelection((prev) => action(prev ?? getNow()))
 				}
-			},
-			[isDisabled, setSelection]
-		)
+			}
 
-		const changeFocusedSegment = useCallback(
+
+		const changeFocusedSegment =
 			(action: 'next' | 'previous') => {
 				// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 				const found = findSegment(ref.current!, action)
@@ -151,15 +124,14 @@ export const CalendarFieldSegment = forwardRef<
 				if (found !== undefined) {
 					found.focus()
 				}
-			},
-			[]
-		)
+			}
 
-		const handleFocus = useCallback(() => {
+
+		const handleFocus =
 			setHighlightedSegment(type)
-		}, [type, setHighlightedSegment])
 
-		const handleKeyDown = useCallback(
+
+		const handleKeyDown =
 			(event: KeyboardEvent<HTMLDivElement>) => {
 				if (event.code !== 'Tab') {
 					event.preventDefault()
@@ -200,9 +172,9 @@ export const CalendarFieldSegment = forwardRef<
 						changeFocusedSegment('next')
 					}
 				}
-			},
-			[type, now, high, length, changeSegment, changeFocusedSegment]
-		)
+			}
+
+
 
 		useEffect(() => {
 			if (isHighlighted && autoFocus) {

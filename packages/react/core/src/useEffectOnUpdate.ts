@@ -7,14 +7,14 @@ import { useMounted } from './useMounted'
 export const useEffectOnUpdate = (
 	effect: EffectCallback,
 	deps?: DependencyList
-) => {
+): void => {
 	const isMounted = useMounted()
 
 	useEffect(() => {
 		if (isMounted) {
 			return effect()
 		}
-
+		// eslint-disable-next-line react-compiler/react-compiler
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, deps)
 }
