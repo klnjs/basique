@@ -13,12 +13,12 @@
 
 	let asChild: $$Props['asChild'] = false
 	let ref: $$Props['ref']
-	let status = writable<AvatarStatus>('idle')
-	let onStatusChange: $$Props['onStatusChange'] = undefined
+	let onStatusChange: $$Props['onStatusChange']
+	const status = writable<AvatarStatus>('idle')
 
 	setAvatarContext({ status })
 
-	$: onStatusChange && onStatusChange($status)
+	$: onStatusChange?.($status)
 
 	export { asChild, ref, onStatusChange }
 </script>

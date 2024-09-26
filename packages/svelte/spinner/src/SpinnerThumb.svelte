@@ -17,10 +17,10 @@
 
 	let ref: $$Props['ref']
 	let easing: $$Props['easing']
-	let arcProp: number = 25
-	let angle: number = 0
+	let arcProp = 25
+	let angle = 0
 	let cap: $$Props['cap'] = 'round'
-	let duration: number = 1
+	let duration = 1
 
 	$: ({ radius, center, circumference, width } = $context)
 	$: arc = (circumference * arcProp) / 100

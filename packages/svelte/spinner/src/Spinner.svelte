@@ -1,18 +1,18 @@
 <script lang="ts">
-	import { CoreProps } from '@klnjs/svelte-core'
-	import { createSpinner, SpinnerOptions } from '@klnjs/spinner'
+	import type { CoreProps } from '@klnjs/svelte-core'
+	import { createSpinner, type SpinnerOptions } from '@klnjs/spinner'
 	import { createSpinnerContext } from './SpinnerContext'
 
 	type $$Props = CoreProps<SVGElement, Partial<SpinnerOptions>>
 
 	let asChild: $$Props['asChild'] = false
 	let ref: $$Props['ref']
-	let size: number = 24
-	let width: number = 4
+	let size = 24
+	let width = 4
 
 	$: spinner = createSpinner({ size, width })
 
-	let context = createSpinnerContext(spinner)
+	const context = createSpinnerContext(spinner)
 
 	$: context.set(createSpinner({ size, width }))
 	$: ({ diameter } = spinner)
