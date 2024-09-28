@@ -23,14 +23,15 @@ export const usePaginator = ({
 		onChange: onChange as (value: SetStateAction<number>) => void
 	})
 
-	const paginator = createPaginator({
-		page,
-		pages,
-		disabled
+	const { min, max } = createPaginator({
+		pages
 	})
 
 	return {
-		...paginator,
+		min,
+		max,
+		page,
+		disabled,
 		setPage
 	}
 }

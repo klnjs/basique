@@ -1,5 +1,5 @@
 {
-	"name": "@klnjs/spinner",
+	"name": "@klnjs/avatar",
 	"type": "module",
 	"author": "Rune Klein (@rnkln)",
 	"version": "1.0.0-beta.10",
@@ -8,7 +8,7 @@
 	"repository": {
 		"type": "git",
 		"url": "git+ssh://git@github.com/klnjs/basique.git",
-		"directory": "packages/shared/spinner"
+		"directory": "packages/base/avatar"
 	},
 	"exports": "./index.ts",
 	"publishConfig": {
