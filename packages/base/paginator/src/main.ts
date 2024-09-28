@@ -1,15 +1,11 @@
 import { clamp } from '@klnjs/math'
 
 export type Paginator = {
-	disabled: boolean
-	page: number
 	min: number
 	max: number
 }
 
 export type PaginatorOptions = {
-	disabled?: boolean
-	page?: number
 	pages: number
 }
 
@@ -20,28 +16,22 @@ export type PaginatorItem = {
 	page: number
 }
 
-export const createPaginator = ({
-	page,
-	pages,
-	disabled
-}: PaginatorOptions): Paginator => ({
-	disabled: disabled ?? false,
-	page: page ?? 1,
+export const createPaginator = ({ pages }: PaginatorOptions): Paginator => ({
 	min: 1,
 	max: pages
 })
 
 export type PaginatorItemsOptions = {
-	boundary?: number
-	siblings?: number
+	boundary: number
+	siblings: number
 	page: number
 	min: number
 	max: number
 }
 
 export const createPaginatorItems = ({
-	boundary = 1,
-	siblings = Infinity,
+	boundary,
+	siblings,
 	page,
 	min: minStart,
 	max: maxEnd

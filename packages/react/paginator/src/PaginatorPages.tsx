@@ -1,9 +1,6 @@
 import type { ReactNode } from 'react'
 import { usePaginatorContext } from './PaginatorContext'
-import {
-	createPaginatorItems,
-	type PaginatorItem
-} from '../../../base/paginator'
+import { createPaginatorItems, type PaginatorItem } from '@klnjs/paginator'
 
 export type PaginatorPagesProps = {
 	boundary?: number

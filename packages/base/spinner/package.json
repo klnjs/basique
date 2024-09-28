@@ -8,7 +8,7 @@
 	"repository": {
 		"type": "git",
 		"url": "git+ssh://git@github.com/klnjs/basique.git",
-		"directory": "packages/shared/spinner"
+		"directory": "packages/base/spinner"
 	},
 	"exports": "./index.ts",
 	"publishConfig": {
