@@ -9,6 +9,7 @@ import {
 	cloneElement,
 	forwardRef,
 	isValidElement,
+	type JSX,
 	type ElementType
 } from 'react'
 import { composeRefs } from './useRefComposed'
@@ -33,7 +34,8 @@ const withAsChild = (Component: ElementType) => {
 		return isValidElement(child)
 			? cloneElement(child, {
 					ref: ref
-						? composeRefs(ref, (child as any).ref)
+						? // eslint-disable-next-line react-compiler/react-compiler
+							composeRefs(ref, (child as any).ref)
 						: (child as any).ref,
 					...composeProps(otherProps, child.props)
 				})

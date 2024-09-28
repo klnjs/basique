@@ -8,19 +8,18 @@
 
 	let ref: $$Props['ref']
 
-	$:({ radius, center, width } = $context);
+	$: ({ radius, center, width } = $context)
 
 	export { ref }
 </script>
 
 <circle
 	bind:this="{ref}"
-	r={radius}
-	cx={center}
-	cy={center}
+	r="{radius}"
+	cx="{center}"
+	cy="{center}"
 	fill="none"
 	stroke="currentColor"
-	stroke-width={width}
+	stroke-width="{width}"
 	{...$$restProps}
-/>
-
+></circle>

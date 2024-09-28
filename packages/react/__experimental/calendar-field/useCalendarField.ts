@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback } from 'react'
+import { useRef, useState } from 'react'
 import type { Temporal } from 'temporal-polyfill'
 import { useControllableState } from '../../packages/core/dist'
 
@@ -25,9 +25,9 @@ export const useCalendarField = ({
 }: UseCalendarFieldOptions) => {
 	const autoFocusRef = useRef(autoFocusProp && !disabled)
 
-	const setAutoFocus = useCallback((autoFocus: boolean) => {
+	const setAutoFocus = (autoFocus: boolean) => {
 		autoFocusRef.current = autoFocus
-	}, [])
+	}
 
 	const [open, setOpen] = useState(false)
 

@@ -1,4 +1,4 @@
-import { useMemo, useState, useCallback, type SetStateAction } from 'react'
+import { useState, type SetStateAction } from 'react'
 import { useEffectOnUpdate, useStateControllable } from '@klnjs/react-core'
 import { isDefined, isArray } from '@klnjs/assertion'
 import { plainDate } from '@klnjs/temporal'
@@ -53,55 +53,45 @@ export const useCalendarSelection = <S extends CalendarSelect = 'one'>({
 		() => behaviour ?? 'one'
 	)
 
-	const [selectionVisible, selectionIsTransient] = useMemo(() => {
-		const isRange = selectionMode === 'range'
-		const isTransient = isDefined(transient)
+	const selectionIsTransient =
+		selectionMode === 'range' && isDefined(transient)
 
-		return [
-			isRange && isTransient
-				? [transient, highlighted].toSorted(plainDate.compare)
-				: selection,
-			isTransient
-		]
-	}, [selectionMode, selection, transient, highlighted])
+	const selectionVisible = selectionIsTransient
+		? [transient, highlighted].toSorted(plainDate.compare)
+		: selection
 
-	const setSelection = useCallback(
-		(date: PlainDate) => {
-			if (selectionMode === 'one') {
-				setSelectionRaw(date)
-			}
+	const setSelection = (date: PlainDate) => {
+		if (selectionMode === 'one') {
+			setSelectionRaw(date)
+		}
 
-			if (selectionMode === 'many') {
-				setSelectionRaw((prev) => {
-					if (isArray(prev)) {
-						const filtered = prev.filter((p) => !p.equals(date))
+		if (selectionMode === 'many') {
+			setSelectionRaw((prev) => {
+				if (isArray(prev)) {
+					const filtered = prev.filter((p) => !p.equals(date))
 
-						return filtered.length === 0
-							? null
-							: filtered.length < prev.length
-								? filtered
-								: [...prev, date]
-					}
+					return filtered.length === 0
+						? null
+						: filtered.length < prev.length
+							? filtered
+							: [...prev, date]
+				}
 
-					return [date]
-				})
-			}
+				return [date]
+			})
+		}
 
-			if (selectionMode === 'range') {
-				setTransient((prev) => {
-					if (isDefined(prev)) {
-						setSelectionRaw(
-							[prev, date].toSorted(plainDate.compare)
-						)
-						return undefined
-					}
+		if (selectionMode === 'range') {
+			setTransient((prev) => {
+				if (isDefined(prev)) {
+					setSelectionRaw([prev, date].toSorted(plainDate.compare))
+					return undefined
+				}
 
-					return date
-				})
-			}
-		},
-		[selectionMode, setSelectionRaw]
-	)
+				return date
+			})
+		}
+	}
 
 	useEffectOnUpdate(() => {
 		setSelectionRaw(null)

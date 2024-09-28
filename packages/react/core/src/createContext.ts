@@ -54,6 +54,7 @@ export const createContext = <T extends object>({
 			// See: https://v8.dev/docs/stack-trace-api#stack-trace-collection-for-custom-exceptions
 			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 			if (Error.captureStackTrace !== undefined) {
+				// eslint-disable-next-line react-compiler/react-compiler
 				Error.captureStackTrace(error, useContext)
 			}
 

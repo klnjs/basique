@@ -1,4 +1,3 @@
-import { useMemo } from 'react'
 import type { PinType } from './PinTypes'
 
 export const patterns = {
@@ -7,5 +6,4 @@ export const patterns = {
 	numeric: /^[0-9]*$/
 }
 
-export const usePinPattern = (type: PinType) =>
-	useMemo(() => patterns[type], [type])
+export const usePinPattern = (type: PinType) => patterns[type]

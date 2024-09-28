@@ -53,5 +53,6 @@ export function composeProps<T extends Props[]>(...props: T) {
  * A hook that composes multiple props into a single props object.
  */
 export const usePropsComposed = (...props: Props[]) =>
+	// eslint-disable-next-line react-compiler/react-compiler
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useMemo(() => composeProps(...props), props as DependencyList)
