@@ -2,8 +2,6 @@
 	"extends": "@klnjs/typescript-config/esnext",
 	"compilerOptions": {
 		"baseUrl": ".",
-		"jsx": "preserve",
-		"noPropertyAccessFromIndexSignature": false,
 		"paths": {
 			"@library/*": ["./src/library/*"]
 		}

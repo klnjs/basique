@@ -1,7 +1,6 @@
-import { useMemo, type ReactNode } from 'react'
-import { clamp } from '@klnjs/math'
+import type { ReactNode } from 'react'
 import { usePaginatorContext } from './PaginatorContext'
-import { createPaginatorItems, type PaginatorItem } from './usePaginatorItems'
+import { createPaginatorItems, type PaginatorItem } from '@klnjs/paginator'
 
 export type PaginatorPagesProps = {
 	boundary?: number
@@ -14,24 +13,9 @@ export const PaginatorPages = ({
 	boundary = 1,
 	children
 }: PaginatorPagesProps) => {
-	const { page, pageStart, pageEnd } = usePaginatorContext()
+	const { min, max, page } = usePaginatorContext()
 
-	const items = useMemo((): PaginatorItem[] => {
-		const offset = boundary - 1
-		const lower = pageStart + offset
-		const upper = pageEnd - offset
-		const min = lower + 2
-		const max = upper - 2
-		const span = Math.min(max - min, siblings * 2)
-		const start = clamp(page - siblings, min, max - span)
-		const end = clamp(page + siblings, min + span, max)
-
-		return createPaginatorItems(
-			[pageStart, lower],
-			[start, end],
-			[upper, pageEnd]
-		)
-	}, [boundary, siblings, page, pageStart, pageEnd])
+	const items = createPaginatorItems({ min, max, page, boundary, siblings })
 
 	return items.map(children)
 }
