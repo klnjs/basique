@@ -1,6 +1,6 @@
 import type { SetStateAction } from 'react'
 import { useStateControllable } from '@klnjs/react-core'
-import { createPaginator } from '@klnjs/paginator'
+import { createPaginator } from '../../../base/paginator'
 
 export type UsePaginatorOptions = {
 	defaultPage?: number
