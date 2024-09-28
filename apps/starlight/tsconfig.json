@@ -1,6 +1,7 @@
 {
 	"extends": "@klnjs/typescript-config/esnext",
 	"compilerOptions": {
+		"baseUrl": ".",
 		"paths": {
 			"@library/*": ["./src/library/*"]
 		}
