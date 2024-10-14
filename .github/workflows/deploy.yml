@@ -9,7 +9,8 @@ env:
   BUN_ENV: production
   FORCE_COLOR: 1
   TURBO_TELEMETRY_DISABLED: 1
-      
+  ASTRO_TELEMETRY_DISABLED: 1
+
 permissions:
   contents: read
   id-token: write

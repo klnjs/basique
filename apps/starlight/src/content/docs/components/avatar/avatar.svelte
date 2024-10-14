@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Avatar, AvatarImage, AvatarFallback } from '@klnjs/svelte-avatar'
+	import { Avatar, AvatarFallback, AvatarImage } from '@klnjs/svelte-avatar'
 	import classes from './avatar.module.css'
 	import image from './svelte.svg'
 </script>

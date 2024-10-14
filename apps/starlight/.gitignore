@@ -13,4 +13,5 @@
 !eslint.config.mjs
 !package.json
 !prettier.config.mjs
+!svelte.config.js
 !tsconfig.json

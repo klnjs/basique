@@ -5,19 +5,28 @@ import p from 'path'
 import fs from 'node:fs/promises'
 import ts from 'typescript'
 
-export type BuildOptions = {
-	react?: boolean
-} & {
-	svelte?: boolean
+export type BuildArgv = {
+	type: 'typescript' | 'react' | 'svelte'
 }
 
-export const run = async (options: BuildOptions) => {
+export const command = 'build <type>'
+
+export const description = 'build package for publishing'
+
+export const builder = (argv) =>
+	argv.positional('type', {
+		choices: ['typescript', 'react', 'svelte'],
+		describe: 'The type of project you are building',
+		demandOption: true
+	})
+
+export const handler = async (argv) => {
 	const cwd = process.cwd()
 	const dist = p.join(cwd, 'dist')
 
 	await fs.mkdir(dist, { recursive: true })
 
-	if (options.svelte) {
+	if (argv.type === 'svelte') {
 		await svelte(cwd, dist)
 	} else {
 		await react(cwd, dist)
@@ -62,7 +71,7 @@ const svelte = async (root: string, dist: string) => {
 	await fs.cp(p.join(root, 'index.ts'), p.join(path, 'index.ts'), {
 		recursive: true
 	})
-	await $`svelte-package -i ./temp -o ${dist}`
+	await $`svelte-package -i ${path} -o ${dist}`
 	await fs.rm('.svelte-kit', { recursive: true, force: true })
 	await fs.rm('.svelte-package', { recursive: true, force: true })
 }

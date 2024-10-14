@@ -1,27 +1,25 @@
 <script lang="ts">
-	import type { CoreProps } from '@klnjs/svelte-core'
+	import type { HTMLAttributes } from 'svelte/elements'
 	import { getAvatarContext } from './AvatarContext'
 
-	type $$Props = CoreProps<
-		HTMLDivElement,
-		{
-			delay?: number
-		}
-	>
+	type AvatarFallbackProps = HTMLAttributes<HTMLDivElement> & {
+		ref?: HTMLDivElement
+		delay?: number
+	}
 
 	const { status } = getAvatarContext()
 
-	let ref: $$Props['ref']
-	let delay: $$Props['delay'] = 0
-	let ready = delay === 0
+	let { ref, children, delay, ...otherProps }: AvatarFallbackProps = $props()
+
+	let ready = $state<Boolean>(false)
 
 	setTimeout(() => (ready = true), delay)
-
-	export { ref, delay }
 </script>
 
-{#if ready && $status !== 'loaded'}
-	<div bind:this="{ref}" {...$$restProps}>
-		<slot />
+{#if ready && status !== 'loaded'}
+	<div bind:this="{ref}" {...otherProps}>
+		{#if children}
+			{@render children()}
+		{/if}
 	</div>
 {/if}
