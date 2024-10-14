@@ -1,32 +1,30 @@
 <script lang="ts">
-	import { writable } from 'svelte/store'
-	import type { CoreProps } from '@klnjs/svelte-core'
+	import type { Snippet } from 'svelte'
+	import type { HTMLAttributes } from 'svelte/elements'
 	import type { AvatarStatus } from '@klnjs/avatar'
 	import { setAvatarContext } from './AvatarContext'
 
-	type $$Props = CoreProps<
-		HTMLDivElement,
-		{
-			onStatusChange?: (status: AvatarStatus) => void
+	type AvatarProps = HTMLAttributes<HTMLDivElement> & {
+		ref?: HTMLDivElement
+		children?: Snippet
+		onStatusChange?: (status: AvatarStatus) => void
+	}
+
+	let { ref, children, onStatusChange, ...otherProps }: AvatarProps = $props()
+
+	let status = $state<AvatarStatus>('idle')
+
+	$effect(() => {
+		if (onStatusChange) {
+			onStatusChange(status)
 		}
-	>
 
-	let asChild: $$Props['asChild'] = false
-	let ref: $$Props['ref']
-	let onStatusChange: $$Props['onStatusChange']
-	const status = writable<AvatarStatus>('idle')
-
-	setAvatarContext({ status })
-
-	$: onStatusChange?.($status)
-
-	export { asChild, ref, onStatusChange }
+		setAvatarContext({ status })
+	})
 </script>
 
-{#if asChild}
-	<slot {...$$restProps} />
-{:else}
-	<div bind:this="{ref}" {...$$restProps}>
-		<slot />
-	</div>
-{/if}
+<div bind:this="{ref}" {...otherProps}>
+	{#if children}
+		{@render children()}
+	{/if}
+</div>

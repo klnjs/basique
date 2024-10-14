@@ -3,4 +3,15 @@ import typescript from '@klnjs/eslint-config/typescript'
 import svelte from '@klnjs/eslint-config/svelte'
 import ignores from '@klnjs/eslint-config/ignores'
 
-export default [core, typescript, svelte, ignores]
+export default [
+	core,
+	typescript,
+	svelte,
+	ignores,
+	{
+		files: ['**/*.svelte'],
+		rules: {
+			'prefer-const': ['error', { destructuring: 'all' }]
+		}
+	}
+]

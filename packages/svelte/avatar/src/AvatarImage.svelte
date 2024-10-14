@@ -1,34 +1,26 @@
 <script lang="ts">
-	import type { CoreProps } from '@klnjs/svelte-core'
+	import type { HTMLImgAttributes } from 'svelte/elements'
 	import { getAvatarContext } from './AvatarContext'
 
-	type $$Props = CoreProps<
-		HTMLDivElement,
-		{
-			src?: string
-			alt: string
-		}
-	>
+	type AvatarImageProps = HTMLImgAttributes & {
+		ref?: HTMLDivElement
+		src?: string
+		alt: string
+	}
 
-	const { status: statusStore } = getAvatarContext()
+	let { status } = getAvatarContext()
 
-	let ref: $$Props['ref']
-	let src: $$Props['src']
-	let alt: $$Props['alt']
-
-	$: status = $statusStore
-
-	export { ref, src, alt }
+	let { ref, src, alt, ...otherProps }: AvatarImageProps = $props()
 </script>
 
 <img
+	bind:this="{ref}"
 	{src}
 	{alt}
 	style:display="{status !== 'loaded' ? 'none' : undefined}"
 	data-status="{status}"
-	bind:this="{ref}"
-	on:load="{() => statusStore.set('loaded')}"
-	on:loadstart="{() => statusStore.set('loading')}"
-	on:error="{() => statusStore.set('error')}"
-	{...$$restProps}
+	onload="{() => (status = 'loaded')}"
+	onloadstart="{() => (status = 'loading')}"
+	onerror="{() => (status = 'error')}"
+	{...otherProps}
 />

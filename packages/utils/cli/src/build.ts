@@ -4,12 +4,23 @@ import { $, type JavaScriptLoader, type TSConfig } from 'bun'
 import p from 'path'
 import fs from 'node:fs/promises'
 import ts from 'typescript'
+import type { Argv } from 'yargs'
 
 export type BuildOptions = {
-	react?: boolean
-} & {
-	svelte?: boolean
+	type: 'typescript' | 'react' | 'svelte'
 }
+
+export const name = 'build'
+
+export const description = 'build package for publishing'
+
+export const define = (yargs: Argv) =>
+	yargs
+		.positional('type', {
+			choices: ['typescript', 'react', 'svelte'],
+			describe: 'The type of project you are building'
+		})
+		.demandOption('type')
 
 export const run = async (options: BuildOptions) => {
 	const cwd = process.cwd()
@@ -17,7 +28,7 @@ export const run = async (options: BuildOptions) => {
 
 	await fs.mkdir(dist, { recursive: true })
 
-	if (options.svelte) {
+	if (options.type === 'svelte') {
 		await svelte(cwd, dist)
 	} else {
 		await react(cwd, dist)
@@ -62,7 +73,7 @@ const svelte = async (root: string, dist: string) => {
 	await fs.cp(p.join(root, 'index.ts'), p.join(path, 'index.ts'), {
 		recursive: true
 	})
-	await $`svelte-package -i ./temp -o ${dist}`
+	await $`svelte-package -i ${path} -o ${dist}`
 	await fs.rm('.svelte-kit', { recursive: true, force: true })
 	await fs.rm('.svelte-package', { recursive: true, force: true })
 }

@@ -1,12 +1,14 @@
 import { setContext, getContext } from 'svelte'
-import type { Writable } from 'svelte/store'
 import type { AvatarStatus } from '@klnjs/avatar'
 
+export const AVATAR_KEY = Symbol('avatar')
+
 export type AvatarContext = {
-	status: Writable<AvatarStatus>
+	status: AvatarStatus
 }
 
 export const setAvatarContext = (value: AvatarContext) =>
-	setContext<AvatarContext>('avatar', value)
+	setContext<AvatarContext>(AVATAR_KEY, value)
 
-export const getAvatarContext = () => getContext<AvatarContext>('avatar')
+export const getAvatarContext = () =>
+	getContext<ReturnType<typeof setAvatarContext>>(AVATAR_KEY)

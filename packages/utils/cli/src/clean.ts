@@ -3,6 +3,12 @@
 import { join } from 'path'
 import { rm } from 'node:fs/promises'
 
+export const name = 'clean'
+
+export const description = 'clean package build, caches and temporary files'
+
+export const define = () => {}
+
 export const run = async () => {
 	const cwd = process.cwd()
 

@@ -5,6 +5,12 @@
 
 import { findUp } from 'find-up'
 
+export const name = 'clean'
+
+export const description = 'clean package build, caches and temporary files'
+
+export const define = () => {}
+
 export const run = async () => {
 	const cwd = process.cwd()
 	const pathToPackage = await findUp('package.json', { cwd })
