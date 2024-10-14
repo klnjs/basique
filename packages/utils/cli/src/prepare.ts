@@ -5,13 +5,13 @@
 
 import { findUp } from 'find-up'
 
-export const name = 'clean'
+export const command = 'prepare'
 
-export const description = 'clean package build, caches and temporary files'
+export const description = 'prepare package for publishing'
 
-export const define = () => {}
+export const builder = {}
 
-export const run = async () => {
+export const handler = async () => {
 	const cwd = process.cwd()
 	const pathToPackage = await findUp('package.json', { cwd })
 	const pathToLicense = await findUp('LICENSE', { cwd })

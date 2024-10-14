@@ -4,31 +4,29 @@ import { $, type JavaScriptLoader, type TSConfig } from 'bun'
 import p from 'path'
 import fs from 'node:fs/promises'
 import ts from 'typescript'
-import type { Argv } from 'yargs'
 
-export type BuildOptions = {
+export type BuildArgv = {
 	type: 'typescript' | 'react' | 'svelte'
 }
 
-export const name = 'build'
+export const command = 'build <type>'
 
 export const description = 'build package for publishing'
 
-export const define = (yargs: Argv) =>
-	yargs
-		.positional('type', {
-			choices: ['typescript', 'react', 'svelte'],
-			describe: 'The type of project you are building'
-		})
-		.demandOption('type')
+export const builder = (argv) =>
+	argv.positional('type', {
+		choices: ['typescript', 'react', 'svelte'],
+		describe: 'The type of project you are building',
+		demandOption: true
+	})
 
-export const run = async (options: BuildOptions) => {
+export const handler = async (argv) => {
 	const cwd = process.cwd()
 	const dist = p.join(cwd, 'dist')
 
 	await fs.mkdir(dist, { recursive: true })
 
-	if (options.type === 'svelte') {
+	if (argv.type === 'svelte') {
 		await svelte(cwd, dist)
 	} else {
 		await react(cwd, dist)

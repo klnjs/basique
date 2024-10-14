@@ -33,7 +33,7 @@
 		"clean": "basique clean",
 		"check": "tsc --noEmit",
 		"format": "prettier . --check",
-		"build": "basique clean && basique build --react",
+		"build": "basique clean && basique build react",
 		"arrange": "basique arrange"
 	},
 	"dependencies": {

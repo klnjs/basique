@@ -35,7 +35,7 @@
 		"clean": "basique clean",
 		"check": "tsc --noEmit",
 		"format": "prettier . --check",
-		"build": "basique clean && basique build",
+		"build": "basique clean && basique build typescript",
 		"arrange": "basique arrange"
 	},
 	"dependencies": {

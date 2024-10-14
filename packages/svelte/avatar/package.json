@@ -41,7 +41,7 @@
 		"clean": "basique clean",
 		"check": "svelte-check",
 		"format": "prettier . --check --no-cache",
-		"build": "basique clean && basique build --svelte",
+		"build": "basique clean && basique build svelte",
 		"arrange": "basique arrange"
 	},
 	"dependencies": {
