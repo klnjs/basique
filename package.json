@@ -24,7 +24,7 @@
 		"arrange": "turbo arrange"
 	},
 	"devDependencies": {
-		"@types/bun": "1.1.10",
-		"turbo": "2.1.2"
+		"@types/bun": "1.1.13",
+		"turbo": "2.2.3"
 	}
 }
