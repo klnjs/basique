@@ -8,19 +8,18 @@
 		alt: string
 	}
 
-	let { status } = getAvatarContext()
-
+	let { status, setStatus } = getAvatarContext()
 	let { ref, src, alt, ...otherProps }: AvatarImageProps = $props()
 </script>
 
 <img
-	bind:this="{ref}"
+	bind:this={ref}
 	{src}
 	{alt}
-	style:display="{status !== 'loaded' ? 'none' : undefined}"
-	data-status="{status}"
-	onload="{() => (status = 'loaded')}"
-	onloadstart="{() => (status = 'loading')}"
-	onerror="{() => (status = 'error')}"
+	style:display={status !== 'loaded' ? 'none' : undefined}
+	data-status={status}
+	onerror={() => setStatus('error')}
+	onload={() => setStatus('loaded')}
+	onloadstart={() => setStatus('loading')}
 	{...otherProps}
 />

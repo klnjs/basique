@@ -10,14 +10,13 @@
 	const { status } = getAvatarContext()
 
 	let { ref, children, delay, ...otherProps }: AvatarFallbackProps = $props()
-
-	let ready = $state<Boolean>(false)
+	let ready: boolean = $state(false)
 
 	setTimeout(() => (ready = true), delay)
 </script>
 
 {#if ready && status !== 'loaded'}
-	<div bind:this="{ref}" {...otherProps}>
+	<div bind:this={ref} {...otherProps}>
 		{#if children}
 			{@render children()}
 		{/if}

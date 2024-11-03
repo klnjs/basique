@@ -5,6 +5,7 @@ export const AVATAR_KEY = Symbol('avatar')
 
 export type AvatarContext = {
 	status: AvatarStatus
+	setStatus: (status: AvatarStatus) => void
 }
 
 export const setAvatarContext = (value: AvatarContext) =>
