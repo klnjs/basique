@@ -11,7 +11,7 @@ export default [
 	{
 		files: ['**/*.svelte'],
 		rules: {
-			'prefer-const': ['error', { destructuring: 'all' }]
+			'prefer-const': 'off'
 		}
 	}
 ]

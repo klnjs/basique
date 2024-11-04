@@ -8,8 +8,8 @@ export type AvatarContext = {
 	setStatus: (status: AvatarStatus) => void
 }
 
-export const setAvatarContext = (value: AvatarContext) =>
-	setContext<AvatarContext>(AVATAR_KEY, value)
+export const setAvatarContext = (context: AvatarContext) =>
+	setContext<AvatarContext>(AVATAR_KEY, context)
 
 export const getAvatarContext = () =>
 	getContext<ReturnType<typeof setAvatarContext>>(AVATAR_KEY)
