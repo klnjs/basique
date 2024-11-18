@@ -80,6 +80,7 @@ const fetchSources = [
 type FetchSourceList = SourceList<(typeof fetchSources)[number]>
 
 const getSourcesByDirective = (directive: Directive) => {
+	// eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
 	switch (directive) {
 		case 'base-uri':
 			return baseUriSources

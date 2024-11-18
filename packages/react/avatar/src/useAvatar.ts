@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useCallbackRef } from '@klnjs/react-core'
-import type { AvatarStatus } from '@klnjs/avatar'
+
+export type AvatarStatus = 'idle' | 'loading' | 'loaded' | 'error'
 
 export type UseAvatarOptions = {
 	onStatusChange?: (status: AvatarStatus) => void

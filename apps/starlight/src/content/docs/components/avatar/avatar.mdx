@@ -10,9 +10,7 @@ import Installation from '@library/Installation.astro'
 import Attributes from '@library/Attributes.astro'
 import Properties from '@library/Properties.astro'
 import AvatarReact from './avatar.tsx'
-import AvatarSvelte from './avatar.svelte'
 import react from './avatar.tsx?raw'
-import svelte from './avatar.svelte?raw'
 import styles from './avatar.module.css?raw'
 
 ## Showcase
@@ -21,12 +19,10 @@ import styles from './avatar.module.css?raw'
 	name="avatar"
 	sources={[
 		{ type: 'react', source: react },
-		{ type: 'svelte', source: svelte },
 		{ type: 'styles', source: styles }
 	]}
 >
 	<AvatarReact slot="react" client:only="react" />
-	<AvatarSvelte slot="svelte" client:only="svelte" />
 </Showcase>
 
 ## Features
@@ -39,7 +35,7 @@ import styles from './avatar.module.css?raw'
 
 ## Installation
 
-<Installation name="avatar" />
+<Installation name="react-avatar" />
 
 ## API Reference
 

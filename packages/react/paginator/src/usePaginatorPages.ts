@@ -1,27 +1,13 @@
 import { clamp } from '@klnjs/math'
 
-export type Paginator = {
-	min: number
-	max: number
-}
-
-export type PaginatorOptions = {
-	pages: number
-}
-
 export type PaginatorRange = [start: number, end: number]
 
-export type PaginatorItem = {
+export type PaginatorPage = {
 	type: 'page' | 'ellipsis'
 	page: number
 }
 
-export const createPaginator = ({ pages }: PaginatorOptions): Paginator => ({
-	min: 1,
-	max: pages
-})
-
-export type PaginatorItemsOptions = {
+export type PaginatorPagesOptions = {
 	boundary: number
 	siblings: number
 	page: number
@@ -29,18 +15,20 @@ export type PaginatorItemsOptions = {
 	max: number
 }
 
-export const createPaginatorItems = ({
+export const usePaginatorPages = (options: PaginatorPagesOptions) =>
+	createPaginatorPages(options)
+
+export const createPaginatorPages = ({
 	boundary,
 	siblings,
 	page,
 	min: minStart,
 	max: maxEnd
-}: PaginatorItemsOptions) => {
+}: PaginatorPagesOptions) => {
 	const offset = boundary - 1
 
 	const minEnd = minStart + offset
 	const maxStart = maxEnd - offset
-
 	const midMin = minEnd + 2
 	const midMax = maxStart - 2
 	const midSpan = Math.min(midMax - midMin, siblings * 2)
@@ -53,7 +41,7 @@ export const createPaginatorItems = ({
 		[maxStart, maxEnd]
 	]
 
-	return ranges.reduce<PaginatorItem[]>((acc, range, index, items) => {
+	return ranges.reduce<PaginatorPage[]>((acc, range, index, items) => {
 		const [start, end] = range
 		const previous = items[index - 1]?.at(-1)
 
