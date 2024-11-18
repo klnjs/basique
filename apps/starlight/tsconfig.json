@@ -7,10 +7,5 @@
 		}
 	},
 	"exclude": ["dist", "node_modules"],
-	"include": [
-		"astro.config.ts",
-		"./src/**/*.ts",
-		"./src/**/*.tsx",
-		"./src/**/*.svelte"
-	]
+	"include": ["astro.config.ts", "./src/**/*.ts", "./src/**/*.tsx"]
 }

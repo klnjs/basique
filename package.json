@@ -2,13 +2,13 @@
 	"name": "@klnjs/basique",
 	"type": "module",
 	"author": "Rune Klein (@rnkln)",
-	"version": "1.0.0-beta.10",
+	"version": "1.0.0-beta.11",
 	"private": true,
 	"repository": {
 		"type": "git",
 		"url": "git+ssh://git@github.com/klnjs/basique.git"
 	},
-	"packageManager": "bun@1.1.27",
+	"packageManager": "bun@1.1.34",
 	"workspaces": [
 		"apps/**/*",
 		"packages/**/*"
@@ -21,7 +21,7 @@
 		"check": "turbo check",
 		"format": "turbo format",
 		"build": "turbo build",
-		"arrange": "turbo arrange"
+		"adorn": "turbo adorn"
 	},
 	"devDependencies": {
 		"@types/bun": "1.1.13",

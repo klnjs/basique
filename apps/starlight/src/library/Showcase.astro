@@ -6,7 +6,7 @@ type Props = {
   name: string;
 	class?: string;
   sources: {
-		type: 'react' | 'svelte' | 'styles'
+		type: 'react' | 'styles'
 		source: string;
 	}[];
   children: any;
@@ -60,7 +60,6 @@ const { name, class: classProp, sources } = Astro.props;
 				{type !== 'styles' && 
 					<div class:list={['not-content', 'viewport']}>
 						{type === 'react' && <slot name='react' />}
-						{type === 'svelte' && <slot name='svelte' />}
 					</div>
 				}
 

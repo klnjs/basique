@@ -3,7 +3,13 @@
 import { join } from 'path'
 import { rm } from 'node:fs/promises'
 
-export const run = async () => {
+export const command = 'clean'
+
+export const description = 'clean package build, caches and temporary files'
+
+export const builder = {}
+
+export const handler = async () => {
 	const cwd = process.cwd()
 
 	await rm(join(cwd, '.svelte-package'), { recursive: true, force: true })

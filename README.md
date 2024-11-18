@@ -1,2 +1,2 @@
 # Basique
-Component library
+Reac component library

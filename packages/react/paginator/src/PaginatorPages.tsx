@@ -1,11 +1,11 @@
 import type { ReactNode } from 'react'
 import { usePaginatorContext } from './PaginatorContext'
-import { createPaginatorItems, type PaginatorItem } from '@klnjs/paginator'
+import { usePaginatorPages, type PaginatorPage } from './usePaginatorPages'
 
 export type PaginatorPagesProps = {
 	boundary?: number
 	siblings?: number
-	children: (props: PaginatorItem, index: number) => ReactNode
+	children: (props: PaginatorPage, index: number) => ReactNode
 }
 
 export const PaginatorPages = ({
@@ -15,7 +15,7 @@ export const PaginatorPages = ({
 }: PaginatorPagesProps) => {
 	const { min, max, page } = usePaginatorContext()
 
-	const items = createPaginatorItems({ min, max, page, boundary, siblings })
+	const pages = usePaginatorPages({ min, max, page, boundary, siblings })
 
-	return items.map(children)
+	return pages.map(children)
 }

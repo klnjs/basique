@@ -2,7 +2,7 @@
 	"name": "@klnjs/react-icon",
 	"type": "module",
 	"author": "Rune Klein (@rnkln)",
-	"version": "1.0.0-beta.10",
+	"version": "1.0.0-beta.11",
 	"license": "MIT",
 	"homepage": "https://klnjs.github.io/basique",
 	"repository": {
@@ -37,19 +37,19 @@
 	"scripts": {
 		"lint": "eslint . --max-warnings 0",
 		"clean": "basique clean",
-		"check": "tsc --noEmit",
+		"check": "basique check",
 		"format": "prettier . --check",
 		"build": "basique clean && basique build --react",
-		"arrange": "basique arrange"
+		"adorn": "basique adorn"
 	},
 	"dependencies": {
 		"@klnjs/react-core": "workspace:*"
 	},
 	"devDependencies": {
 		"@klnjs/basique": "workspace:*",
-		"@klnjs/eslint-config": "4.0.6",
-		"@klnjs/prettier-config": "4.0.6",
-		"@klnjs/typescript-config": "4.0.6",
+		"@klnjs/eslint-config": "4.1.1",
+		"@klnjs/prettier-config": "4.1.1",
+		"@klnjs/typescript-config": "4.1.1",
 		"@types/react": "18.3.12",
 		"@types/react-dom": "18.3.1",
 		"eslint": "9.14.0",

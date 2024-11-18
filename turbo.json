@@ -17,7 +17,7 @@
 			"outputs": ["dist/**/*"],
 			"dependsOn": ["^build"]
 		},
-		"arrange": {
+		"adorn": {
 			"cache": false
 		}
 	}

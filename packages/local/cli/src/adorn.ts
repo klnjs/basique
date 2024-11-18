@@ -5,7 +5,13 @@
 
 import { findUp } from 'find-up'
 
-export const run = async () => {
+export const command = 'adorn'
+
+export const description = 'adorn package for publishing'
+
+export const builder = {}
+
+export const handler = async () => {
 	const cwd = process.cwd()
 	const pathToPackage = await findUp('package.json', { cwd })
 	const pathToLicense = await findUp('LICENSE', { cwd })
