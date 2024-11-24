@@ -1,0 +1,61 @@
+{
+	"name": "@klnjs/react-textarea",
+	"type": "module",
+	"author": "Rune Klein (@rnkln)",
+	"version": "1.0.0-beta.11",
+	"license": "MIT",
+	"homepage": "https://klnjs.github.io/basique",
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com/klnjs/basique.git",
+		"directory": "packages/react/textarea"
+	},
+	"keywords": [
+		"a11y",
+		"autosize",
+		"component",
+		"primitive",
+		"react",
+		"textarea"
+	],
+	"files": [
+		"dist",
+		"LICENSE",
+		"README.md"
+	],
+	"exports": "./index.ts",
+	"publishConfig": {
+		"exports": {
+			".": {
+				"types": "./dist/index.d.ts",
+				"import": "./dist/index.js"
+			}
+		}
+	},
+	"scripts": {
+		"lint": "eslint . --max-warnings 0",
+		"clean": "basique clean",
+		"check": "basique check",
+		"format": "prettier . --check",
+		"build": "basique clean && basique build --react",
+		"adorn": "basique adorn"
+	},
+	"dependencies": {
+		"@klnjs/react-core": "workspace:*"
+	},
+	"devDependencies": {
+		"@klnjs/basique": "workspace:*",
+		"@klnjs/eslint-config": "4.1.1",
+		"@klnjs/prettier-config": "4.1.1",
+		"@klnjs/typescript-config": "4.1.1",
+		"@types/react": "18.3.12",
+		"@types/react-dom": "18.3.1",
+		"eslint": "9.14.0",
+		"prettier": "3.3.3",
+		"typescript": "5.6.3"
+	},
+	"peerDependencies": {
+		"react": "^18.0",
+		"react-dom": "^18.0"
+	}
+}
