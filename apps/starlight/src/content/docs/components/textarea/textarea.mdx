@@ -1,0 +1,56 @@
+---
+title: Textarea
+description: An element to input a multi-line plain-text content.
+---
+
+import Showcase from '@library/Showcase.astro'
+import Feature from '@library/Feature.astro'
+import Features from '@library/Features.astro'
+import Installation from '@library/Installation.astro'
+import Attributes from '@library/Attributes.astro'
+import Properties from '@library/Properties.astro'
+import TextareaReact from './textarea.tsx'
+import react from './textarea.tsx?raw'
+import styles from './textarea.module.css?raw'
+
+## Showcase
+
+<Showcase
+	name="textarea"
+	sources={[
+		{ type: 'react', source: react },
+		{ type: 'styles', source: styles }
+	]}
+>
+	<TextareaReact slot="react" client:only="react" />
+</Showcase>
+
+## Features
+
+<Features>
+	<Feature>Autosizing with min and max rows.</Feature>
+</Features>
+
+## Installation
+
+<Installation name="react-textarea" />
+
+## API Reference
+
+-   [Textarea](#textarea-root)
+
+### Textarea (Root)
+
+Contains all the parts of an avatar.
+
+<Properties
+	props={[
+		{ name: 'asChild', type: 'boolean', defaultValue: 'false' },
+		{
+			name: 'onStatusChange',
+			type: 'function',
+			typeAdvanced:
+				"(status: 'idle' | 'loading' | 'loaded' | 'error') => void"
+		}
+	]}
+/>
