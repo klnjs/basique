@@ -43,10 +43,11 @@ export const Textarea = forwardRef<'textarea', TextareaProps>(
 		const [height, setHeight] = useState<number>()
 
 		const fieldSizing = 'content'
-		const fieldSizingIsSupported = useSupports('field-sizing', fieldSizing)
+		const fieldSizingSupport = useSupports('field-sizing', fieldSizing)
+		const fieldSizingFallback = autosize && !fieldSizingSupport
 
 		const sync = useCallback(() => {
-			if (textareaRef.current !== null) {
+			if (fieldSizingFallback && textareaRef.current !== null) {
 				const { now, min, max } = getTextareaMeasurements(
 					textareaRef.current,
 					{ minRows, maxRows }
@@ -54,13 +55,13 @@ export const Textarea = forwardRef<'textarea', TextareaProps>(
 
 				setHeight(clamp(now, min, max))
 			}
-		}, [minRows, maxRows])
+		}, [minRows, maxRows, fieldSizingFallback])
 
 		const handleChange = useChainHandler(onChange, sync)
 
 		// @ts-expect-error intended no return
 		useEffect(() => {
-			if (autosize && !fieldSizingIsSupported && textareaRef.current) {
+			if (fieldSizingFallback && textareaRef.current !== null) {
 				const resize = new ResizeObserver((entries) => {
 					if (entries[0]) {
 						const prev = textareaWidthRef.current
@@ -79,11 +80,12 @@ export const Textarea = forwardRef<'textarea', TextareaProps>(
 					resize.disconnect()
 				}
 			}
-		}, [sync, autosize, fieldSizingIsSupported])
+		}, [sync, fieldSizingFallback])
 
 		return (
 			<poly.textarea
 				ref={refComposed}
+				rows={minRows}
 				// @ts-expect-error field-sizing not standard yet
 				style={{ height, fieldSizing, ...style }}
 				onChange={handleChange}
