@@ -1,0 +1,44 @@
+---
+title: Editor
+description: An element for creating a rich text editor.
+---
+
+import Showcase from '@library/Showcase.astro'
+import Feature from '@library/Feature.astro'
+import Features from '@library/Features.astro'
+import Installation from '@library/Installation.astro'
+import Attributes from '@library/Attributes.astro'
+import Properties from '@library/Properties.astro'
+import Icon from './editor.tsx'
+import react from './editor.tsx?raw'
+import styles from './editor.module.css?raw'
+
+## Showcase
+
+<Showcase
+	name="editor"
+	sources={[
+		{ type: 'react', source: react },
+		{ type: 'styles', source: styles }
+	]}
+>
+	<Icon slot="react" client:only="react" />
+</Showcase>
+
+## Features
+
+## Installation
+
+<Installation name="react-editor" />
+
+## API Reference
+
+-   [Editor](#editor-root)
+
+### Editor (Root)
+
+Contains all the parts of an editor.
+
+<Properties
+	props={[{ name: 'asChild', type: 'boolean', defaultValue: 'false' }]}
+/>
