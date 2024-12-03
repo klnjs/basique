@@ -4,13 +4,13 @@ import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
-import { LinkPlugin } from '@lexical/react/LexicalLinkPlugin'
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
 import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary'
 import { useCallback } from 'react'
 import { LinkNode } from '@lexical/link'
 import { HeadingNode } from '@lexical/rich-text'
 import { ToolbarPlugin } from './plugins/toolbar/ToolbarPlugin'
+import { LinkPlugin } from './plugins/link/LinkPlugin'
 
 export type EditorProps = {
 	className?: string
@@ -35,11 +35,13 @@ export const Editor = ({
 	}, [])
 
 	const handleChange = (_state: EditorState, editor: LexicalEditor) => {
-		const html = $generateHtmlFromNodes(editor)
+		editor.read(() => {
+			const html = $generateHtmlFromNodes(editor)
 
-		if (onChange) {
-			onChange(html)
-		}
+			if (onChange) {
+				onChange(html)
+			}
+		})
 	}
 
 	return (
