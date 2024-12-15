@@ -4,6 +4,8 @@
 # Except these folders
 !.github/
 !.github/**/*
+!.vscode/
+!.vscode/**/*
 !apps/
 !apps/**/*
 !packages/
