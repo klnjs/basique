@@ -28,6 +28,7 @@ import styles from './textarea.module.css?raw'
 ## Features
 
 <Features>
+	<Feature>Controlled or uncontrolled.</Feature>
 	<Feature>Autosizing with min and max rows.</Feature>
 </Features>
 
@@ -41,16 +42,38 @@ import styles from './textarea.module.css?raw'
 
 ### Textarea (Root)
 
-Contains all the parts of an avatar.
+Contains all the parts of an textarea.
 
 <Properties
 	props={[
 		{ name: 'asChild', type: 'boolean', defaultValue: 'false' },
 		{
-			name: 'onStatusChange',
+			name: 'value',
+			type: 'string'
+		},
+		{
+			name: 'defaultValue',
+			type: 'string'
+		},
+		{
+			name: 'autosize',
+			type: 'boolean',
+			defaultValue: 'true'
+		},
+		{
+			name: 'minRows',
+			type: 'number',
+			defaultValue: '2'
+		},
+		{
+			name: 'maxRows',
+			type: 'number',
+			defaultValue: 'Infinity'
+		},
+		{
+			name: 'onChange',
 			type: 'function',
-			typeAdvanced:
-				"(status: 'idle' | 'loading' | 'loaded' | 'error') => void"
+			typeAdvanced: '(value: string) => void'
 		}
 	]}
 />
