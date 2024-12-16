@@ -1,7 +1,9 @@
 ---
 import Table from './Table.astro'
-import TableRow from './TableRow.astro'
 import TableCell from './TableCell.astro'
+import TableRow from './TableRow.astro'
+import Tooltip from './Tooltip.astro'
+import InfoIcon from './InfoIcon.astro'
 
 type Props = {
 	props: {
@@ -22,7 +24,16 @@ const { props } = Astro.props
 	}
 
 	.cell {
-		width: 32%;
+		width: 30%;
+	}
+
+	.types {
+		display: flex;
+		align-items: center;
+	}
+
+	.types-tip {
+		margin-inline-start: 10px;
 	}
 </style>
 
@@ -35,14 +46,21 @@ const { props } = Astro.props
 		</TableRow>
 	</thead>
 	<tbody>
-		{props.map(({ name, type, defaultValue = '-' }) => (
+		{props.map(({ name, type, typeAdvanced, defaultValue = '-' }) => (
 			<TableRow>
 				<TableCell class='cell'>{name}</TableCell>
-				<TableCell class='cell'>
-					<code>{type}</code>
+				<TableCell>
+					<div class='types'>
+						{type}
+						{typeAdvanced && 
+							<Tooltip class="types-tip" text={typeAdvanced}>
+								<InfoIcon />
+							</Tooltip>
+						}
+					</div>
 				</TableCell>
 				<TableCell>
-					<code>{defaultValue}</code>
+					{defaultValue}
 				</TableCell>
 			</TableRow>
 		))}
