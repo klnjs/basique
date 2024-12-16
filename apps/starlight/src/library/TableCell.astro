@@ -9,17 +9,17 @@ const { as: Component = 'td', class: classProp, ...otherProps } = Astro.props
 ---
 
 <style>
-	.cell {
+	.table-cell {
 		border: 0;
 		padding-inline: 1rem;
 	}
 
-	.cell.th {
+	.table-cell.th {
 		height: 32px;
 		text-align: start;
 	}
 
-	.cell.td {
+	.table-cell.td {
 		border: 0;
 		padding-inline: 1rem;
 		border-block-start: 1px solid var(--sl-color-hairline-light);
@@ -28,6 +28,6 @@ const { as: Component = 'td', class: classProp, ...otherProps } = Astro.props
 	}
 </style>
 
-<Component class:list={['not-content', 'cell', Component, classProp]} {...otherProps}>
+<Component class:list={['not-content', 'table-cell', Component, classProp]} {...otherProps}>
 	<slot />
 </Component>

@@ -21,7 +21,7 @@ const { attrs } = Astro.props
 	}
 
 	.cell {
-		width: 32%;
+		width: 30%;
 	}
 </style>
 
@@ -37,7 +37,7 @@ const { attrs } = Astro.props
 			<TableRow>
 				<TableCell class='cell'>{name}</TableCell>
 				<TableCell>
-					{values !== undefined ? <code>{values}</code> : text}
+					{values !== undefined ? values : text}
 				</TableCell>
 			</TableRow>
 		))}
