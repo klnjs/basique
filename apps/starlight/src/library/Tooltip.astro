@@ -1,0 +1,48 @@
+---
+export interface Props {
+	class?: string
+  text: string;
+}
+
+const { text, class: classProp, ...otherProps } = Astro.props
+---
+
+<style>
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .tooltip-content {
+		cursor: auto;
+		border: 1px solid var(--sl-color-hairline-light);
+		border-radius: 0.5rem;
+		overflow: hidden;
+		box-shadow: var(--sl-shadow-md);
+    visibility: hidden;
+    background: var(--sl-color-gray-6);
+    color: var(--sl-color-text);
+    text-align: center;
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 300px;
+    width: max-content;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .tooltip:hover .tooltip-content {
+    visibility: visible;
+    opacity: 1;
+  }
+</style>
+
+<div class:list={['not-content', 'tooltip', classProp]} {...otherProps}>
+  <slot />
+  <div class="tooltip-content">{text}</div>
+</div>
