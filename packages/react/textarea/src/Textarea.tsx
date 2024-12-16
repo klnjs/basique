@@ -1,4 +1,10 @@
-import { useRef, useState, useEffect, useCallback } from 'react'
+import {
+	useRef,
+	useState,
+	useEffect,
+	useCallback,
+	type ChangeEvent
+} from 'react'
 import { clamp } from '@klnjs/math'
 import {
 	poly,
@@ -19,6 +25,7 @@ export type TextareaProps = CoreProps<
 		rows?: never
 		minRows?: number
 		maxRows?: number
+		onChange?: (value: string) => void
 	}
 >
 
@@ -57,7 +64,14 @@ export const Textarea = forwardRef<'textarea', TextareaProps>(
 			}
 		}, [minRows, maxRows, fieldSizingFallback])
 
-		const handleChange = useChainHandler(onChange, sync)
+		const handleChange = useChainHandler(
+			(event: ChangeEvent<HTMLTextAreaElement>) => {
+				if (onChange) {
+					onChange(event.target.value)
+				}
+			},
+			sync
+		)
 
 		// @ts-expect-error intended no return
 		useEffect(() => {
