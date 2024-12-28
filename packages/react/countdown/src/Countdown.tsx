@@ -1,7 +1,6 @@
 import { poly, forwardRef, type CoreProps } from '@klnjs/react-core'
 import { CountdownProvider } from './CountdownContext'
 import { useCountdown, type UseCountdownOptions } from './useCountdown'
-import '@formatjs/intl-durationformat/polyfill'
 
 export type CountdownProps = CoreProps<'div', UseCountdownOptions>
 
