@@ -1,6 +1,6 @@
 ---
 title: Countdown
-description: An element for showing a countdown.
+description: An element for displaying a countdown.
 ---
 
 import Showcase from '@library/Showcase.astro'
@@ -9,6 +9,7 @@ import Features from '@library/Features.astro'
 import Installation from '@library/Installation.astro'
 import Attributes from '@library/Attributes.astro'
 import Properties from '@library/Properties.astro'
+import Types from '@library/Types.astro'
 import Countdown from './countdown.tsx'
 import react from './countdown.tsx?raw'
 import styles from './countdown.module.css?raw'
@@ -28,21 +29,120 @@ import styles from './countdown.module.css?raw'
 ## Features
 
 <Features>
-	<Feature>Stuff.</Feature>
+	<Feature>Define largest and smallest unit to display.</Feature>
+	<Feature>Display entire unit range or only non completed.</Feature>
+	<Feature>Provide callback for when countdown ends.</Feature>
+	<Feature>Announcing of remaining time by screen readers.</Feature>
+	<Feature>Localisation, formatting and right-to-left support.</Feature>
 </Features>
 
 ## Installation
 
-<Installation name="react-countdown" />
+:::warning
 
-## API Reference
+The countdown component relies on a [temporal polyfill](https://www.npmjs.com/package/temporal-polyfill) for handling date and duration operations. Ensure the polyfill is included in your project dependencies.
 
--   [Countdown](#countdown-root)
+:::
 
-### Avatar (Root)
+<Installation name="react-countdown" dependencies={['temporal-polyfill']} />
 
-Contains all the parts of an countdown.
+## Definitions
+
+<Types
+	types={[
+		{
+			name: 'CountdownUnit',
+			definition:
+				"'years' | 'months' | 'weeks' | 'days' | 'hours' | 'minutes' | 'seconds' | 'milliseconds'"
+		},
+		{
+			name: 'CountdownUntil',
+			definition:
+				'number | string | Date | Instant | PlainDate | PlainDateTime'
+		},
+		{
+			name: 'CountdownStatus',
+			definition: "'active' | 'ended'"
+		},
+		{
+			name: 'CountdownSegmentItem',
+			definition: '{ unit: CountdownUnit, label: string, value: number }'
+		}
+	]}
+/>
+
+## Components
+
+-   [Countdown](#countdown)
+-   [Label](#label)
+-   [Group](#group)
+-   [Segments](#segments)
+-   [Segment](#segment)
+-   [Announcer](#announcer)
+
+### Countdown
+
+Contains all the parts of an countdown. The `throttle` property is used to control the update frequency of the countdown. The `until` property is used to set the end date of the countdown. The `largestUnit` and `smallestUnit` properties are used to control the display of the countdown. The `onStatusChange` property is used to provide a callback when the countdown ends.
+
+<Properties
+	props={[
+		{ name: 'asChild', type: 'boolean', defaultValue: 'false' },
+		{ name: 'locale', type: 'string' },
+		{ name: 'until', type: 'CountdownUntil' },
+		{ name: 'throttle', type: 'number', defaultValue: 200 },
+		{ name: 'largestUnit', type: 'CountdownUnit' },
+		{ name: 'smallestUnit', type: 'CountdownUnit' },
+		{ name: 'onStatusChange', type: '(status: CountdownStatus) => void' }
+	]}
+/>
+
+### Label
+
+Used to optionally render a label, and associate it with the countdown so it is accessible. If omitted, you should add a label to the announcer with property `aria-label`, so the component stays accessible.
 
 <Properties
 	props={[{ name: 'asChild', type: 'boolean', defaultValue: 'false' }]}
 />
+
+### Group
+
+Used to group segments.
+
+<Properties
+	props={[{ name: 'asChild', type: 'boolean', defaultValue: 'false' }]}
+/>
+
+### Segments
+
+Given the dynamic length of a countdown, this utility component provides means to render segements of the countdown using a render function as child.
+
+Use display properties to control the visibility of the segments. If display is set to `auto`, it will only show the segments that have a value greater than 0 which means the amount of segments can change during the countdown.
+
+Use the format property to control the format of the segments. The format can be set to `short`, `narrow` or `long`.
+
+<Properties
+	props={[
+		{ name: 'format', type: "'short' | 'narrow' | 'long'" },
+		{ name: 'display', type: "'auto' | 'always'" },
+		{
+			name: 'children',
+			type: '(segment: CountdownSegmentItem) => ReactNode'
+		}
+	]}
+/>
+
+### Segment
+
+Used to render individual segments, it should be used in conjunction with the segments component.
+
+A segment is primarily visual, and it provides `data-*` attributes enabling styling of the different states. To support screen readers, use the announcer component.
+
+<Properties
+	props={[{ name: 'asChild', type: 'boolean', defaultValue: 'false' }]}
+/>
+
+<Attributes attrs={[{ name: 'data-unit', values: 'CountdownUnit' }]} />
+
+### Announcer
+
+Used to announce the remaining time to screen readers. Behaviour can be customized using standard `aria-*` attributes.

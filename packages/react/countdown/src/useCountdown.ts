@@ -6,17 +6,19 @@ import type { CountdownUnit } from './useCountdownUnit'
 
 export type CountdownStatus = 'active' | 'ended'
 
+export type CountdownUntil =
+	| number
+	| string
+	| Date
+	| Temporal.Instant
+	| Temporal.PlainDate
+	| Temporal.PlainDateTime
+	| Temporal.ZonedDateTime
+
 export type UseCountdownOptions = {
 	locale: string
 	throttle?: number
-	until:
-		| number
-		| string
-		| Date
-		| Temporal.Instant
-		| Temporal.PlainDate
-		| Temporal.PlainDateTime
-		| Temporal.ZonedDateTime
+	until: CountdownUntil
 	largestUnit: CountdownUnit
 	smallestUnit: CountdownUnit
 	onStatusChange?: (status: CountdownStatus) => void

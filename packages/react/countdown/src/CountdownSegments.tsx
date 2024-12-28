@@ -28,10 +28,8 @@ export const CountdownSegments = ({
 		[largestUnit, smallestUnit]
 	)
 
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 	const formatter = useMemo(
 		() =>
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return
 			new Intl.DurationFormat(locale, {
 				style: format,
 				...range.reduce((acc, unit, index) => {
