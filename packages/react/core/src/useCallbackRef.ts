@@ -1,15 +1,12 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-
-import { useCallback, useEffect, useRef, type DependencyList } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 
 /**
- * A hook that converts a callback to a ref.
+ * A hook that creates a stable reference to a callback function.
  */
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function useCallbackRef<T extends (...args: any[]) => any>(
-	callback: T | undefined,
-	deps: DependencyList = []
+	callback: T | undefined
 ) {
 	const callbackRef = useRef(callback)
 
@@ -17,7 +14,14 @@ export function useCallbackRef<T extends (...args: any[]) => any>(
 		callbackRef.current = callback
 	}, [callback])
 
-	// eslint-disable-next-line react-compiler/react-compiler
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	return useCallback(((...args) => callbackRef.current?.(...args)) as T, deps)
+	return useCallback(
+		// eslint-disable-next-line react-compiler/react-compiler
+		((...args) => {
+			if (callbackRef.current) {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+				callbackRef.current(...args)
+			}
+		}) as T,
+		[]
+	)
 }
