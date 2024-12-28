@@ -30,9 +30,6 @@ export default defineConfig({
 			],
 			components: {
 				PageTitle: './src/library/Title.astro'
-			},
-			tableOfContents: {
-				maxHeadingLevel: 4
 			}
 		})
 	]
