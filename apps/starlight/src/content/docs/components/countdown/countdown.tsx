@@ -12,12 +12,11 @@ const newYears = new Date(`January 1, ${new Date().getFullYear() + 1} 00:00:00`)
 
 export default () => (
 	<Countdown
+		until={newYears}
 		locale="en-GB"
 		largestUnit="days"
 		smallestUnit="seconds"
-		until={Date.now() + 20000}
 		className={classes.countdown}
-		onStatusChange={(status) => console.log(status)}
 	>
 		<CountdownLabel className={classes.label}>
 			Time left til New Years
