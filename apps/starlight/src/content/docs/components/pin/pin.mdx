@@ -38,47 +38,56 @@ import styles from './pin.module.css?raw'
 
 <Installation name="react-pin" />
 
-## API Reference
+## Definitions
 
--   [Pin](#pin-root)
--   [PinInput](#pininput)
--   [PinLabel](#pinlabel)
--   [PinGroup](#pingroup)
--   [PinSlots](#pinslots)
--   [PinSlot](#pinslot)
-
-### Pin (Root)
-
-Contains all the parts of a pin.
-
-<Properties
-	props={[
-		{ name: 'asChild', type: 'boolean', defaultValue: 'false' },
+<Types
+	types={[
 		{
-			name: 'conceal',
-			type: 'PinConceal',
-			typeAdvanced: 'string | { symbol: string; delay: number }',
-			defaultValue: 'false'
+			name: 'PinType',
+			definition: "'alphabetic' | 'alphanumeric' | 'numeric'"
 		},
-		{ name: 'defaultValue', type: 'string' },
-		{ name: 'disabled', type: 'boolean', defaultValue: 'false' },
-		{ name: 'length', type: 'number', defaultValue: '4' },
 		{
-			name: 'type',
-			type: 'PinType',
-			typeAdvanced: "'alphabetic' | 'alphanumeric' | 'numeric'",
-			defaultValue: 'alphanumeric'
+			name: 'PinConceal',
+			definition: 'string | { symbol: string; delay: number }'
 		},
-		{ name: 'value', type: 'string' },
 		{
-			name: 'onChange',
-			type: 'function',
-			typeAdvanced: '(value: string) => void'
+			name: 'PinDirection',
+			definition: "'forwards' | 'backwards'"
+		},
+		{
+			name: 'PinSlotItem',
+			definition: '{ slot: number; value: string }'
 		}
 	]}
 />
 
-### PinInput
+## Components
+
+-   [Pin](#pin)
+-   [Input](#input)
+-   [Label](#label)
+-   [Group](#group)
+-   [Slots](#slots)
+-   [Slot](#slot)
+
+###
+
+Contains all the parts of a pin. Use the `conceal` property to conceal the pin while typing, and the `type` to determine the allowed characters. Use `value` or `defaultValue` to control the input and `onChange` to listen to changes.
+
+<Properties
+	props={[
+		{ name: 'asChild', type: 'boolean', defaultValue: 'false' },
+		{ name: 'conceal', type: 'PinConceal', defaultValue: 'false' },
+		{ name: 'defaultValue', type: 'string' },
+		{ name: 'disabled', type: 'boolean', defaultValue: 'false' },
+		{ name: 'length', type: 'number', defaultValue: '4' },
+		{ name: 'type', type: 'PinType', defaultValue: 'alphanumeric' },
+		{ name: 'value', type: 'string' },
+		{ name: 'onChange', type: '(value: string) => void' }
+	]}
+/>
+
+### Input
 
 Used to render a hidden input which is accessible by keyboard. The input can be shown by setting `hidden` to false. It will auto complete one time codes by default, and handle sanitising of input based on root property `type`.
 
@@ -90,7 +99,7 @@ Used to render a hidden input which is accessible by keyboard. The input can be 
 	]}
 />
 
-### PinLabel
+### Label
 
 Used to optionally render an input label, and attach it to the input so it is accessible. If omitted, you should add a label to the input with property `aria-label`, so the component stays accessible.
 
@@ -98,7 +107,7 @@ Used to optionally render an input label, and attach it to the input so it is ac
 	props={[{ name: 'asChild', type: 'boolean', defaultValue: 'false' }]}
 />
 
-### PinGroup
+### Group
 
 Used to group slot items.
 
@@ -106,22 +115,15 @@ Used to group slot items.
 	props={[{ name: 'asChild', type: 'boolean', defaultValue: 'false' }]}
 />
 
-### PinSlots
+### Slots
 
 Given the dynamic length of the pin, this utility component provides means to render slots of the pin using a render function as child.
 
 <Properties
-	props={[
-		{
-			name: 'children',
-			type: 'function',
-			typeAdvanced:
-				'(type: { slot: number, value: string }, index: number ) => ReactNode'
-		}
-	]}
+	props={[{ name: 'children', type: '(item: PinSlotItem) => ReactNode' }]}
 />
 
-### PinSlot
+### Slot
 
 Used to render individual slots, it should be used in conjunction with the slots component. A slot will conceal its content based on the root property `conceal`, this concealing only occurs when slot has an internal value.
 
