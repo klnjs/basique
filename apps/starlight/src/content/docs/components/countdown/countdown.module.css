@@ -1,0 +1,41 @@
+.countdown {
+	display: flex;
+	gap: 16px;
+	align-items: center;
+	flex-direction: column;
+}
+
+.label {
+	font-size: 22px;
+}
+
+.group {
+	display: flex;
+	gap: 8px;
+}
+
+.segment {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	height: 56px;
+	width: 56px;
+	line-height: 1;
+	cursor: text;
+	border-radius: 0.5rem;
+	border: 1px solid var(--sl-color-hairline-light);
+	overflow: hidden;
+	background: var(--sl-color-black);
+	background-clip: padding-box;
+}
+
+.unit {
+	font-size: 12px;
+}
+
+.value {
+	color: var(--sl-color-white);
+	font-weight: bold;
+}
