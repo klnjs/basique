@@ -37,15 +37,15 @@ import styles from './spinner.module.css?raw'
 
 <Installation name="react-spinner" />
 
-## API Reference
+## Components
 
--   [Spinner](#spinner-root)
--   [SpinnerTrack](#spinnertrack)
--   [SpinnerThumb](#spinnerthumb)
+-   [Spinner](#spinner)
+-   [Track](#track)
+-   [Thumb](#thumb)
 
-### Spinner (Root)
+### Spinner
 
-Contains all the parts of an spinner.
+Contains all the parts of an spinner. Use the `size` to determine the overall size of the spinner and the `width` to determine the thickness of the track and thumbs.
 
 <Properties
 	props={[
@@ -55,17 +55,19 @@ Contains all the parts of an spinner.
 	]}
 />
 
-### SpinnerTrack
+### Track
 
-Used to optionally render a track (circle). It will automatically calculate its dimensions based on the `size` and `width` property of the root.
+Used to optionally render a track. It will automatically calculate its dimensions based on the `size` and `width` property of the spinner.
 
 <Properties
 	props={[{ name: 'asChild', type: 'boolean', defaultValue: 'false' }]}
 />
 
-### SpinnerThumb
+### Thumb
 
-Used to render a thumb (circle section). It will automatically calculate its dimensions based on the `size` and `width` property of the root. It is possible to render multiple thumbs, and have them perform different animations based on the properties given.
+Used to render a thumb. It will automatically calculate its dimensions based on the `size` and `width` property of the spinner. It is possible to render multiple thumbs, and have them perform different animations based on the properties given.
+
+Use the props `angle` and `arc` to determine the starting angle and the arc of the thumb. The `cap` prop determines the shape of the thumb's cap. The `duration` prop determines the duration of the animation. The `easing` prop determines the easing function of the animation.
 
 <Properties
 	props={[
@@ -74,8 +76,7 @@ Used to render a thumb (circle section). It will automatically calculate its dim
 		{ name: 'arc', type: 'number', defaultValue: '25' },
 		{
 			name: 'cap',
-			type: 'enum',
-			typeAdvanced: "'butt' | 'round' | 'square'",
+			type: "'butt' | 'round' | 'square'",
 			defaultValue: 'round'
 		},
 		{ name: 'duration', type: 'number', defaultValue: '1' },

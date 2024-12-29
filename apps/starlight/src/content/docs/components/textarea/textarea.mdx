@@ -1,7 +1,7 @@
 ---
 slug: components/textarea
 title: Textarea
-description: An element to input a multi-line plain-text content.
+description: An element to enter multi-line plain-text content.
 ---
 
 import Showcase from '@library/Showcase.astro'
@@ -37,13 +37,13 @@ import styles from './textarea.module.css?raw'
 
 <Installation name="react-textarea" />
 
-## API Reference
+## Components
 
--   [Textarea](#textarea-root)
+-   [Textarea](#textarea)
 
-### Textarea (Root)
+### Textarea
 
-Contains all the parts of an textarea.
+Use the `autosize` prop to enable the textarea to grow and shrink to fit its content. Use the `minRows` and `maxRows` props to set the minimum and maximum number of rows the textarea can have.
 
 <Properties
 	props={[
@@ -73,8 +73,7 @@ Contains all the parts of an textarea.
 		},
 		{
 			name: 'onChange',
-			type: 'function',
-			typeAdvanced: '(value: string) => void'
+			type: '(value: string) => void'
 		}
 	]}
 />
