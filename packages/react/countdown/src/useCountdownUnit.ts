@@ -38,7 +38,7 @@ export const getRangeOfUnits = (
 export const getLargestUnit = (duration: Temporal.Duration) => {
 	const largestUnit =
 		countdownUnits.find((unit) => duration[unit] !== 0) ??
-		countdownUnits.at(-1)
+		(countdownUnits.at(-1) as 'milliseconds')
 
-	return largestUnit!
+	return largestUnit
 }

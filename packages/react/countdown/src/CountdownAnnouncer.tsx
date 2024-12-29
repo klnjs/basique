@@ -35,11 +35,15 @@ export const CountdownAnnouncer = forwardRef<'div', CountdownAnnouncerProps>(
 			...styleProp
 		}
 
-		const formatter = useMemo(() => {
-			return new Intl.DurationFormat(locale, {
-				style: 'long'
-			})
-		}, [locale])
+		/* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access */
+		const formatter = useMemo(
+			() =>
+				// @ts-expect-error - Intl.DurationFormat is not recognized yet
+				new Intl.DurationFormat(locale, {
+					style: 'long'
+				}),
+			[locale]
+		)
 
 		useEffect(() => {
 			if (unit !== 'seconds' && unit !== 'milliseconds') {
@@ -65,4 +69,5 @@ export const CountdownAnnouncer = forwardRef<'div', CountdownAnnouncerProps>(
 			</poly.div>
 		)
 	}
+	/* eslint-enable@typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access */
 )

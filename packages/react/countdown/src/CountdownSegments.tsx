@@ -28,11 +28,14 @@ export const CountdownSegments = ({
 		[largestUnit, smallestUnit]
 	)
 
+	/* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-argument */
 	const formatter = useMemo(
 		() =>
+			// @ts-expect-error - Intl.DurationFormat is not recognized yet
 			new Intl.DurationFormat(locale, {
 				style: format,
 				...range.reduce((acc, unit, index) => {
+					// @ts-expect-error - Intl.DurationFormat is not recognized yet
 					acc[`${unit}Display`] =
 						index === range.length - 1 ? 'always' : display
 					return acc
@@ -43,9 +46,11 @@ export const CountdownSegments = ({
 
 	const parts = formatter
 		.formatToParts(remaining)
+		// @ts-expect-error - Intl.DurationFormat is not recognized yet
 		.filter(({ type }) => type !== 'literal')
 
 	const segments = Object.values(
+		// @ts-expect-error - Intl.DurationFormat is not recognized yet
 		parts.reduce((acc, part) => {
 			if (!acc[part.unit]) {
 				acc[part.unit] = { unit: `${part.unit}s` }
@@ -61,5 +66,7 @@ export const CountdownSegments = ({
 		}, {})
 	)
 
+	// @ts-expect-error - Intl.DurationFormat is not recognized yet
 	return segments.map(children)
+	/* eslint-enable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-argument */
 }
