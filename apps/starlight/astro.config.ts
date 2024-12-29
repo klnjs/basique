@@ -24,7 +24,7 @@ export default defineConfig({
 				{
 					label: 'Components',
 					items: components
-						.map((file) => file.replace(/\.[^/.]+$/, ''))
+						.map((file) => file.replace(/\/[^/]*$/, ''))
 						.toSorted()
 				}
 			],
