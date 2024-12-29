@@ -55,7 +55,7 @@ import styles from './pin.module.css?raw'
 			definition: "'forwards' | 'backwards'"
 		},
 		{
-			name: 'PinSlotsItem',
+			name: 'PinSlotItem',
 			definition: '{ slot: number; value: string }'
 		}
 	]}
@@ -120,7 +120,7 @@ Used to group slot items.
 Given the dynamic length of the pin, this utility component provides means to render slots of the pin using a render function as child.
 
 <Properties
-	props={[{ name: 'children', type: '(type: PinSlotsItem) => ReactNode' }]}
+	props={[{ name: 'children', type: '(item: PinSlotItem) => ReactNode' }]}
 />
 
 ### Slot
