@@ -1,10 +1,15 @@
 import type { ReactNode } from 'react'
 import { poly, forwardRef, type CoreProps } from '@klnjs/react-core'
-import type { CalendarCellProps } from './CalendarCell'
+import type { CalendarCellType } from './CalendarCell'
 import { useCalendarContext } from './CalendarContext'
 import { CalendarGridProvider } from './CalendarGridContext'
 import { useCalendarGrid } from './useCalendarGrid'
-import type { CalendarVisibleDuration } from './CalendarTypes'
+import type { CalendarVisibleDuration, PlainDate } from './CalendarTypes'
+
+export type CalendarGridCellItem = {
+	type: CalendarCellType
+	date: PlainDate
+}
 
 export type CalendarGridProps = CoreProps<
 	'div',
@@ -13,7 +18,7 @@ export type CalendarGridProps = CoreProps<
 		weekdays?: boolean
 		weeks?: boolean
 		overflow?: 'auto' | 'align'
-		children: (props: CalendarCellProps, index: number) => ReactNode
+		children: (item: CalendarGridCellItem, index: number) => ReactNode
 	}
 >
 
