@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 import { useCountdownContext } from './CountdownContext'
 import { getRangeOfUnits, type CountdownUnit } from './useCountdownUnit'
 
-export type CountdownSegmentsItem = {
+export type CountdownSegmentItem = {
 	unit: CountdownUnit
 	value: number
 	label: string
@@ -12,7 +12,7 @@ export type CountdownSegmentsItem = {
 export type CountdownSegmentsProps = {
 	format?: 'short' | 'narrow' | 'long'
 	display?: 'auto' | 'always'
-	children: (type: CountdownSegmentsItem, index: number) => ReactNode
+	children: (item: CountdownSegmentItem, index: number) => ReactNode
 }
 
 export const CountdownSegments = ({
