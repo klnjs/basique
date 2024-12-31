@@ -11,7 +11,7 @@ import Installation from '@library/Installation.astro'
 import Attributes from '@library/Attributes.astro'
 import Properties from '@library/Properties.astro'
 import Types from '@library/Types.astro'
-import AvatarReact from './avatar.tsx'
+import Avatar from './avatar.tsx'
 import react from './avatar.tsx?raw'
 import styles from './avatar.module.css?raw'
 
@@ -22,7 +22,7 @@ import styles from './avatar.module.css?raw'
 		{ type: 'styles', source: styles }
 	]}
 >
-	<AvatarReact slot="react" client:only="react" />
+	<Avatar slot="react" client:only="react" />
 </Showcase>
 
 ## Features
@@ -40,12 +40,13 @@ import styles from './avatar.module.css?raw'
 ## Definitions
 
 <Types
-	types={[
-		{
-			name: 'AvatarStatus',
-			definition: "'idle' | 'loading' | 'loaded' | 'error'"
-		}
-	]}
+    types={[
+    	{
+    		name: 'AvatarStatus',
+    		definition: "'idle' | 'loading' | 'loaded' | 'error'"
+    	}
+    ]}
+
 />
 
 ## Components
