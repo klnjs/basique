@@ -1,10 +1,10 @@
 import {
 	Countdown,
-	CountdownGroup,
-	CountdownSegments,
-	CountdownSegment,
 	CountdownAnnouncer,
-	CountdownLabel
+	CountdownGroup,
+	CountdownLabel,
+	CountdownSegmentFlipClock,
+	CountdownSegments
 } from '@klnjs/react-countdown'
 import classes from './countdown.module.css'
 
@@ -18,23 +18,20 @@ export default () => (
 		smallestUnit="seconds"
 		className={classes.countdown}
 	>
+		<CountdownAnnouncer />
 		<CountdownLabel className={classes.label}>
 			Time left til New Years
 		</CountdownLabel>
-		<CountdownAnnouncer />
 		<CountdownGroup className={classes.group}>
 			<CountdownSegments format="short">
 				{({ unit, value, label }) => (
-					<CountdownSegment
-						key={unit}
+					<CountdownSegmentFlipClock
+						key={`flipclock-${unit}`}
 						unit={unit}
-						className={classes.segment}
-					>
-						<div className={classes.value}>
-							{value.toString().padStart(2, '0')}
-						</div>
-						<div className={classes.unit}>{label}</div>
-					</CountdownSegment>
+						label={label}
+						value={value.toString().padStart(2, '0')}
+						className={classes.flipclock}
+					/>
 				)}
 			</CountdownSegments>
 		</CountdownGroup>
