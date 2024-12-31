@@ -1,5 +1,5 @@
 import { usePrevious, type CoreProps } from '@klnjs/react-core'
-import { useRef, useEffect, type CSSProperties, useMemo } from 'react'
+import { useRef, useMemo, useEffect, type CSSProperties } from 'react'
 import type { CountdownUnit } from './useCountdownUnit'
 
 export type CountdownSegmentFlipProps = CoreProps<
@@ -39,22 +39,22 @@ export const CountdownSegmentFlipClock = ({
 
 	return (
 		<div data-unit={unit} {...otherProps}>
-			<div data-label>{label}</div>
-			<div data-clock style={styles.clock}>
-				<div data-clock-upper style={styles.upper}>
-					<span data-clock-text>{value}</span>
+			<div data-label="">{label}</div>
+			<div data-clock="" style={styles.clock}>
+				<div data-clock-upper="" style={styles.upper}>
+					<span data-clock-text="">{value}</span>
 				</div>
 
-				<div data-clock-lower style={styles.lower}>
-					<span data-clock-text>{cache ?? value}</span>
+				<div data-clock-lower="" style={styles.lower}>
+					<span data-clock-text="">{cache ?? value}</span>
 				</div>
-				<div style={styles.plane}>
-					<div ref={ref} style={styles.space}>
-						<div data-clock-upper style={styles.upper}>
-							<span data-clock-text>{cache ?? value}</span>
+				<div style={styles.realm}>
+					<div ref={ref} style={styles.twirl}>
+						<div data-clock-upper="" style={styles.upper}>
+							<span data-clock-text="">{cache ?? value}</span>
 						</div>
-						<div data-clock-lower style={styles.back}>
-							<span data-clock-text>{value}</span>
+						<div data-clock-lower="" style={styles.verso}>
+							<span data-clock-text="">{value}</span>
 						</div>
 					</div>
 				</div>
@@ -65,26 +65,29 @@ export const CountdownSegmentFlipClock = ({
 
 const useFlipClockStyles = (perspective: number) =>
 	useMemo(() => {
-		const face: CSSProperties = {
+		const clock: CSSProperties = { position: 'relative' }
+
+		const front: CSSProperties = {
 			position: 'absolute',
 			inset: 0,
 			display: 'flex',
 			alignItems: 'center',
 			justifyContent: 'center',
 			backfaceVisibility: 'hidden',
-			willChange: 'transform',
 			transform: 'rotateX(0.1deg)'
 		}
 
-		const clock: CSSProperties = { position: 'relative' }
+		const upper: CSSProperties = { ...front, clipPath: 'inset(0 0 50% 0)' }
 
-		const upper: CSSProperties = { ...face, clipPath: 'inset(0 0 50% 0)' }
+		const lower: CSSProperties = { ...front, clipPath: 'inset(50% 0 0 0)' }
 
-		const lower: CSSProperties = { ...face, clipPath: 'inset(50% 0 0 0)' }
+		const twirl: CSSProperties = {
+			...front,
+			transformStyle: 'preserve-3d',
+			willChange: 'transform'
+		}
 
-		const space: CSSProperties = { ...face, transformStyle: 'preserve-3d' }
-
-		const plane: CSSProperties = {
+		const realm: CSSProperties = {
 			pointerEvents: 'none',
 			position: 'absolute',
 			perspective,
@@ -92,14 +95,14 @@ const useFlipClockStyles = (perspective: number) =>
 			inset: 0
 		}
 
-		const back: CSSProperties = { ...lower, transform: 'rotateX(180deg)' }
+		const verso: CSSProperties = { ...lower, transform: 'rotateX(180deg)' }
 
 		return {
 			clock,
 			upper,
 			lower,
-			space,
-			plane,
-			back
+			twirl,
+			realm,
+			verso
 		}
 	}, [perspective])
