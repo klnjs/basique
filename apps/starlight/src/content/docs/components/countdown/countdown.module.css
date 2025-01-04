@@ -21,7 +21,6 @@
 .flipclock [data-clock] {
 	width: 60px;
 	height: 60px;
-	line-height: 1;
 	font-size: 24px;
 	font-weight: bold;
 	color: var(--sl-color-white);
@@ -29,20 +28,15 @@
 	user-select: none;
 }
 
-.flipclock [data-clock-upper] {
+.flipclock [data-clock-upper],
+.flipclock [data-clock-lower] {
 	border-radius: 0.5rem;
 	background: var(--sl-color-black);
 	border: 1px solid var(--sl-color-hairline-light);
 }
 
-.flipclock [data-clock-lower] {
-	border-radius: 0.5rem;
-	background: var(--sl-color-gray-6);
-	border: 1px solid var(--sl-color-hairline-light);
-}
 
-.flipclock [data-clock-upper]::after,
-.flipclock [data-clock-lower]::after {
+.flipclock [data-clock-upper]::after {
 	position: absolute;
 	content: '';
 	height: 1px;
@@ -51,5 +45,5 @@
 }
 
 .flipclock [data-clock-text] {
-	transform: translateY(-0.05em);
+	transform: translateY(-2px);
 }

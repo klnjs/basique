@@ -73,8 +73,7 @@ const useFlipClockStyles = (perspective: number) =>
 			display: 'flex',
 			alignItems: 'center',
 			justifyContent: 'center',
-			backfaceVisibility: 'hidden',
-			transform: 'rotateX(0.1deg)'
+			backfaceVisibility: 'hidden'
 		}
 
 		const upper: CSSProperties = { ...front, clipPath: 'inset(0 0 50% 0)' }
