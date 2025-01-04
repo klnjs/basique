@@ -9,9 +9,16 @@ export const getTextareaMeasurements = (
 ) => {
 	const dummy = document.createElement('div')
 	const styles = window.getComputedStyle(textarea)
-	const parent = textarea.parentElement as Node
+	const parent = textarea.parentElement
+
+	if (!parent) {
+		throw new Error(
+			'The textarea element must be attached to the DOM and have a parent element.'
+		)
+	}
 
 	parent.appendChild(dummy)
+
 	dummy.style.font = styles.font
 	dummy.style.width = styles.width
 	dummy.style.border = styles.border
@@ -24,16 +31,23 @@ export const getTextareaMeasurements = (
 	dummy.style.overflowWrap = styles.overflowWrap
 	dummy.style.whiteSpace = styles.whiteSpace
 
-	const now = measureContentHeight(dummy, `${textarea.value}\n`)
-	const min = measureContentHeight(dummy, `${Array(minRows).join('\n')}\n`)
-	const max =
+	const nowHeight = measureContentHeight(dummy, `${textarea.value}\n`)
+	const minHeight = measureContentHeight(
+		dummy,
+		`${Array(minRows).join('\n')}\n`
+	)
+	const maxHeight =
 		maxRows !== Infinity
 			? measureContentHeight(dummy, `${Array(maxRows).join('\n')}\n`)
 			: Infinity
 
 	parent.removeChild(dummy)
 
-	return { now, min, max }
+	return {
+		now: nowHeight,
+		min: minHeight,
+		max: maxHeight
+	}
 }
 
 export const measureContentHeight = (element: HTMLElement, value: string) => {

@@ -28,10 +28,10 @@ export const getCalendars = (tag: string): LocaleCalendar[] => {
 		// @ts-expect-error getCalendars not in spec yet
 		return locale.getCalendars() as LocaleCalendar[]
 	}
-	/* eslint-enable */
 
 	const calendar = new Intl.DateTimeFormat(tag).resolvedOptions()
 		.calendar as LocaleCalendar
 
 	return [calendar]
+	/* eslint-enable */
 }
