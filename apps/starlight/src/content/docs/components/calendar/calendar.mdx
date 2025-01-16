@@ -1,4 +1,5 @@
 ---
+slug: components/calendar
 title: Calendar
 description: An element for creating interactive calendar.
 ---
@@ -9,6 +10,7 @@ import Features from '@library/Features.astro'
 import Installation from '@library/Installation.astro'
 import Attributes from '@library/Attributes.astro'
 import Properties from '@library/Properties.astro'
+import Types from '@library/Types.astro'
 import Calendar from './calendar.tsx'
 import react from './calendar.tsx?raw'
 import styles from './calendar.module.css?raw'
@@ -45,7 +47,7 @@ The calendar component relies on a [temporal polyfill](https://www.npmjs.com/pac
 
 <Installation name="react-calendar" dependencies={['temporal-polyfill']} />
 
-## API Reference
+## Definitions
 
 - [Calendar](#calendar-root)
 - [CalendarHeader](#calendarheader)
@@ -55,7 +57,17 @@ The calendar component relies on a [temporal polyfill](https://www.npmjs.com/pac
 - [CalendarGrid](#calendargrid)
 - [CalendarCell](#calendarcell)
 
-### Calendar (Root)
+## Components
+
+- [Calendar](#calendar)
+- [Header](#header)
+- [Title](#title)
+- [Button](#button)
+- [Group](#group)
+- [Grid](#grid)
+- [Cell](#cell)
+
+### Calendar
 
 Contains all the parts of a calendar. As the calendar does not have html semantics for providing a label, it is recommended to provide an `aria-label` to ensure good accessibility.
 
@@ -63,17 +75,8 @@ Contains all the parts of a calendar. As the calendar does not have html semanti
 	props={[
 		{ name: 'asChild', type: 'boolean', defaultValue: 'false' },
 		{ name: 'autoFocus', type: 'boolean', defaultValue: 'false' },
-		{
-			name: 'calendar',
-			type: 'LocaleCalendar',
-			typeAdvanced:
-				"'buddhist' | 'chinese' | 'coptic' | 'dangi' | 'ethioaa' | 'ethiopic' | 'gregory' | 'hebrew' | 'indian' | 'islamic' | 'islamic-umalqura' | 'islamic-tbla' | 'islamic-civil' | 'islamic-rgsa' | 'iso8601' | 'japanese' | 'persian' | 'roc' | 'islamicc'"
-		},
-		{
-			name: 'defaultValue',
-			type: 'CalendarSelectValue',
-			typeAdvanced: 'null | PlainDate | PlainDate[] | PlainDateRange'
-		},
+		{ name: 'calendar', type: 'LocaleCalendar' },
+		{ name: 'defaultValue', type: 'CalendarSelectValue' },
 		{ name: 'disabled', type: 'boolean', defaultValue: 'false' },
 		{ name: 'locale', type: 'string', defaultValue: 'en' },
 		{ name: 'max', type: 'PlainDate' },
@@ -81,37 +84,21 @@ Contains all the parts of a calendar. As the calendar does not have html semanti
 		{
 			name: 'pagination',
 			type: 'CalendarPagination',
-			typeAdvanced: "'visible' | 'single'",
 			defaultValue: 'visible'
 		},
 		{ name: 'readOnly', type: 'boolean', defaultValue: 'false' },
-		{
-			name: 'select',
-			type: 'CalendarSelect',
-			typeAdvanced: "'one' | 'many' | 'range'",
-			defaultValue: 'one'
-		},
-		{
-			name: 'value',
-			type: 'CalendarSelectValue',
-			typeAdvanced: 'null | PlainDate | PlainDate[] | PlainDateRange'
-		},
+		{ name: 'select', type: 'CalendarSelect', defaultValue: 'one' },
+		{ name: 'value', type: 'CalendarSelectValue' },
 		{
 			name: 'visibleDuration',
 			type: 'CalendarVisibleDuration',
-			typeAdvanced: '{ months: number }',
 			defaultValue: '{ months: 1 }'
 		},
-		{
-			name: 'onChange',
-			type: 'function',
-			typeAdvanced:
-				'(value: null | PlainDate | PlainDate[] | PlainDateRange) => void'
-		}
+		{ name: 'onChange', type: '(value: CalendarSelectValue) => void' }
 	]}
 />
 
-### CalendarHeader
+### Header
 
 Used to group calendar header components.
 
@@ -119,7 +106,7 @@ Used to group calendar header components.
 	props={[{ name: 'asChild', type: 'boolean', defaultValue: 'false' }]}
 />
 
-### CalendarTitle
+### Title
 
 Display a localised title representing the current visible range of the calendar.
 
@@ -127,7 +114,7 @@ Display a localised title representing the current visible range of the calendar
 	props={[{ name: 'asChild', type: 'boolean', defaultValue: 'false' }]}
 />
 
-### CalendarButton
+### Button
 
 Facilitates navigation in the calendar, to ensure keyboard accessibility the active day will be moved to the best matching day within the visible range.
 
@@ -143,7 +130,7 @@ The button will be disabled when the action would cause the visible range to lan
 	]}
 />
 
-### CalendarGroup
+### Group
 
 Used to group grid components when working with multiple months.
 
@@ -151,7 +138,7 @@ Used to group grid components when working with multiple months.
 	props={[{ name: 'asChild', type: 'boolean', defaultValue: 'false' }]}
 />
 
-### CalendarGrid
+### Grid
 
 Given the dynamic length of the visible range in the calendar, this utility component provides means to render the cells relevant to the visible range using a render function as child.
 
@@ -165,16 +152,11 @@ Set `overflow: 'align'` to expand overflow at the end of a month, to match the l
 		{ name: 'week', type: 'boolean', defaultValue: 'false' },
 		{ name: 'weekdays', type: 'boolean', defaultValue: 'false' },
 		{ name: 'overflow', type: "'auto' | 'align'", defaultValue: 'auto' },
-		{
-			name: 'children',
-			type: 'function',
-			typeAdvanced:
-				'(cell: { type: CalendarCellType, date: PlainDate }, index: number ) => ReactNode'
-		}
+		{ name: 'children', type: '(cell: CalendarGridCellItem ) => ReactNode' }
 	]}
 />
 
-### CalendarCell
+### Cell
 
 Used to render individual cells in the grid, it should be used in conjunction with the grid utility component. Cell will render a different native element based on the `type` prop.
 
@@ -183,21 +165,14 @@ Cell provides accessibility like localised labeling and keyboard navigation. For
 <Properties
 	props={[
 		{ name: 'asChild', type: 'boolean', defaultValue: 'false' },
-		{
-			name: 'type',
-			type: 'CalendarCellType',
-			typeAdvanced: "'week' | 'weekday' | 'day' | 'blank'"
-		},
+		{ name: 'type', type: 'CalendarCellType' },
 		{ name: 'date', type: 'PlainDate' }
 	]}
 />
 
 <Attributes
 	attrs={[
-		{
-			name: 'data-cell',
-			values: "'week' | 'weekday' | 'day' | 'blank'"
-		},
+		{ name: 'data-cell', values: 'CalendarCellType' },
 		{ name: 'data-today', text: 'cell is today' },
 		{ name: 'data-tommorow', text: 'cell is tommorow' },
 		{ name: 'data-yesterday', text: 'cell is yesterday' },

@@ -1,4 +1,5 @@
 ---
+slug: components/countdown
 title: Countdown
 description: An element for displaying a countdown.
 ---
@@ -29,11 +30,12 @@ import styles from './countdown.module.css?raw'
 ## Features
 
 <Features>
-	<Feature>Define largest and smallest unit to display.</Feature>
-	<Feature>Display entire unit range or only non completed.</Feature>
-	<Feature>Provide callback for when countdown ends.</Feature>
-	<Feature>Announcing of remaining time by screen readers.</Feature>
-	<Feature>Localisation, formatting and right-to-left support.</Feature>
+	<Feature>Fully localised.</Feature>
+	<Feature>Right-to-Left support.</Feature>
+	<Feature>Screen reader support (optional).</Feature>
+	<Feature>Listen for status changes.</Feature>
+	<Feature>Define largest and smallest unit.</Feature>
+	<Feature>Customise rendering of each segments.</Feature>
 </Features>
 
 ## Installation
@@ -96,6 +98,10 @@ Contains all the parts of an countdown. The `throttle` property is used to contr
 	]}
 />
 
+### Announcer
+
+Optionally used to announce the remaining time to screen readers, should only be included if the information is critical. Behaviour can be customized using standard `aria-*` attributes.
+
 ### Label
 
 Used to optionally render a label, and associate it with the countdown so it is accessible. If omitted, you should add a label to the announcer with property `aria-label`, so the component stays accessible.
@@ -124,25 +130,44 @@ Use the format property to control the format of the segments. The format can be
 	props={[
 		{ name: 'format', type: "'short' | 'narrow' | 'long'" },
 		{ name: 'display', type: "'auto' | 'always'" },
-		{
-			name: 'children',
-			type: '(segment: CountdownSegmentItem) => ReactNode'
-		}
+		{ name: 'children', type: '(item: CountdownSegmentItem) => ReactNode' }
 	]}
 />
 
 ### Segment
 
-Used to render individual segments, it should be used in conjunction with the segments component.
-
 A segment is primarily visual, and it provides `data-*` attributes enabling styling of the different states. To support screen readers, use the announcer component.
 
 <Properties
-	props={[{ name: 'asChild', type: 'boolean', defaultValue: 'false' }]}
+	props={[
+		{ name: 'asChild', type: 'boolean', defaultValue: 'false' },
+		{ name: 'unit', type: 'CountdownUnit' }
+	]}
 />
 
 <Attributes attrs={[{ name: 'data-unit', values: 'CountdownUnit' }]} />
 
-### Announcer
+### SegmentFlipClock (Advanced)
 
-Used to announce the remaining time to screen readers. Behaviour can be customized using standard `aria-*` attributes.
+Used to render segments in a flip clock style, use the `duration` and `perspective` prop to control the flip animation. This component is not a primitive as it builds a complex dom structure to accomodate the flip animation. Inline styles are used for required styles to prevent overriding, and `data-*` attributes can be used to style the different parts.
+
+<Properties
+	props={[
+		{ name: 'asChild', type: 'boolean', defaultValue: 'false' },
+		{ name: 'unit', type: 'CountdownUnit' },
+		{ name: 'value', type: 'string' },
+		{ name: 'label', type: 'string' },
+		{ name: 'duration', type: 'number', defaultValue: 1000 },
+		{ name: 'perspective', type: 'number', defaultValue: 200 }
+	]}
+/>
+
+<Attributes
+	attrs={[
+		{ name: 'data-label', text: 'Element is label' },
+		{ name: 'data-clock', text: 'Element is clock' },
+		{ name: 'data-clock-upper', text: 'Element is upper' },
+		{ name: 'data-clock-lower', text: 'Element is lower' },
+		{ name: 'data-clock-text', text: 'Element is text' }
+	]}
+/>
