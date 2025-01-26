@@ -1,4 +1,3 @@
-import type { SetStateAction } from 'react'
 import { useStateControllable } from '@klnjs/react-core'
 
 export type UsePaginatorOptions = {
@@ -19,7 +18,7 @@ export const usePaginator = ({
 	const [page, setPage] = useStateControllable({
 		defaultValue: defaultPage,
 		value: pageProp,
-		onChange: onChange as (value: SetStateAction<number>) => void
+		onChange
 	})
 
 	return {

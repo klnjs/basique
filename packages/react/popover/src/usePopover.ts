@@ -1,4 +1,4 @@
-import { useState, type SetStateAction } from 'react'
+import { useState } from 'react'
 import { useStateControllable } from '@klnjs/react-core'
 import {
 	offset as offsetMiddleware,
@@ -46,7 +46,7 @@ export const usePopover = ({
 	const [open, setOpen] = useStateControllable({
 		value: openProp,
 		defaultValue: defaultOpen,
-		onChange: onOpenChange as (value: SetStateAction<boolean>) => void
+		onChange: onOpenChange
 	})
 
 	const { refs, context, floatingStyles } = useFloating({

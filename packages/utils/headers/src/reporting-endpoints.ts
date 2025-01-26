@@ -1,38 +1,41 @@
-// eslint-disable-next-line @typescript-eslint/no-extraneous-class
-export class ReportingEndpoints {
-	[key: string]: `https://${string}`
+// https://www.w3.org/TR/reporting-1
 
-	private constructor(options: ReportingEndpoints) {
-		Object.assign(this, options)
-	}
+const secureUrlRegex = /^(?:https:\/\/.*)$/
 
-	static urlRegex = /^(?:https:\/\/.*)$/
+type SecureUrl = `https://${string}`
 
-	static parse(text: string): ReportingEndpoints {
-		return new ReportingEndpoints(
-			text.split(',').reduce((acc, entry) => {
-				const [key = '', value = ''] = entry.trim().split('=')
+function isSecureUrl(value: string): value is SecureUrl {
+	return secureUrlRegex.test(value)
+}
 
-				if (key === '') {
-					throw new SyntaxError(
-						`ReportingEndpoints.parse: received invalid endpoint "${key}"`
-					)
-				}
+export type ReportingEndpoints = {
+	[key: string]: SecureUrl
+}
 
-				if (!this.urlRegex.test(value)) {
-					throw new SyntaxError(
-						`ReportingEndpoints.parse: received invalid url "${value}" for endpoint "${key}"`
-					)
-				}
+export function parse(text: string): ReportingEndpoints {
+	return text.split(',').reduce((acc: ReportingEndpoints, entry) => {
+		const [key, value = ''] = entry.trim().split('=')
 
-				return { ...acc, [key]: value }
-			}, {}) as ReportingEndpoints
-		)
-	}
+		if (key === undefined || key === '') {
+			throw new SyntaxError(
+				`Encountered invalid reporting-endpoints name "${key}"`
+			)
+		}
 
-	static stringify(endpoints: ReportingEndpoints): string {
-		return Object.entries(endpoints)
-			.map(([name, url]) => `${name}=${url}`)
-			.join(', ')
-	}
+		if (!isSecureUrl(value)) {
+			throw new SyntaxError(
+				`Encountered invalid reporting-endpoints url "${value}"`
+			)
+		}
+
+		acc[key] = value
+
+		return acc
+	}, {})
+}
+
+export function stringify(endpoints: ReportingEndpoints): string {
+	return Object.entries(endpoints)
+		.map(([name, url]) => `${name}=${url}`)
+		.join(', ')
 }

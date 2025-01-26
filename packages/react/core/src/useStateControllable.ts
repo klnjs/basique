@@ -11,33 +11,41 @@ import { useCallbackRef } from './useCallbackRef'
 export type UseStateControllableOptions<T> = {
 	value?: T
 	defaultValue?: T | (() => T)
-	onChange?: (value: SetStateAction<T>) => void
+	onChange?: (value: T) => void
 }
 
 /**
  * A hook that implements controlled and uncontrolled state.
  */
 export const useStateControllable = <T>({
-	value: valueProp,
+	value: controlledValue,
 	defaultValue,
 	onChange
 }: UseStateControllableOptions<T>) => {
-	const isControlled = valueProp !== undefined
+	const isControlled = controlledValue !== undefined
 	const isControlledRef = useRef(isControlled)
 	const onChangeRef = useCallbackRef(onChange)
 
-	const [valueState, setValueState] = useState(defaultValue as T)
-	const value = isControlled ? (valueProp as T) : valueState
+	const [uncontrolledValue, setUncontrolledValue] = useState(defaultValue)
+	const value = isControlled ? controlledValue : uncontrolledValue
 
 	const setValue = useCallback(
 		(action: SetStateAction<T>) => {
-			if (!isControlled) {
-				setValueState(action)
-			}
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+			const setter = action as (prev: T | undefined) => T
+			const updated =
+				typeof action === 'function' ? setter(value) : action
 
-			onChangeRef(action)
+			// Prevents unnecessary updates
+			if (value !== updated) {
+				if (!isControlled) {
+					setUncontrolledValue(updated)
+				}
+
+				onChangeRef(updated)
+			}
 		},
-		[isControlled, onChangeRef]
+		[isControlled, value, onChangeRef]
 	)
 
 	useEffect(() => {
@@ -52,5 +60,6 @@ export const useStateControllable = <T>({
 	}, [isControlled])
 
 	// https://github.com/facebook/react/issues/16873
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
 	return [value, setValue] as [T, Dispatch<SetStateAction<T>>]
 }

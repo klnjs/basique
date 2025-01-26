@@ -1,65 +1,59 @@
-type Directive = keyof StrictTransportSecurity
+export const directives = ['max-age', 'includeSubdomains', 'preload'] as const
 
-export class StrictTransportSecurity {
+export type Directive = (typeof directives)[number]
+
+export type StrictTransportSecurity = {
 	'max-age': number
 	includeSubdomains?: boolean
 	preload?: boolean
+}
 
-	private constructor(options: StrictTransportSecurity) {
-		this['max-age'] = options['max-age']
-		this.includeSubdomains = options.includeSubdomains
-		this.preload = options.preload
+export function isDirective(value: string): value is Directive {
+	return (directives as readonly string[]).includes(value)
+}
+
+export function parse(text: string): StrictTransportSecurity {
+	if (!text.includes('max-age')) {
+		throw new SyntaxError(`missing required directive "max-age"`)
 	}
 
-	static directives = Object.keys(
-		new StrictTransportSecurity({ 'max-age': 0 })
-	) as Directive[]
+	return text.split(';').reduce<StrictTransportSecurity>(
+		(acc, entry) => {
+			const [key = '', value] = entry.trim().split('=')
 
-	static parse(text: string): StrictTransportSecurity {
-		if (!text.includes('max-age')) {
-			throw new SyntaxError(
-				`StrictTransportSecurity.parse: missing required directive "max-age"`
-			)
-		}
+			if (!isDirective(key)) {
+				throw new SyntaxError(`invalid directive "${key}"`)
+			}
 
-		return new StrictTransportSecurity(
-			text.split(';').reduce((acc, entry) => {
-				const [key = '', value] = entry.trim().split('=')
+			if (key === 'max-age') {
+				const maxAge = Number(value)
 
-				if (!this.directives.includes(key as Directive)) {
+				if (!Number.isInteger(maxAge) || maxAge < 0) {
 					throw new SyntaxError(
-						`PermissionsPolicy.parse: received invalid directive "${key}"`
+						`invalid value "${value}" for directive "${key}"`
 					)
 				}
 
-				if (key === 'max-age') {
-					const maxAge = Number(value)
+				acc[key] = maxAge
+			} else if (value !== undefined) {
+				throw new SyntaxError(
+					`invalid value "${value}" for directive "${key}"`
+				)
+			} else {
+				acc[key] = true
+			}
 
-					if (!Number.isInteger(maxAge) || maxAge < 0) {
-						throw new SyntaxError(
-							`StrictTransportSecurity.parse: received invalid value "${value}" for directive "${key}"`
-						)
-					}
-				} else if (value !== undefined) {
-					throw new SyntaxError(
-						`StrictTransportSecurity.parse: received invalid value "${value}" for directive "${key}"`
-					)
-				}
+			return acc
+		},
+		{ 'max-age': 0 }
+	)
+}
 
-				return {
-					...acc,
-					[key]: value
-				}
-			}, {}) as StrictTransportSecurity
+export function stringify(policy: StrictTransportSecurity): string {
+	return Object.entries(policy)
+		.filter(([, value]) => value !== false)
+		.map(([directive, value]) =>
+			value === true ? directive : `${directive}=${value}`
 		)
-	}
-
-	static stringify(policy: StrictTransportSecurity): string {
-		return Object.entries(policy)
-			.filter(([, value]) => value !== false)
-			.map(([directive, value]) =>
-				value === true ? directive : `${directive}=${value}`
-			)
-			.join('; ')
-	}
+		.join('; ')
 }

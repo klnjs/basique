@@ -5,10 +5,9 @@
 import { useMemo, type DependencyList } from 'react'
 import { isFunction, isRecord, isString } from '@klnjs/assertion'
 
-type TupleTypes<T> =
-	{ [P in keyof T]: T[P] } extends Record<number, infer V>
-		? NullToObject<V>
-		: never
+type TupleTypes<T> = { [P in keyof T]: T[P] } extends { [key: number]: infer V }
+	? NullToObject<V>
+	: never
 
 type NullToObject<T> = T extends null | undefined ? NonNullable<unknown> : T
 
@@ -18,7 +17,7 @@ type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (
 	? I
 	: never
 
-export type Props = Record<string, any>
+export type Props = { [key: string]: any }
 
 export function composeProps<T extends Props[]>(...props: T) {
 	const merged: Props = { ...props[0] }
@@ -46,6 +45,7 @@ export function composeProps<T extends Props[]>(...props: T) {
 		}
 	}
 
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
 	return merged as UnionToIntersection<TupleTypes<T>>
 }
 

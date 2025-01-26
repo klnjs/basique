@@ -41,8 +41,20 @@ import styles from './pin.module.css?raw'
 
 ## Definitions
 
-<Types
-	types={[
+- [Pin](#pin-root)
+- [PinInput](#pininput)
+- [PinLabel](#pinlabel)
+- [PinGroup](#pingroup)
+- [PinSlots](#pinslots)
+- [PinSlot](#pinslot)
+
+### Pin (Root)
+
+Contains all the parts of a pin.
+
+<Properties
+	props={[
+		{ name: 'asChild', type: 'boolean', defaultValue: 'false' },
 		{
 			name: 'PinType',
 			definition: "'alphabetic' | 'alphanumeric' | 'numeric'"
@@ -64,12 +76,12 @@ import styles from './pin.module.css?raw'
 
 ## Components
 
--   [Pin](#pin)
--   [Input](#input)
--   [Label](#label)
--   [Group](#group)
--   [Slots](#slots)
--   [Slot](#slot)
+- [Pin](#pin)
+- [Input](#input)
+- [Label](#label)
+- [Group](#group)
+- [Slots](#slots)
+- [Slot](#slot)
 
 ###
 

@@ -16,7 +16,7 @@ export const asDataProp = (value: DataValue) => {
 	return undefined
 }
 
-export const useDataProps = (props: Record<DataProp, DataValue>) => () =>
+export const useDataProps = (props: { [key: DataProp]: DataValue }) => () =>
 	Object.fromEntries(
 		Object.entries(props).map(([key, value]) => [key, asDataProp(value)])
 	)

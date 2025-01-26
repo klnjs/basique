@@ -1,30 +1,26 @@
 import { test, expect } from 'bun:test'
-import { PermissionsPolicy } from '../src/permissions-policy'
+import { parse, stringify } from '../src/permissions-policy'
 
 test('parse should succeed with valid permissions-policy', () => {
-	expect(() => PermissionsPolicy.parse('camera=*')).not.toThrow()
-	expect(() => PermissionsPolicy.parse('camera=()')).not.toThrow()
-	expect(() =>
-		PermissionsPolicy.parse('camera=(self "https://trusted.com")')
-	).not.toThrow()
+	expect(() => parse('camera=*')).not.toThrow()
+	expect(() => parse('camera=()')).not.toThrow()
+	expect(() => parse('camera=(self "https://trusted.com")')).not.toThrow()
 })
 
 test('parse should throw with invalid permissions-policy', () => {
-	expect(() => PermissionsPolicy.parse('')).toThrow()
-	expect(() => PermissionsPolicy.parse('invalid-directive=(self)')).toThrow()
-	expect(() => PermissionsPolicy.parse('camera')).toThrow()
-	expect(() => PermissionsPolicy.parse('camera=')).toThrow()
-	expect(() => PermissionsPolicy.parse('camera=(self')).toThrow()
-	expect(() => PermissionsPolicy.parse('camera=self)')).toThrow()
-	expect(() => PermissionsPolicy.parse('camera=(*)')).toThrow()
-	expect(() =>
-		PermissionsPolicy.parse('camera=(invalid-allowlist-#%&/)')
-	).toThrow()
+	expect(() => parse('')).toThrow()
+	expect(() => parse('invalid-directive=(self)')).toThrow()
+	expect(() => parse('camera')).toThrow()
+	expect(() => parse('camera=')).toThrow()
+	expect(() => parse('camera=(self')).toThrow()
+	expect(() => parse('camera=self)')).toThrow()
+	expect(() => parse('camera=(*)')).toThrow()
+	expect(() => parse('camera=(invalid-allowlist-#%&/)')).toThrow()
 })
 
 test('stringify should succeed with permissions-policy', () => {
 	expect(
-		PermissionsPolicy.stringify({
+		stringify({
 			autoplay: '*',
 			camera: [],
 			geolocation: ['self', '"https://trusted.site.com"']

@@ -1,38 +1,32 @@
-type Policy = (typeof ReferrerPolicy.policies)[number]
+// https://www.w3.org/TR/referrer-policy
 
-export class ReferrerPolicy {
-	value: Policy
+const tokens = [
+	'no-referrer',
+	'no-referrer-when-downgrade',
+	'origin',
+	'origin-when-cross-origin',
+	'same-origin',
+	'strict-origin',
+	'strict-origin-when-cross-origin',
+	'unsafe-url'
+] as const
 
-	private constructor(value: Policy) {
-		this.value = value
+type PolicyToken = (typeof tokens)[number]
+
+function isPolicyToken(value: string): value is PolicyToken {
+	return (tokens as readonly string[]).includes(value)
+}
+
+export type ReferrerPolicy = PolicyToken
+
+export function parse(text: string): ReferrerPolicy {
+	if (!isPolicyToken(text)) {
+		throw new SyntaxError(`Encountered invalid referrer-policy "${text}"`)
 	}
 
-	static policies = [
-		'no-referrer',
-		'no-referrer-when-downgrade',
-		'origin',
-		'origin-when-cross-origin',
-		'same-origin',
-		'strict-origin',
-		'strict-origin-when-cross-origin',
-		'unsafe-url'
-	] as const
+	return text
+}
 
-	static parse(text: string): ReferrerPolicy {
-		if (!this.policies.includes(text as Policy)) {
-			throw new SyntaxError(
-				`ReferrerPolicy.parse: received invalid policy "${text}"`
-			)
-		}
-
-		return new ReferrerPolicy(text as Policy)
-	}
-
-	static stringify(policy: ReferrerPolicy | Policy): string {
-		if (typeof policy === 'string') {
-			return policy
-		}
-
-		return policy.value
-	}
+export function stringify(policy: ReferrerPolicy): string {
+	return policy
 }

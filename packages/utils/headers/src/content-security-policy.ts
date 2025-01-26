@@ -1,19 +1,28 @@
-type SourceQuote<T extends string> = `'${T}'`
+// https://www.w3.org/TR/CSP3
 
-type SourceWildcard<T extends string> = T extends `${infer Prefix}*`
-	? `${Prefix}${string}`
-	: T
-
-type SourceList<T extends string> =
-	| '*'
-	| "'none'"
-	| (T extends `'${infer Inner}'`
-			? SourceQuote<SourceWildcard<Inner>>
-			: SourceWildcard<T>)[]
-
-const baseUriSources = ["'self'", 'http://*', 'https://*'] as const
-
-type BaseUriSourceList = SourceList<(typeof baseUriSources)[number]>
+const directives = [
+	'base-uri',
+	'child-src',
+	'connect-src',
+	'default-src',
+	'font-src',
+	'form-action',
+	'frame-ancestors',
+	'frame-src',
+	'img-src',
+	'manifest-src',
+	'media-src',
+	'object-src',
+	'report-to',
+	'sandbox',
+	'script-src-attr',
+	'script-src-elem',
+	'script-src',
+	'style-src-attr',
+	'style-src-elem',
+	'style-src',
+	'worker-src'
+] as const
 
 const sandboxTokens = [
 	'allow-downloads',
@@ -32,156 +41,143 @@ const sandboxTokens = [
 	'allow-top-navigation-to-custom-protocols'
 ] as const
 
-type SandboxTokenList = (typeof sandboxTokens)[number][]
+type Directive = (typeof directives)[number]
 
-const formActionSources = ["'self'", 'http://*', 'https://*'] as const
+type SandboxToken = (typeof sandboxTokens)[number]
 
-type FormActionSourceList = SourceList<(typeof formActionSources)[number]>
+export type SchemeSource = `${string}:`
 
-const frameAncestorsSources = [
-	"'self'",
-	'http://*',
-	'https://*',
-	'blob:',
-	'data:'
-] as const
+const schemeSourceRegex = /^[a-zA-Z][a-zA-Z\d+.-]*:$/
 
-type FrameAncestorSourceList = SourceList<
-	(typeof frameAncestorsSources)[number]
->
+export type HostSource = `${SchemeSource}//${string}`
 
-const fetchSources = [
-	"'self'",
-	"'unsafe-inline'",
-	"'unsafe-eval'",
-	"'strict-dynamic'",
-	"'unsafe-hashes'",
-	"'report-sample'",
-	"'unsafe-allow-redirects'",
-	"'wasm-unsafe-eval'",
-	"'nonce-*'",
-	"'sha256-*'",
-	"'sha384-*'",
-	"'sha512-*'",
-	'http://*',
-	'https://*',
-	'ws://*',
-	'wss://*',
-	'ws:',
-	'wss:',
-	'blob:',
-	'data:',
-	'http:',
-	'https:',
-	'filesystem:',
-	'mediastream:'
-] as const
+const hostSourceRegex = /^https?:\/\/.*$/
 
-type FetchSourceList = SourceList<(typeof fetchSources)[number]>
+export type KeywordSource =
+	| "'self'"
+	| "'unsafe-inline'"
+	| "'unsafe-eval'"
+	| "'strict-dynamic'"
+	| "'unsafe-hashes'"
+	| "'report-sample'"
+	| "'unsafe-allow-redirects'"
+	| "'wasm-unsafe-eval'"
+	| "'trusted-types-eval'"
+	| "'report-sha256'"
+	| "'report-sha384'"
+	| "'report-sha512'"
 
-const getSourcesByDirective = (directive: Directive) => {
-	// eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
-	switch (directive) {
-		case 'base-uri':
-			return baseUriSources
-		case 'form-action':
-			return formActionSources
-		case 'frame-ancestors':
-			return frameAncestorsSources
-		case 'sandbox':
-			return sandboxTokens
-		case 'report-to':
-			return ['*']
-		default:
-			return fetchSources
-	}
+const keywordSourceRegex =
+	/^('self'|'unsafe-inline'|'unsafe-eval'|'strict-dynamic'|'unsafe-hashes'|'report-sample'|'unsafe-allow-redirects'|'wasm-unsafe-eval'|'trusted-types-eval'|'report-sha256'|'report-sha384'|'report-sha512')$/
+
+export type NonceSource = `'nonce-${string}'`
+
+const nonceSourceRegex = /^'nonce-[A-Za-z0-9+/=_-]+'$/
+
+export type HashSource =
+	| `'sha256-${string}'`
+	| `'sha384-${string}'`
+	| `'sha512-${string}'`
+
+const hashSourceRegex = /^'(sha256|sha384|sha512)-[A-Za-z0-9+/=_-]+'$/
+
+type SourceExpression =
+	| SchemeSource
+	| HostSource
+	| KeywordSource
+	| NonceSource
+	| HashSource
+
+type SourceList = '*' | "'none'" | SourceExpression[]
+
+type SandboxTokenList = SandboxToken[]
+
+function isDirective(value: string): value is Directive {
+	return (directives as readonly string[]).includes(value)
 }
 
-const getSourcesRegexByDirective = (directive: Directive) => {
-	const sources = getSourcesByDirective(directive)
-	const base = `(${sources
-		.join('|')
-		.replaceAll('/', '\\/')
-		.replaceAll('*', '[^\\s]+')})`
-
-	if (directive === 'sandbox') {
-		return new RegExp(`^${base}*(?:\\s+${base})*$`)
-	}
-
-	return new RegExp(`^(?:\\*|'none'|${base}*(?:\\s+${base})*)$`)
+function isSourceExpression(value: string): value is SourceExpression {
+	return (
+		schemeSourceRegex.test(value) ||
+		hostSourceRegex.test(value) ||
+		keywordSourceRegex.test(value) ||
+		nonceSourceRegex.test(value) ||
+		hashSourceRegex.test(value)
+	)
 }
 
-type Directive = keyof ContentSecurityPolicy
+function isSandboxToken(value: string): value is SandboxToken {
+	return (sandboxTokens as readonly string[]).includes(value)
+}
 
-export class ContentSecurityPolicy {
-	'base-uri'?: BaseUriSourceList
-	'child-src'?: FetchSourceList
-	'connect-src'?: FetchSourceList
-	'default-src'?: FetchSourceList
-	'font-src'?: FetchSourceList
-	'form-action'?: FormActionSourceList
-	'frame-ancestors'?: FrameAncestorSourceList
-	'frame-src'?: FetchSourceList
-	'img-src'?: FetchSourceList
-	'manifest-src'?: FetchSourceList
-	'media-src'?: FetchSourceList
-	'object-src'?: FetchSourceList
-	'report-to'?: string
-	sandbox?: SandboxTokenList
-	'script-src-attr'?: FetchSourceList
-	'script-src-elem'?: FetchSourceList
-	'script-src'?: FetchSourceList
-	'style-src-attr'?: FetchSourceList
-	'style-src-elem'?: FetchSourceList
-	'style-src'?: FetchSourceList
-	'worker-src'?: FetchSourceList
+export type ContentSecurityPolicy = {
+	[P in Directive]?: P extends 'sandbox' ? SandboxTokenList : SourceList
+}
 
-	private constructor(options: ContentSecurityPolicy) {
-		Object.assign(this, options)
-	}
+export function parse(text: string): ContentSecurityPolicy {
+	return text.split(';').reduce((acc: ContentSecurityPolicy, entry) => {
+		const [key, value = ''] = entry.trim().split(/\s+(.*)/, 2)
 
-	static directives = Object.keys(
-		new ContentSecurityPolicy({})
-	) as Directive[]
-
-	static parse(text: string): ContentSecurityPolicy {
-		return new ContentSecurityPolicy(
-			text.split(';').reduce((acc, entry) => {
-				const [key = '', value = ''] = entry.trim().split(/\s+(.*)/, 2)
-
-				if (!this.directives.includes(key as Directive)) {
-					throw new SyntaxError(
-						`ContentSecurityPolicy.parse: received invalid directive "${key}"`
-					)
-				}
-
-				if (
-					value === '' ||
-					!getSourcesRegexByDirective(key as Directive).test(value)
-				) {
-					throw new SyntaxError(
-						`ContentSecurityPolicy.parse: received invalid sourcelist "${value}" for directive "${key}"`
-					)
-				}
-
-				return {
-					...acc,
-					[key]:
-						value === '*' || value === "'none'"
-							? value
-							: value.split(/\s+/)
-				}
-			}, {}) as ContentSecurityPolicy
-		)
-	}
-
-	static stringify(policy: ContentSecurityPolicy): string {
-		return Object.entries(policy)
-			.map(([directive, sourcelist]) =>
-				Array.isArray(sourcelist)
-					? `${directive} ${sourcelist.join(' ')}`
-					: `${directive} ${sourcelist}`
+		if (key === undefined || !isDirective(key)) {
+			throw new SyntaxError(
+				`Encountered invalid content-security-policy directive "${key}"`
 			)
-			.join('; ')
+		}
+
+		if (key === 'sandbox') {
+			acc[key] = parseSandboxTokenList(value)
+		} else {
+			acc[key] = parseSourceList(value)
+		}
+
+		return acc
+	}, {})
+}
+
+function parseSourceList(value: string): SourceList {
+	if (value === '*' || value === "'none'") {
+		return value
 	}
+
+	return value
+		.trim()
+		.split(/\s+/)
+		.reduce((acc: SourceExpression[], entry) => {
+			if (!isSourceExpression(entry)) {
+				throw new SyntaxError(
+					`Encountered invalid content-security-policy source expression "${entry}"`
+				)
+			}
+
+			acc.push(entry)
+
+			return acc
+		}, [])
+}
+
+function parseSandboxTokenList(value: string): SandboxTokenList {
+	return value
+		.trim()
+		.split(/\s+/)
+		.reduce((acc: SandboxToken[], entry) => {
+			if (!isSandboxToken(entry)) {
+				throw new SyntaxError(
+					`Encountered invalid content-security-policy sandbox token "${entry}"`
+				)
+			}
+
+			acc.push(entry)
+
+			return acc
+		}, [])
+}
+
+export function stringify(policy: ContentSecurityPolicy): string {
+	return Object.entries(policy)
+		.map(([directive, list]) =>
+			Array.isArray(list)
+				? `${directive} ${list.join(' ')}`
+				: `${directive} ${list}`
+		)
+		.join('; ')
 }

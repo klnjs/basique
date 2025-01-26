@@ -127,6 +127,7 @@ export const CalendarCellDay = forwardRef<'div', CalendarCellDayProps>(
 				: createVisibleRange({
 						date: result,
 						span: visibleDuration,
+						// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
 						align: (plainDate.compare(result, highlighted) *
 							(pagination === 'single' ? -1 : 1)) as -1 | 0 | 1
 					})
@@ -136,7 +137,10 @@ export const CalendarCellDay = forwardRef<'div', CalendarCellDayProps>(
 		}
 
 		const handleBlur = (event: FocusEvent) => {
-			if (!isCalendarCell(event.relatedTarget as HTMLElement, 'day')) {
+			if (
+				event.relatedTarget instanceof HTMLElement &&
+				isCalendarCell(event.relatedTarget, 'day')
+			) {
 				setFocusWithin(false)
 			}
 		}
@@ -172,7 +176,10 @@ export const CalendarCellDay = forwardRef<'div', CalendarCellDayProps>(
 			} else if (event.code === 'ArrowUp') {
 				highlight(date.subtract({ weeks: 1 }))
 			} else if (event.code === 'ArrowRight') {
-				if (isElementRTL(event.target as HTMLElement)) {
+				if (
+					event.target instanceof HTMLElement &&
+					isElementRTL(event.target)
+				) {
 					highlight(date.subtract({ days: 1 }))
 				} else {
 					highlight(date.add({ days: 1 }))
@@ -180,7 +187,10 @@ export const CalendarCellDay = forwardRef<'div', CalendarCellDayProps>(
 			} else if (event.code === 'ArrowDown') {
 				highlight(date.add({ weeks: 1 }))
 			} else if (event.key === 'ArrowLeft') {
-				if (isElementRTL(event.target as HTMLElement)) {
+				if (
+					event.target instanceof HTMLElement &&
+					isElementRTL(event.target)
+				) {
 					highlight(date.add({ days: 1 }))
 				} else {
 					highlight(date.subtract({ days: 1 }))
