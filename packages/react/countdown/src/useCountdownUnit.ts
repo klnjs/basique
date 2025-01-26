@@ -35,10 +35,5 @@ export const getRangeOfUnits = (
 	return countdownUnits.slice(largestIndex, smallestIndex + 1)
 }
 
-export const getLargestUnit = (duration: Temporal.Duration) => {
-	const largestUnit =
-		countdownUnits.find((unit) => duration[unit] !== 0) ??
-		countdownUnits.at(-1)
-
-	return largestUnit
-}
+export const getLargestUnit = (duration: Temporal.Duration) =>
+	countdownUnits.find((unit) => duration[unit] !== 0) ?? 'milliseconds'
