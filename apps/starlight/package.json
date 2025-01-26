@@ -17,14 +17,14 @@
 		"build": "bunx --bun astro build"
 	},
 	"dependencies": {
-		"astro": "^4.10.2",
-		"sharp": "^0.33.0"
+		"astro": "^5.1.9",
+		"sharp": "^0.33.5"
 	},
 	"devDependencies": {
 		"@astrojs/check": "0.9.4",
 		"@astrojs/lit": "4.3.0",
-		"@astrojs/react": "3.6.2",
-		"@astrojs/starlight": "0.30.3",
+		"@astrojs/react": "4.1.6",
+		"@astrojs/starlight": "0.31.1",
 		"@klnjs/eslint-config": "4.4.1",
 		"@klnjs/prettier-config": "4.4.1",
 		"@klnjs/typescript-config": "4.4.1",
