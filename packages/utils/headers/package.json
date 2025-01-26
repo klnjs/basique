@@ -23,12 +23,34 @@
 		"LICENSE",
 		"README.md"
 	],
-	"exports": "./index.ts",
+	"exports": {
+		"./content-security-policy": "./src/content-security-policy.ts",
+		"./permissions-policy": "./src/permissions-policy.ts",
+		"./referrer-policy": "./src/referrer-policy.ts",
+		"./reporting-endpoints": "./src/reporting-endpoints.ts",
+		"./strict-transport-security": "./src/strict-transport-security.ts"
+	},
 	"publishConfig": {
 		"exports": {
-			".": {
-				"types": "./dist/index.d.ts",
-				"import": "./dist/index.js"
+			"./content-security-policy": {
+				"types": "./dist/content-security-policy.d.ts",
+				"import": "./dist/content-security-policy.js"
+			},
+			"./permissions-policy": {
+				"types": "./dist/permissions-policy.d.ts",
+				"import": "./dist/permissions-policy.js"
+			},
+			"./referrer-policy": {
+				"types": "./dist/referrer-policy.d.ts",
+				"import": "./dist/referrer-policy.js"
+			},
+			"./reporting-endpoints": {
+				"types": "./dist/reporting-endpoints.d.ts",
+				"import": "./dist/reporting-endpoints.js"
+			},
+			"./strict-transport-security": {
+				"types": "./dist/strict-transport-security.d.ts",
+				"import": "./dist/strict-transport-security.js"
 			}
 		}
 	},
@@ -43,10 +65,10 @@
 	},
 	"devDependencies": {
 		"@klnjs/basique": "workspace:*",
-		"@klnjs/eslint-config": "4.3.0",
-		"@klnjs/prettier-config": "4.3.0",
+		"@klnjs/eslint-config": "4.4.1",
+		"@klnjs/prettier-config": "4.4.1",
 		"@klnjs/types": "workspace:*",
-		"@klnjs/typescript-config": "4.3.0",
+		"@klnjs/typescript-config": "4.4.1",
 		"eslint": "9.17.0",
 		"prettier": "3.4.2",
 		"typescript": "5.7.2"

@@ -15,7 +15,7 @@ export function useCallbackRef<T extends (...args: any[]) => any>(
 	}, [callback])
 
 	return useCallback(
-		// eslint-disable-next-line react-compiler/react-compiler
+		// eslint-disable-next-line react-compiler/react-compiler, @typescript-eslint/no-unsafe-type-assertion
 		((...args) => {
 			if (callbackRef.current) {
 				// eslint-disable-next-line @typescript-eslint/no-unsafe-argument

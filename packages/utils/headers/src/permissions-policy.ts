@@ -1,95 +1,113 @@
-type Directive = keyof PermissionsPolicy
+// https://www.w3.org/TR/permissions-policy
 
-type AllowList =
-	| '*'
-	| ('src' | 'self' | `"http://${string}"` | `"https://${string}"`)[]
+import type { HostSource, SchemeSource } from './content-security-policy'
 
-export class PermissionsPolicy {
-	accelerometer?: AllowList
-	'ambient-light-sensor'?: AllowList
-	autoplay?: AllowList
-	battery?: AllowList
-	camera?: AllowList
-	'clipboard-read'?: AllowList
-	'clipboard-write'?: AllowList
-	'cross-origin-isolated'?: AllowList
-	'display-capture'?: AllowList
-	'document-domain'?: AllowList
-	'encrypted-media'?: AllowList
-	'execution-while-not-rendered'?: AllowList
-	'execution-while-out-of-viewport'?: AllowList
-	fullscreen?: AllowList
-	geolocation?: AllowList
-	gyroscope?: AllowList
-	hid?: AllowList
-	'idle-detection'?: AllowList
-	'interest-cohort'?: AllowList
-	magnetometer?: AllowList
-	microphone?: AllowList
-	midi?: AllowList
-	'navigation-override'?: AllowList
-	payment?: AllowList
-	'picture-in-picture'?: AllowList
-	'publickey-credentials-get'?: AllowList
-	'screen-wake-lock'?: AllowList
-	serial?: AllowList
-	speaker?: AllowList
-	'sync-xhr'?: AllowList
-	usb?: AllowList
-	'web-share'?: AllowList
-	'xr-spatial-tracking'?: AllowList
+const features = [
+	'accelerometer',
+	'ambient-light-sensor',
+	'autoplay',
+	'battery',
+	'camera',
+	'clipboard-read',
+	'clipboard-write',
+	'cross-origin-isolated',
+	'display-capture',
+	'document-domain',
+	'encrypted-media',
+	'execution-while-not-rendered',
+	'execution-while-out-of-viewport',
+	'fullscreen',
+	'geolocation',
+	'gyroscope',
+	'hid',
+	'idle-detection',
+	'interest-cohort',
+	'magnetometer',
+	'microphone',
+	'midi',
+	'navigation-override',
+	'payment',
+	'picture-in-picture',
+	'publickey-credentials-get',
+	'screen-wake-lock',
+	'serial',
+	'speaker',
+	'sync-xhr',
+	'usb',
+	'web-share',
+	'xr-spatial-tracking'
+] as const
 
-	private constructor(options: PermissionsPolicy) {
-		Object.assign(this, options)
-	}
+type FeatureIdentifier = (typeof features)[number]
 
-	static allowListEntryRegex = /(src|self|"https?:\/\/[^\s]+")/
+type PermissionsSourceExpression = SchemeSource | HostSource
 
-	static allowListRegex = new RegExp(
-		`^(?:\\*|\\(${this.allowListEntryRegex.source}*(?:\\s+${this.allowListEntryRegex.source})*\\))$`
-	)
+type AllowList = '*' | AllowListValue[]
 
-	static directives = Object.keys(new PermissionsPolicy({})) as Directive[]
+type AllowListValue = PermissionsSourceExpression | 'self' | 'src' | 'none'
 
-	static parse(text: string): PermissionsPolicy {
-		return new PermissionsPolicy(
-			text.split(',').reduce((acc, entry) => {
-				const [key = '', value = ''] = entry.trim().split('=')
+const allowListValueRegex = /(self|src|none|"https?:\/\/[^\s]+")/
 
-				if (!this.directives.includes(key as Directive)) {
-					throw new SyntaxError(
-						`PermissionsPolicy.parse: received invalid directive "${key}"`
-					)
-				}
+function isFeature(value: string): value is FeatureIdentifier {
+	return (features as readonly string[]).includes(value)
+}
 
-				if (value === '' || !this.allowListRegex.test(value)) {
-					throw new SyntaxError(
-						`PermissionsPolicy.parse: received invalid allowlist "${value}" for directive "${key}"`
-					)
-				}
+function isAllowListValue(value: string): value is AllowListValue {
+	return allowListValueRegex.test(value)
+}
 
-				return {
-					...acc,
-					[key]:
-						value === '*'
-							? value
-							: value
-									.trim()
-									.slice(1, -1)
-									.split(/\s+/)
-									.filter((v) => v !== '')
-				}
-			}, {}) as PermissionsPolicy
-		)
-	}
+export type PermissionsPolicy = {
+	[P in FeatureIdentifier]?: AllowList
+}
 
-	static stringify(policy: PermissionsPolicy): string {
-		return Object.entries(policy)
-			.map(([directive, allowlist]) =>
-				Array.isArray(allowlist)
-					? `${directive}=(${allowlist.join(' ')})`
-					: `${directive}=${allowlist}`
+export function parse(text: string): PermissionsPolicy {
+	return text.split(',').reduce((acc: PermissionsPolicy, entry) => {
+		const [key, value = ''] = entry.trim().split('=')
+
+		if (key === undefined || !isFeature(key)) {
+			throw new SyntaxError(
+				`Encountered invalid permission-policy feature identifier "${key}"`
 			)
-			.join(', ')
+		}
+
+		acc[key] = parseAllowList(value)
+
+		return acc
+	}, {})
+}
+
+export function parseAllowList(value: string): AllowList {
+	if (value === '*') {
+		return value
 	}
+
+	if (value === '()') {
+		return []
+	}
+
+	return value
+		.trim()
+		.slice(1, -1)
+		.split(/\s+/)
+		.reduce((acc: AllowListValue[], entry) => {
+			if (!isAllowListValue(entry)) {
+				throw new SyntaxError(
+					`Encountered invalid permission-policy allow list value "${entry}"`
+				)
+			}
+
+			acc.push(entry)
+
+			return acc
+		}, [])
+}
+
+export function stringify(policy: PermissionsPolicy): string {
+	return Object.entries(policy)
+		.map(([directive, allowlist]) =>
+			Array.isArray(allowlist)
+				? `${directive}=(${allowlist.join(' ')})`
+				: `${directive}=${allowlist}`
+		)
+		.join(', ')
 }

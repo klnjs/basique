@@ -30,7 +30,6 @@ export const isCalendarCell = (
 
 export const CalendarCell = forwardRef<'div', CalendarCellProps>(
 	({ type, date, ...otherProps }, forwardedRef) => {
-		// eslint-disable-next-line no-useless-assignment
 		const Component =
 			type === 'day'
 				? CalendarCellDay

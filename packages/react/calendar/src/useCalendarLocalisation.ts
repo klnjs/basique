@@ -15,10 +15,11 @@ export type CalendarLocalisationKey = keyof (typeof calendarLocalisation)['en']
 export const useCalendarLocalisation = (locale: string) => {
 	const t = (
 		key: CalendarLocalisationKey,
-		interpolation: Record<string, string> = {}
+		interpolation: { [key: string]: string } = {}
 	) => {
 		const lang = isProperty(calendarLocalisation, locale)
-			? (locale as CalendarLocalisationLocale)
+			? // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+				(locale as CalendarLocalisationLocale)
 			: 'en'
 
 		return Object.entries(interpolation).reduce<string>(

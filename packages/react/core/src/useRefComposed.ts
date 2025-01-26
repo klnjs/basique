@@ -17,6 +17,7 @@ export const composeRefs =
 			if (isFunction(ref)) {
 				ref(value)
 			} else if (isDefined(ref)) {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
 				(ref as MutableRefObject<T>).current = value
 			}
 		})

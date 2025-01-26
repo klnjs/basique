@@ -1,4 +1,4 @@
-import { useState, type SetStateAction } from 'react'
+import { useState } from 'react'
 import { useEffectOnUpdate, useStateControllable } from '@klnjs/react-core'
 import { isDefined, isArray } from '@klnjs/assertion'
 import { plainDate } from '@klnjs/temporal'
@@ -44,8 +44,9 @@ export const useCalendarSelection = <S extends CalendarSelect = 'one'>({
 	>({
 		value,
 		defaultValue,
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
 		onChange: onChange as (
-			value: SetStateAction<CalendarSelectValue<CalendarSelect>>
+			value: CalendarSelectValue<CalendarSelect>
 		) => void
 	})
 
@@ -98,6 +99,7 @@ export const useCalendarSelection = <S extends CalendarSelect = 'one'>({
 		setSelectionMode(behaviour ?? 'one')
 	}, [behaviour])
 
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
 	return {
 		selection,
 		selectionIsTransient,

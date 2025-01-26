@@ -34,9 +34,10 @@ const withAsChild = (Component: ElementType) => {
 		return isValidElement(child)
 			? cloneElement(child, {
 					ref: ref
-						? // eslint-disable-next-line react-compiler/react-compiler
+						? // eslint-disable-next-line react-compiler/react-compiler, @typescript-eslint/no-unsafe-type-assertion
 							composeRefs(ref, (child as any).ref)
-						: (child as any).ref,
+						: // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+							(child as any).ref,
 					...composeProps(otherProps, child.props)
 				})
 			: null
@@ -51,12 +52,14 @@ const withAsChild = (Component: ElementType) => {
 const jsx = () => {
 	const cache = new Map()
 
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
 	return new Proxy(withAsChild, {
 		apply(_, __, argArray) {
 			return withAsChild(argArray[0])
 		},
 		get(_, element) {
 			if (!cache.has(element)) {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
 				cache.set(element, withAsChild(element as ElementType))
 			}
 

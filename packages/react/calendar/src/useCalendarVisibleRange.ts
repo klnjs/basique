@@ -30,6 +30,7 @@ export const createVisibleRange = ({
 			? date.subtract(offset)
 			: date.add(offset)
 
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
 	const range = [date, end].sort(plainDate.compare) as PlainDateRange
 
 	if (isDefined(min) && plainDate.compare(range[0], min) === -1) {

@@ -9,6 +9,7 @@ export type CalendarProps<S extends CalendarSelect = 'one'> = CoreProps<
 	UseCalendarOptions<S>
 >
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
 export const Calendar = forwardRef<'div', CalendarProps>(
 	(
 		{

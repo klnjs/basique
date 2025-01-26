@@ -14,6 +14,7 @@ export type AsChildForwardRefComponent<E extends ElementType> =
 
 export const forwardRef = <
 	E extends ElementType,
+	// eslint-disable-next-line @typescript-eslint/consistent-indexed-object-style
 	P extends Record<never, never> = Record<never, never>
 >(
 	component: ForwardRefRenderFunction<

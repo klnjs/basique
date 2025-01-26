@@ -65,7 +65,8 @@ export const PinInput = forwardRef<'input', PinInputProps>(
 			onPaste,
 			(event: ClipboardEvent) => {
 				const input = event.clipboardData.getData('text/plain')
-				const sanitized = [...input]
+				const sanitized = input
+					.split('')
 					.filter((char) => pattern.test(char))
 					.slice(0, length)
 					.join('')

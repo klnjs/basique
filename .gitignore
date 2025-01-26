@@ -15,7 +15,7 @@
 !.editorconfig
 !.gitignore
 !.tool-versions
-!bun.lockb
+!bun.lock
 !LICENSE
 !CHANGELOG.md
 !package.json

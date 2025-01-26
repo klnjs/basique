@@ -1,18 +1,16 @@
 import { test, expect } from 'bun:test'
-import { ReferrerPolicy } from '../src/referrer-policy'
+import { parse, stringify } from '../src/referrer-policy'
 
 test('parse should succeed with valid referrer-policy', () => {
-	expect(() => ReferrerPolicy.parse('no-referrer')).not.toThrow()
-	expect(() =>
-		ReferrerPolicy.parse('strict-origin-when-cross-origin')
-	).not.toThrow()
+	expect(() => parse('no-referrer')).not.toThrow()
+	expect(() => parse('strict-origin-when-cross-origin')).not.toThrow()
 })
 
 test('parse should throw with invalid referrer-policy', () => {
-	expect(() => ReferrerPolicy.parse('')).toThrow()
-	expect(() => ReferrerPolicy.parse('invalid-policy')).toThrow()
+	expect(() => parse('')).toThrow()
+	expect(() => parse('invalid-policy')).toThrow()
 })
 
 test('stringify should succeed with referrer-policy', () => {
-	expect(ReferrerPolicy.stringify('no-referrer')).toBe('no-referrer')
+	expect(stringify('no-referrer')).toBe('no-referrer')
 })
