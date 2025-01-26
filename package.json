@@ -24,7 +24,7 @@
 		"adorn": "turbo adorn"
 	},
 	"devDependencies": {
-		"@types/bun": "1.1.14",
-		"turbo": "2.3.3"
+		"@types/bun": "1.2.0",
+		"turbo": "2.3.4"
 	}
 }
