@@ -52,7 +52,7 @@ export const PinSlot = ({
 
 	const handlePointerDown = useChainHandler(onPointerDown, (event) => {
 		event.preventDefault()
-		inputRef.current.focus()
+		inputRef.current?.focus()
 	})
 
 	return (
