@@ -1,25 +1,27 @@
 import {
 	poly,
-	forwardRef,
 	asDataProp,
-	useRefComposed,
+	useMergeRefs,
 	type CoreProps
 } from '@klnjs/react-core'
 import { usePopoverContext } from './PopoverContext'
 
 export type PopoverTriggerProps = CoreProps<'button'>
 
-export const PopoverTrigger = forwardRef<'button'>((props, forwardedRef) => {
+export const PopoverTrigger = ({
+	ref: refProp,
+	...otherProps
+}: PopoverTriggerProps) => {
 	const { open, refs, status, getReferenceProps } = usePopoverContext()
-	const ref = useRefComposed(refs.setReference, forwardedRef)
+	const refMerged = useMergeRefs(refs.setReference, refProp)
 
 	return (
 		<poly.button
-			ref={ref}
+			ref={refMerged}
 			type="button"
 			data-open={asDataProp(open)}
 			data-status={asDataProp(status)}
-			{...getReferenceProps(props)}
+			{...getReferenceProps(otherProps)}
 		/>
 	)
-})
+}

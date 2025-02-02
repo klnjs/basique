@@ -10,7 +10,7 @@ export const useRequestAnimationFrame = (
 	callback: () => void,
 	{ enabled = true, throttle = 0 }: UseRequestAnimationFrameOptions = {}
 ) => {
-	const rafId = useRef<number | undefined>()
+	const rafId = useRef<number>(null)
 	const rafCalledAt = useRef<number>(0)
 	const callbackRef = useCallbackRef(callback)
 
@@ -31,7 +31,7 @@ export const useRequestAnimationFrame = (
 			rafId.current = requestAnimationFrame(handler)
 
 			return () => {
-				if (rafId.current !== undefined) {
+				if (rafId.current !== null) {
 					cancelAnimationFrame(rafId.current)
 				}
 			}

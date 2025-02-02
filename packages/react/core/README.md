@@ -1,6 +1,6 @@
 # @klnjs/react-core
 
-A library that simplifies implemention of React components that support the `asChild` paradigm. Ensures full [TypeScript](https://www.typescriptlang.org/) support for component props, and refs.
+A library that simplifies implemention of React components that support the `asChild` paradigm.
 
 ## Installation
 
@@ -13,17 +13,14 @@ npm install @klnjs/react-core
 ## How to Use
 
 ```ts
-import { poly, forwardRef, type CoreProps } from '@klnjs/react-core';
+import { poly, type CoreProps } from '@klnjs/react-core';
 
 export type MyComponentProps = CoreProps<
   'div',
   {
     myCustomProp: string;
   }
->;
+>
 
-export const MyComponent = forwardRef<'div', MyComponentProps>(
-  (props, forwardedRef) => <poly.div ref={forwardedRef} {...props} />
-);
-
+export const MyComponent = (props: MyComponentProps) => <poly.div {...props} />
 ```

@@ -1,20 +1,23 @@
-import { poly, forwardRef, type CoreProps } from '@klnjs/react-core'
+import { poly, type CoreProps } from '@klnjs/react-core'
 import { plainDate } from '@klnjs/temporal'
 import { useCalendarContext } from './CalendarContext'
 import type { CalendarCellProps } from './CalendarCell'
 
 export type CalendarCellWeekProps = CoreProps<'div', CalendarCellProps>
 
-export const CalendarCellWeek = forwardRef<'div', CalendarCellWeekProps>(
-	({ type, date, children, ...otherProps }, forwardedRef) => {
-		const { locale } = useCalendarContext()
+export const CalendarCellWeek = ({
+	type,
+	date,
+	children,
+	...otherProps
+}: CalendarCellWeekProps) => {
+	const { locale } = useCalendarContext()
 
-		const content = children ?? plainDate.getWeekOfYear(date, locale)
+	const content = children ?? plainDate.getWeekOfYear(date, locale)
 
-		return (
-			<poly.div ref={forwardedRef} data-cell="week" {...otherProps}>
-				{content}
-			</poly.div>
-		)
-	}
-)
+	return (
+		<poly.div data-cell="week" {...otherProps}>
+			{content}
+		</poly.div>
+	)
+}

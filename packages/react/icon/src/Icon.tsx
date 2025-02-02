@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { forwardRef, type CoreProps } from '@klnjs/react-core'
+import type { CoreProps } from '@klnjs/react-core'
 import { IconTitle } from './IconTitle'
 import { IconDescription } from './IconDescription'
 import { IconPath } from './IconPath'
@@ -8,13 +8,12 @@ import { useIcon } from './useIcon'
 
 export type IconProps = CoreProps<'svg'>
 
-export const Icon = forwardRef<'svg', IconProps>((props, forwardedRef) => {
+export const Icon = (props: IconProps) => {
 	const icon = useIcon()
 
 	return (
 		<IconProvider value={icon}>
 			<svg
-				ref={forwardedRef}
 				fill="currentColor"
 				aria-labelledby={icon.labelId}
 				aria-describedby={icon.descriptionId}
@@ -22,7 +21,7 @@ export const Icon = forwardRef<'svg', IconProps>((props, forwardedRef) => {
 			/>
 		</IconProvider>
 	)
-})
+}
 
 export const createIcon = ({
 	title,
@@ -35,8 +34,8 @@ export const createIcon = ({
 	path: string
 	viewBox: string
 }) => {
-	const Component = forwardRef<'svg', IconProps>((props, forwardedRef) => (
-		<Icon ref={forwardedRef} viewBox={viewBox} {...props}>
+	const Component = (props: IconProps) => (
+		<Icon viewBox={viewBox} {...props}>
 			{title ? <IconTitle>{title}</IconTitle> : null}
 			{description ? (
 				<IconDescription>{description}</IconDescription>
@@ -44,7 +43,7 @@ export const createIcon = ({
 
 			<IconPath d={path} />
 		</Icon>
-	))
+	)
 
 	Component.displayName = title
 	return memo(Component)

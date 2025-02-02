@@ -1,12 +1,10 @@
-import { poly, forwardRef, type CoreProps } from '@klnjs/react-core'
+import { poly, type CoreProps } from '@klnjs/react-core'
 import { usePinContext } from './PinContext'
 
 export type PinLabelProps = CoreProps<'label'>
 
-export const PinLabel = forwardRef<'label', PinLabelProps>(
-	(props, forwardedRef) => {
-		const { inputId } = usePinContext()
+export const PinLabel = (props: PinLabelProps) => {
+	const { inputId } = usePinContext()
 
-		return <poly.label ref={forwardedRef} htmlFor={inputId} {...props} />
-	}
-)
+	return <poly.label htmlFor={inputId} {...props} />
+}

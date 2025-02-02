@@ -1,4 +1,4 @@
-import { useStateControllable } from '@klnjs/react-core'
+import { useControllableState } from '@klnjs/react-core'
 
 export type UsePaginatorOptions = {
 	defaultPage?: number
@@ -15,7 +15,7 @@ export const usePaginator = ({
 	pages,
 	onChange
 }: UsePaginatorOptions) => {
-	const [page, setPage] = useStateControllable({
+	const [page, setPage] = useControllableState({
 		defaultValue: defaultPage,
 		value: pageProp,
 		onChange

@@ -1,47 +1,46 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 
 import {
 	Children,
 	cloneElement,
-	forwardRef,
 	isValidElement,
+	type ComponentProps,
+	type ElementType,
+	type FunctionComponent,
 	type JSX,
-	type ElementType
+	type ReactNode
 } from 'react'
-import { composeRefs } from './useRefComposed'
-import { composeProps } from './usePropsComposed'
-import type { AsChildProps } from './asChild'
-import type { AsChildForwardRefComponent } from './forwardRef'
+import type { Prettify, Assign } from '@klnjs/types'
+import { mergeProps, type Props } from './useMergeProps'
+
+type AsChildProps = {
+	asChild?: boolean
+	children?: ReactNode | undefined
+}
+
+type AsChildComponentProps<E extends ElementType> = AsChildProps &
+	ComponentProps<E>
 
 const withAsChild = (Component: ElementType) => {
-	const Comp = forwardRef<unknown, AsChildProps>((props, ref) => {
+	const Comp = (props: AsChildProps) => {
 		const { asChild, children, ...otherProps } = props
 
 		if (!asChild) {
-			return (
-				<Component ref={ref} {...otherProps}>
-					{children}
-				</Component>
-			)
+			return <Component {...otherProps}>{children}</Component>
 		}
 
 		const child = Children.only(children)
 
 		return isValidElement(child)
-			? cloneElement(child, {
-					ref: ref
-						? // eslint-disable-next-line react-compiler/react-compiler, @typescript-eslint/no-unsafe-type-assertion
-							composeRefs(ref, (child as any).ref)
-						: // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
-							(child as any).ref,
-					...composeProps(otherProps, child.props)
-				})
+			? cloneElement(
+					child,
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+					mergeProps(otherProps, child.props as Props)
+				)
 			: null
-	})
+	}
 
 	// @ts-expect-error - it exists
 	Comp.displayName = Component.displayName || Component.name
@@ -66,8 +65,15 @@ const jsx = () => {
 			return cache.get(element)
 		}
 	}) as unknown as {
-		[E in keyof JSX.IntrinsicElements]: AsChildForwardRefComponent<E>
+		[E in keyof JSX.IntrinsicElements]: FunctionComponent<
+			AsChildComponentProps<E>
+		>
 	}
 }
 
 export const poly = jsx()
+
+export type CoreProps<
+	E extends ElementType,
+	P extends object = object
+> = Prettify<Assign<AsChildComponentProps<E>, P>>

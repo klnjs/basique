@@ -1,13 +1,11 @@
-import { forwardRef, useId, type CoreProps } from '@klnjs/react-core'
+import { useId, type CoreProps } from '@klnjs/react-core'
 import { useIconContext } from './IconContext'
 
 export type IconTitleProps = CoreProps<'title'>
 
-export const IconTitle = forwardRef<'title', IconTitleProps>(
-	({ id: idProp, ...otherProps }, forwardedRef) => {
-		const { setLabelId } = useIconContext()
-		const id = useId(idProp, setLabelId)
+export const IconTitle = ({ id: idProp, ...otherProps }: IconTitleProps) => {
+	const { setLabelId } = useIconContext()
+	const id = useId(idProp, setLabelId)
 
-		return <title id={id} ref={forwardedRef} {...otherProps} />
-	}
-)
+	return <title id={id} {...otherProps} />
+}

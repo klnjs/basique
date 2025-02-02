@@ -1,17 +1,15 @@
-import { poly, forwardRef, type CoreProps } from '@klnjs/react-core'
+import { poly, type CoreProps } from '@klnjs/react-core'
 import { AvatarProvider } from './AvatarContext'
 import { useAvatar, type UseAvatarOptions } from './useAvatar'
 
 export type AvatarProps = CoreProps<'div', UseAvatarOptions>
 
-export const Avatar = forwardRef<'div', AvatarProps>(
-	({ onStatusChange, ...otherProps }, forwardedRef) => {
-		const avatar = useAvatar({ onStatusChange })
+export const Avatar = ({ onStatusChange, ...otherProps }: AvatarProps) => {
+	const avatar = useAvatar({ onStatusChange })
 
-		return (
-			<AvatarProvider value={avatar}>
-				<poly.div ref={forwardedRef} {...otherProps} />
-			</AvatarProvider>
-		)
-	}
-)
+	return (
+		<AvatarProvider value={avatar}>
+			<poly.div {...otherProps} />
+		</AvatarProvider>
+	)
+}

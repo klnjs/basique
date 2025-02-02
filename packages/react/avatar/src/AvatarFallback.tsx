@@ -1,28 +1,27 @@
 import { useState, useEffect } from 'react'
-import { poly, forwardRef, type CoreProps } from '@klnjs/react-core'
+import { poly, type CoreProps } from '@klnjs/react-core'
 import { useAvatarContext } from './AvatarContext'
 
 export type AvatarFallbackProps = CoreProps<'div', { delay?: number }>
 
-export const AvatarFallback = forwardRef<'div', AvatarFallbackProps>(
-	({ delay, ...otherProps }, forwardedRef) => {
-		const { status } = useAvatarContext()
+export const AvatarFallback = ({
+	delay,
+	...otherProps
+}: AvatarFallbackProps) => {
+	const { status } = useAvatarContext()
 
-		const [ready, setReady] = useState(delay === undefined)
+	const [ready, setReady] = useState(delay === undefined)
 
-		// @ts-expect-error ts(7030): Not all code paths return a value.
-		useEffect(() => {
-			if (delay !== undefined) {
-				const timeout = setTimeout(() => setReady(true), delay)
+	// @ts-expect-error ts(7030): Not all code paths return a value.
+	useEffect(() => {
+		if (delay !== undefined) {
+			const timeout = setTimeout(() => setReady(true), delay)
 
-				return () => {
-					clearTimeout(timeout)
-				}
+			return () => {
+				clearTimeout(timeout)
 			}
-		}, [delay])
+		}
+	}, [delay])
 
-		return ready && status !== 'loaded' ? (
-			<poly.div ref={forwardedRef} {...otherProps} />
-		) : null
-	}
-)
+	return ready && status !== 'loaded' ? <poly.div {...otherProps} /> : null
+}

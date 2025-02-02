@@ -1,7 +1,6 @@
 import {
 	poly,
-	forwardRef,
-	useRefComposed,
+	useMergeRefs,
 	type CoreProps,
 	asDataProp
 } from '@klnjs/react-core'
@@ -9,15 +8,18 @@ import { usePopoverContext } from './PopoverContext'
 
 export type PopoverAnchorProps = CoreProps<'div'>
 
-export const PopoverAnchor = forwardRef<'div'>((props, forwardedRef) => {
+export const PopoverAnchor = ({
+	ref: refProp,
+	...otherProps
+}: PopoverAnchorProps) => {
 	const { refs, status } = usePopoverContext()
-	const refComposed = useRefComposed(refs.setPositionReference, forwardedRef)
+	const refMerged = useMergeRefs(refs.setPositionReference, refProp)
 
 	return (
 		<poly.div
-			ref={refComposed}
+			ref={refMerged}
 			data-status={asDataProp(status)}
-			{...props}
+			{...otherProps}
 		/>
 	)
-})
+}
