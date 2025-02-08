@@ -28,7 +28,7 @@ export const PopoverContent = ({
 		getFloatingProps
 	} = usePopoverContext()
 
-	const refMerged = useMergeRefs(refs.setFloating, refProp)
+	const refMerged = useMergeRefs<HTMLDivElement>(refs.setFloating, refProp)
 	const closeOnFocusOut = dismiss?.onFocusOut
 
 	if (!mounted) {

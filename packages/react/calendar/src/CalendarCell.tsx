@@ -1,4 +1,5 @@
 import { isDefined } from '@klnjs/assertion'
+import type { CoreProps } from '@klnjs/react-core'
 import { CalendarCellBlank } from './CalendarCellBlank'
 import { CalendarCellDay } from './CalendarCellDay'
 import { CalendarCellWeek } from './CalendarCellWeek'
@@ -7,10 +8,13 @@ import type { PlainDate } from './CalendarTypes'
 
 export type CalendarCellType = 'day' | 'week' | 'weekday' | 'blank'
 
-export type CalendarCellProps = {
-	type: CalendarCellType
-	date: PlainDate
-}
+export type CalendarCellProps = CoreProps<
+	'div',
+	{
+		type: CalendarCellType
+		date: PlainDate
+	}
+>
 
 export const isCalendarCell = (
 	element: HTMLElement | null,

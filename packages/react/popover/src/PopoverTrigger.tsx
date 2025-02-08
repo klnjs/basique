@@ -13,7 +13,10 @@ export const PopoverTrigger = ({
 	...otherProps
 }: PopoverTriggerProps) => {
 	const { open, refs, status, getReferenceProps } = usePopoverContext()
-	const refMerged = useMergeRefs(refs.setReference, refProp)
+	const refMerged = useMergeRefs<HTMLButtonElement>(
+		refs.setReference,
+		refProp
+	)
 
 	return (
 		<poly.button

@@ -48,7 +48,7 @@ const withAsChild = (Component: ElementType) => {
 	return Comp
 }
 
-const jsx = () => {
+const createAsChildProxy = () => {
 	const cache = new Map()
 
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
@@ -71,7 +71,7 @@ const jsx = () => {
 	}
 }
 
-export const poly = jsx()
+export const poly = createAsChildProxy()
 
 export type CoreProps<
 	E extends ElementType,

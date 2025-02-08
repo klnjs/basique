@@ -2,7 +2,7 @@ import { poly, type CoreProps } from '@klnjs/react-core'
 import { SpinnerProvider } from './SpinnerContext'
 import { useSpinner, type SpinnerOptions } from './useSpinner'
 
-export type SpinnerProps = CoreProps<'svg', SpinnerOptions>
+export type SpinnerProps = CoreProps<'svg', Partial<SpinnerOptions>>
 
 export const Spinner = ({
 	size = 24,

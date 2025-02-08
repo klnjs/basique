@@ -13,7 +13,10 @@ export const PopoverAnchor = ({
 	...otherProps
 }: PopoverAnchorProps) => {
 	const { refs, status } = usePopoverContext()
-	const refMerged = useMergeRefs(refs.setPositionReference, refProp)
+	const refMerged = useMergeRefs<HTMLDivElement>(
+		refs.setPositionReference,
+		refProp
+	)
 
 	return (
 		<poly.div
