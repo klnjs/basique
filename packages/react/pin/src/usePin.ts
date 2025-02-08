@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { useStateControllable, usePrevious } from '@klnjs/react-core'
+import { useControllableState, usePrevious } from '@klnjs/react-core'
 import { isRecord } from '@klnjs/assertion'
 import type { PinType, PinConceal, PinDirection } from './PinTypes'
 
@@ -22,13 +22,13 @@ export const usePin = ({
 	value,
 	onChange
 }: UsePinOptions = {}) => {
-	const inputRef = useRef<HTMLInputElement>()
+	const inputRef = useRef<HTMLInputElement>(null)
 
 	const [inputId, setInputId] = useState<string>()
 
 	const [focusWithin, setFocusWithin] = useState(false)
 
-	const [pin = '', setPin] = useStateControllable({
+	const [pin = '', setPin] = useControllableState({
 		value,
 		defaultValue,
 		onChange

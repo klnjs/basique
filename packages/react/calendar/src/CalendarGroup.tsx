@@ -1,7 +1,7 @@
-import { poly, forwardRef, type CoreProps } from '@klnjs/react-core'
+import { poly, type CoreProps } from '@klnjs/react-core'
 
 export type CalendarGroupProps = CoreProps<'div'>
 
-export const CalendarGroup = forwardRef<'div', CalendarGroupProps>(
-	(props, forwardedRef) => <poly.div ref={forwardedRef} {...props} />
+export const CalendarGroup = (props: CalendarGroupProps) => (
+	<poly.div {...props} />
 )

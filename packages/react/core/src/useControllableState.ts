@@ -8,7 +8,7 @@ import {
 } from 'react'
 import { useCallbackRef } from './useCallbackRef'
 
-export type UseStateControllableOptions<T> = {
+export type UseControllableStateOptions<T> = {
 	value?: T
 	defaultValue?: T | (() => T)
 	onChange?: (value: T) => void
@@ -17,11 +17,11 @@ export type UseStateControllableOptions<T> = {
 /**
  * A hook that implements controlled and uncontrolled state.
  */
-export const useStateControllable = <T>({
+export const useControllableState = <T>({
 	value: controlledValue,
 	defaultValue,
 	onChange
-}: UseStateControllableOptions<T>) => {
+}: UseControllableStateOptions<T>) => {
 	const isControlled = controlledValue !== undefined
 	const isControlledRef = useRef(isControlled)
 	const onChangeRef = useCallbackRef(onChange)

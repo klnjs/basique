@@ -1,5 +1,5 @@
-import { forwardRef } from '@klnjs/react-core'
 import { isDefined } from '@klnjs/assertion'
+import type { CoreProps } from '@klnjs/react-core'
 import { CalendarCellBlank } from './CalendarCellBlank'
 import { CalendarCellDay } from './CalendarCellDay'
 import { CalendarCellWeek } from './CalendarCellWeek'
@@ -8,10 +8,13 @@ import type { PlainDate } from './CalendarTypes'
 
 export type CalendarCellType = 'day' | 'week' | 'weekday' | 'blank'
 
-export type CalendarCellProps = {
-	type: CalendarCellType
-	date: PlainDate
-}
+export type CalendarCellProps = CoreProps<
+	'div',
+	{
+		type: CalendarCellType
+		date: PlainDate
+	}
+>
 
 export const isCalendarCell = (
 	element: HTMLElement | null,
@@ -28,24 +31,19 @@ export const isCalendarCell = (
 	return element.dataset.cell === type
 }
 
-export const CalendarCell = forwardRef<'div', CalendarCellProps>(
-	({ type, date, ...otherProps }, forwardedRef) => {
-		const Component =
-			type === 'day'
-				? CalendarCellDay
-				: type === 'week'
-					? CalendarCellWeek
-					: type === 'weekday'
-						? CalendarCellWeekday
-						: CalendarCellBlank
+export const CalendarCell = ({
+	type,
+	date,
+	...otherProps
+}: CalendarCellProps) => {
+	const Component =
+		type === 'day'
+			? CalendarCellDay
+			: type === 'week'
+				? CalendarCellWeek
+				: type === 'weekday'
+					? CalendarCellWeekday
+					: CalendarCellBlank
 
-		return (
-			<Component
-				ref={forwardedRef}
-				type={type}
-				date={date}
-				{...otherProps}
-			/>
-		)
-	}
-)
+	return <Component type={type} date={date} {...otherProps} />
+}

@@ -65,6 +65,5 @@ export const createContext = <T extends object>({
 		return context as UseContextReturn<T, S>
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
 	return [Context.Provider, useContext] as [Provider<T>, typeof useContext]
 }

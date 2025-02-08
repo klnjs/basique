@@ -4,6 +4,7 @@
 
 import { useMemo, type DependencyList } from 'react'
 import { isFunction, isRecord, isString } from '@klnjs/assertion'
+import { mergeRefs } from './useMergeRefs'
 
 type TupleTypes<T> = { [P in keyof T]: T[P] } extends { [key: number]: infer V }
 	? NullToObject<V>
@@ -19,7 +20,7 @@ type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (
 
 export type Props = { [key: string]: any }
 
-export function composeProps<T extends Props[]>(...props: T) {
+export function mergeProps<T extends Props[]>(...props: T) {
 	const merged: Props = { ...props[0] }
 
 	for (let i = 1; i < props.length; i++) {
@@ -39,6 +40,8 @@ export function composeProps<T extends Props[]>(...props: T) {
 					a(...args)
 					b(...args)
 				}
+			} else if (key === 'ref') {
+				merged[key] = mergeRefs(a, b)
 			} else {
 				merged[key] = b ?? a
 			}
@@ -52,7 +55,7 @@ export function composeProps<T extends Props[]>(...props: T) {
 /**
  * A hook that composes multiple props into a single props object.
  */
-export const usePropsComposed = (...props: Props[]) =>
+export const useMergeProps = (...props: Props[]) =>
 	// eslint-disable-next-line react-compiler/react-compiler
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	useMemo(() => composeProps(...props), props as DependencyList)
+	useMemo(() => mergeProps(...props), props as DependencyList)

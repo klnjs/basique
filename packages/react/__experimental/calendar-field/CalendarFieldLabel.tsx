@@ -1,21 +1,21 @@
-import { poly, forwardRef, useId, type CoreProps } from '@klnjs/react-core'
-import { useCalendarFieldContext } from './CalendarFieldContext'
+import { poly, useId, type CoreProps } from "@klnjs/react-core";
+import { useCalendarFieldContext } from "./CalendarFieldContext";
 
-export type CalendarFieldLabelProps = CoreProps<'label'>
+export type CalendarFieldLabelProps = CoreProps<"label">;
 
-export const CalendarFieldLabel = forwardRef<'label', CalendarFieldLabelProps>(
-	({ id: idProp, ...otherProps }, forwardedRef) => {
-		const { highlightedSegmentRef, labelId, setLabelId } =
-			useCalendarFieldContext()
-			const id = useId(idProp, setLabelId)
+export const CalendarFieldLabel = ({
+	id: idProp,
+	...otherProps
+}: CalendarFieldLabelProps) => {
+	const { highlightedSegmentRef, labelId, setLabelId } =
+		useCalendarFieldContext();
+	const id = useId(idProp, setLabelId);
 
-		return (
-			<poly.label
-				id={labelId}
-				ref={forwardedRef}
-				onClick={() => highlightedSegmentRef.current?.focus()}
-				{...otherProps}
-			/>
-		)
-	}
-)
+	return (
+		<poly.label
+			id={labelId}
+			onClick={() => highlightedSegmentRef.current?.focus()}
+			{...otherProps}
+		/>
+	);
+};

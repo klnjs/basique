@@ -1,4 +1,4 @@
-import { poly, forwardRef, type CoreProps } from '@klnjs/react-core'
+import { poly, type CoreProps } from '@klnjs/react-core'
 import type { CountdownUnit } from './useCountdownUnit'
 
 export type CountdownSegmentProps = CoreProps<
@@ -8,8 +8,7 @@ export type CountdownSegmentProps = CoreProps<
 	}
 >
 
-export const CountdownSegment = forwardRef<'div', CountdownSegmentProps>(
-	({ unit, ...otherProps }, ref) => (
-		<poly.div ref={ref} data-unit={unit} {...otherProps} />
-	)
-)
+export const CountdownSegment = ({
+	unit,
+	...otherProps
+}: CountdownSegmentProps) => <poly.div data-unit={unit} {...otherProps} />

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useStateControllable } from '@klnjs/react-core'
+import { useControllableState } from '@klnjs/react-core'
 import {
 	offset as offsetMiddleware,
 	autoUpdate,
@@ -43,7 +43,7 @@ export const usePopover = ({
 
 	const [descriptionId, setDescriptionId] = useState<string>()
 
-	const [open, setOpen] = useStateControllable({
+	const [open, setOpen] = useControllableState({
 		value: openProp,
 		defaultValue: defaultOpen,
 		onChange: onOpenChange

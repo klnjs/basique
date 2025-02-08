@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useEffectOnUpdate, useStateControllable } from '@klnjs/react-core'
+import { useEffectOnUpdate, useControllableState } from '@klnjs/react-core'
 import { isDefined, isArray } from '@klnjs/assertion'
 import { plainDate } from '@klnjs/temporal'
 import type { PlainDate, PlainDateRange } from './CalendarTypes'
@@ -39,7 +39,7 @@ export const useCalendarSelection = <S extends CalendarSelect = 'one'>({
 }: UseCalendarSelectionOptions<S>) => {
 	const [transient, setTransient] = useState<PlainDate>()
 
-	const [selection, setSelectionRaw] = useStateControllable<
+	const [selection, setSelectionRaw] = useControllableState<
 		CalendarSelectValue<CalendarSelect>
 	>({
 		value,
