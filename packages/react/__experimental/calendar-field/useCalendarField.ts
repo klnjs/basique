@@ -1,17 +1,17 @@
-import { useRef, useState } from 'react'
-import type { Temporal } from 'temporal-polyfill'
-import { useControllableState } from '../../packages/core/dist'
+import { useRef, useState } from "react";
+import type { Temporal } from "temporal-polyfill";
+import { useControllableState } from "../../packages/core/dist";
 
 export type UseCalendarFieldOptions = {
-	autoFocus?: boolean
-	min?: Temporal.PlainDateTime
-	max?: Temporal.PlainDateTime
-	locale?: string
-	disabled?: boolean
-	value?: Temporal.PlainDateTime | null
-	defaultValue?: Temporal.PlainDateTime | null
-	onChange?: (value: Temporal.PlainDateTime | null) => void
-}
+	autoFocus?: boolean;
+	min?: Temporal.PlainDateTime;
+	max?: Temporal.PlainDateTime;
+	locale?: string;
+	disabled?: boolean;
+	value?: Temporal.PlainDateTime | null;
+	defaultValue?: Temporal.PlainDateTime | null;
+	onChange?: (value: Temporal.PlainDateTime | null) => void;
+};
 
 export const useCalendarField = ({
 	autoFocus: autoFocusProp = false,
@@ -21,28 +21,28 @@ export const useCalendarField = ({
 	locale = navigator.language,
 	disabled = false,
 	defaultValue = null,
-	onChange
+	onChange,
 }: UseCalendarFieldOptions) => {
-	const autoFocusRef = useRef(autoFocusProp && !disabled)
+	const autoFocusRef = useRef(autoFocusProp && !disabled);
 
 	const setAutoFocus = (autoFocus: boolean) => {
-		autoFocusRef.current = autoFocus
-	}
+		autoFocusRef.current = autoFocus;
+	};
 
-	const [open, setOpen] = useState(false)
+	const [open, setOpen] = useState(false);
 
-	const [labelId, setLabelId] = useState<string>()
+	const [labelId, setLabelId] = useState<string>();
 
 	const [selection, setSelection] = useControllableState({
 		value,
 		defaultValue,
-		onChange
-	})
+		onChange,
+	});
 
-	const highlightedSegmentRef = useRef<HTMLDivElement>(null)
+	const highlightedSegmentRef = useRef<HTMLDivElement>(null);
 
 	const [highlightedSegment, setHighlightedSegment] =
-		useState<Temporal.DateTimeUnit>(() => 'day')
+		useState<Temporal.DateTimeUnit>(() => "day");
 
 	return {
 		min,
@@ -59,6 +59,6 @@ export const useCalendarField = ({
 		setSelection,
 		highlightedSegmentRef,
 		highlightedSegment,
-		setHighlightedSegment
-	}
-}
+		setHighlightedSegment,
+	};
+};

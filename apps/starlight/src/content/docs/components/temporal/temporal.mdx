@@ -1,0 +1,37 @@
+---
+slug: components/temporal
+title: Temporal
+description: A field for entering temporals (date and time).
+---
+
+import Showcase from '@library/Showcase.astro'
+import Feature from '@library/Feature.astro'
+import Features from '@library/Features.astro'
+import Installation from '@library/Installation.astro'
+import Attributes from '@library/Attributes.astro'
+import Properties from '@library/Properties.astro'
+import TemporalReact from './temporal.tsx'
+import react from './temporal.tsx?raw'
+import styles from './temporal.module.css?raw'
+
+## Showcase
+
+<Showcase
+	name="temporal"
+	sources={[
+		{ type: 'react', source: react },
+		{ type: 'styles', source: styles }
+	]}
+>
+	<TemporalReact slot="react" client:only="react" />
+</Showcase>
+
+## Features
+
+<Features>
+	<Feature>TODO.</Feature>
+</Features>
+
+## Installation
+
+<Installation name="react-temporal" />

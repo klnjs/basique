@@ -1,5 +1,5 @@
-export const isElementRTL = (element: HTMLElement | null) => {
-	if (!element || typeof window === 'undefined') {
+export const isElementRTL = (element: HTMLElement) => {
+	if (typeof window === 'undefined') {
 		return false
 	}
 

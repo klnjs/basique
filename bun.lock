@@ -257,6 +257,33 @@
         "react-dom": "^19.0",
       },
     },
+    "packages/react/temporal": {
+      "name": "@klnjs/react-temporal",
+      "version": "1.0.0-beta.13",
+      "dependencies": {
+        "@klnjs/assertion": "workspace:*",
+        "@klnjs/dom": "workspace:*",
+        "@klnjs/locale": "workspace:*",
+        "@klnjs/react-core": "workspace:*",
+        "@klnjs/temporal": "workspace:*",
+      },
+      "devDependencies": {
+        "@klnjs/basique": "workspace:*",
+        "@klnjs/eslint-config": "4.4.1",
+        "@klnjs/prettier-config": "4.4.1",
+        "@klnjs/typescript-config": "4.4.1",
+        "@types/react": "19.0.8",
+        "@types/react-dom": "19.0.3",
+        "eslint": "9.19.0",
+        "prettier": "3.4.2",
+        "typescript": "5.7.3",
+      },
+      "peerDependencies": {
+        "react": "^19.0",
+        "react-dom": "^19.0",
+        "temporal-polyfill": "^0.2.5",
+      },
+    },
     "packages/react/textarea": {
       "name": "@klnjs/react-textarea",
       "version": "1.0.0-beta.13",
@@ -650,6 +677,8 @@
     "@klnjs/react-popover": ["@klnjs/react-popover@workspace:packages/react/popover"],
 
     "@klnjs/react-spinner": ["@klnjs/react-spinner@workspace:packages/react/spinner"],
+
+    "@klnjs/react-temporal": ["@klnjs/react-temporal@workspace:packages/react/temporal"],
 
     "@klnjs/react-textarea": ["@klnjs/react-textarea@workspace:packages/react/textarea"],
 

@@ -1,0 +1,27 @@
+.temporal {
+	display: flex;
+	gap: 16px;
+	align-items: center;
+	flex-direction: column;
+}
+
+.group {
+	display: flex;
+	gap: 8px;
+	height: 48px;
+	padding-inline: 8px;
+	align-items: center;
+	border: 1px solid var(--sl-color-hairline-light);
+	border-radius: 0.5rem;
+	background: var(--sl-color-black);
+}
+
+.label {
+	font-size: 22px;
+}
+
+.segment {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
