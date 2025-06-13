@@ -40,8 +40,8 @@
 		"@klnjs/eslint-config": "4.4.1",
 		"@klnjs/prettier-config": "4.4.1",
 		"@klnjs/typescript-config": "4.4.1",
-		"eslint": "9.19.0",
-		"prettier": "3.4.2",
-		"typescript": "5.7.3"
+		"eslint": "9.29.0",
+		"prettier": "3.5.3",
+		"typescript": "5.8.3"
 	}
 }
