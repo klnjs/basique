@@ -8,7 +8,7 @@
 		"type": "git",
 		"url": "git+ssh://git@github.com/klnjs/basique.git"
 	},
-	"packageManager": "bun@1.2.0",
+	"packageManager": "bun@1.4.2",
 	"workspaces": [
 		"apps/**/*",
 		"packages/**/*"
@@ -24,7 +24,7 @@
 		"adorn": "turbo adorn"
 	},
 	"devDependencies": {
-		"@types/bun": "1.2.0",
-		"turbo": "2.3.4"
+		"@types/bun": "1.4.2",
+		"turbo": "2.10.12"
 	}
 }
